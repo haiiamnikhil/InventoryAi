@@ -8,11 +8,12 @@
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
-                            <div class="col-sm-8"><h2>Customer <b>Details</b></h2></div>
+                            <div class="col-sm-8">
+                                <h2>Customer <b>Details</b></h2>
+                            </div>
                             <div class="col-sm-4">
                                 <div class="search-box">
-                                    <i class="material-icons">&#xE8B6;</i>
-                                    <input type="text" class="form-control" placeholder="Search&hellip;">
+                                    <button class="btn btn-primary btn-sm">Export Report</button>
                                 </div>
                             </div>
                         </div>
@@ -29,30 +30,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let values of data | paginate : {itemsPerPage:perPageItem, currentPage:page}; let i = index;" [style.background-color]="i%2==1 ? 'white' : ''">
+                            <tr *ngFor="let values of data | paginate : {itemsPerPage:perPageItem, currentPage:page}; let i = index;"
+                                [style.background-color]="i%2==1 ? 'white' : ''">
                                 <td>{{i+1}}</td>
                                 <td>{{values.uploadedName}}</td>
                                 <td>{{values.category}}</td>
                                 <td>{{values.count}}</td>
                                 <td>{{values.uploaded_at}}</td>
                                 <td class="text-center">
-                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
-                                    <!-- <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
-                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o"></i></a>
+                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
+                                            class="fa fa-trash-o"></i></a>
                                 </td>
-                            </tr>        
+                            </tr>
                         </tbody>
                     </table>
                     <div class="clearfix">
-                        <div class="hint-text">Showing <b>5</b> out of <b>{{singleDetectionfilesLength}}</b> entries</div>
+                        <div class="hint-text">Showing <b>5</b> out of <b>{{singleDetectionfilesLength}}</b> entries
+                        </div>
                         <ul class="pagination">
                             <pagination-controls (pageChange)="page = $event"></pagination-controls>
                         </ul>
                     </div>
                 </div>
             </div>
-            
-        </div> 
+
+        </div>
         <div class="col-md-6" *ngFor="let data of multiDetectionHistory">
             <div class="text-center">
                 <h2>Batch Detection</h2>
@@ -61,11 +65,12 @@
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
-                            <div class="col-sm-8"><h2>Customer <b>Details</b></h2></div>
+                            <div class="col-sm-8">
+                                <h2>Customer <b>Details</b></h2>
+                            </div>
                             <div class="col-sm-4">
                                 <div class="search-box">
-                                    <i class="material-icons">&#xE8B6;</i>
-                                    <input type="text" class="form-control" placeholder="Search&hellip;">
+                                    <button class="btn btn-primary btn-sm">Export Report</button>
                                 </div>
                             </div>
                         </div>
@@ -82,29 +87,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let values of data | paginate : {itemsPerPage:perPageItem, currentPage:page}; let i = index;" [style.background-color]="i%2==1 ? 'white' : ''">
+                            <tr *ngFor="let values of data | paginate : {itemsPerPage:perPageItem, currentPage:page}; let i = index;"
+                                [style.background-color]="i%2==1 ? 'white' : ''">
                                 <td>{{i+1}}</td>
                                 <td>{{values.uploadedName}}</td>
                                 <td>{{values.category}}</td>
                                 <td>{{values.count}}</td>
                                 <td>{{values.uploaded_at}}</td>
                                 <td>
-                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                                    <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
+                                            class="fa fa-trash-o"></i></a>
+
                                 </td>
-                            </tr>       
+                            </tr>
                         </tbody>
                     </table>
                     <div class="clearfix">
-                        <div class="hint-text">Showing <b >5</b> out of <b>{{multiDetectionfilesLength}}</b> entries</div>
+                        <div class="hint-text">Showing <b>5</b> out of <b>{{multiDetectionfilesLength}}</b> entries
+                        </div>
                         <ul class="pagination">
                             <pagination-controls (pageChange)="page = $event"></pagination-controls>
                         </ul>
                     </div>
                 </div>
-            </div>        
-        </div> 
+            </div>
         </div>
     </div>
-    
+</div>

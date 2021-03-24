@@ -43,3 +43,6 @@ def userProfileView(request):
 
 def drag_and_drop(request):
     return render(request, 'draganddrop.html')
+
+def packagesView(request):
+    return render(request, 'packages.html')

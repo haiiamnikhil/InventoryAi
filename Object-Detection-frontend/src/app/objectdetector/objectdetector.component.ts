@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -8,7 +8,6 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./objectdetector.component.css']
 })
 export class ObjectdetectorComponent implements OnInit {
-
 
   viewMode: string
   files: any = []
@@ -22,12 +21,24 @@ export class ObjectdetectorComponent implements OnInit {
   message: string
   showMessage: boolean
   isBusy: boolean = false
+  presentViewMode:string
 
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
-    this.api.currentmessage.subscribe(message => this.viewMode = message)
+    this.api.currentmessage.subscribe(message => {
+      if(message == 'single'){
+        this.files = []
+        this.viewMode = message
+      }
+      else if(message == 'multiple'){
+        this.files = []
+        this.viewMode = message
+      }
+      else return
+    },)
   }
+
 
   getDropedFiles(event: any) {
     if (this.viewMode == 'single') {

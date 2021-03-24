@@ -28,10 +28,10 @@
       <div class="sidebar-header">
       <div class="sidebar-brand">
         <a href="#">Brand</a></div></div>
-      <li [class.active]="viewMode == 'home'" (click)="viewMode = 'home'" ><a routerLink="/"><i class="fa fa-home"></i></a></li>
-      <li [class.active]="viewMode == 'upload'" (click)="viewMode = 'upload'" ><a routerLink="/upload"><i class="fa fa-upload"></i></a></li>
-      <li [class.active]="viewMode == 'history'" (click)="viewMode = 'history'"><a routerLink="/history"><i class="fa fa-history"></i></a></li>
-     <li><a href="#!"><i class="fa fa-cog"></i></a></li>
+      <li [class.active]="router.url == '/'" ><a routerLink="/"><i class="fa fa-home"></i></a></li>
+      <li [class.active]="router.url == '/upload'" ><a routerLink="/upload"><i class="fa fa-upload"></i></a></li>
+      <li [class.active]="router.url == '/history'"><a routerLink="/history"><i class="fa fa-history"></i></a></li>
+     <li  [class.active]="router.url == '/packages'"><a routerLink="/packages"><i class="fa fa-cog"></i></a></li>
      <li [class.active]="viewMode == 'payment'" (click)="viewMode = 'payment'"><a routerLink="/payment"><i class="fa fa-credit-card-alt"></i></a></li>
      </ul>
  </nav>

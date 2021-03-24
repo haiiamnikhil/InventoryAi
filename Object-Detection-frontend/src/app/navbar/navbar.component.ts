@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
   viewMode:string = "home"
 
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(public router: Router, private apiService: ApiService) { }
  
   ngOnInit(): void {
     

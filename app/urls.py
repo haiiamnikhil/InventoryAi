@@ -34,4 +34,6 @@ urlpatterns = [
     
     path('history/',historyView,name='historyView'),
     path('api-single-detection/',detectionHistory,name='detectionHistory'),
+    
+    path('packages/',packagesView,name='packagesView'),
 ]

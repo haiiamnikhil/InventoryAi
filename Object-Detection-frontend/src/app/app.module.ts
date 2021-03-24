@@ -24,7 +24,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { RecentComponent } from './dashboard/recent/recent.component';
 import { PaymentComponent } from './payment/payment.component';
 import { DetectiontableComponent } from './detectiontable/detectiontable.component';
-import { NgxPaginationModule } from 'ngx-pagination'
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PackageComponent } from './package/package.component'
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { NgxPaginationModule } from 'ngx-pagination'
     RecentComponent,
     PaymentComponent,
     DetectiontableComponent,
+    PackageComponent,
   ],
   imports: [
     HttpClientModule,

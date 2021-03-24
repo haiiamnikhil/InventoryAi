@@ -8,6 +8,7 @@ import { LogoutComponent } from './user/logout/logout.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PaymentComponent } from './payment/payment.component';
+import { PackageComponent } from './package/package.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
     path:'history',
     component:DetectiontableComponent
   },
+  {
+    path:'packages',
+    component:PackageComponent
+  }
 ];
 
 @NgModule({
