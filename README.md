@@ -31,7 +31,7 @@ Now your environemnt is activated. Next navigate back to home directory as said 
 
 Once navigated back, install **requirements.txt** using <code>pip install -r requirements.txt</code>
 
-Wait for the installation to be completed.......
+Wait for the installation to be completed
 
 After installing, now you are free to run the project
 
