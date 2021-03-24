@@ -1,4 +1,4 @@
-<h1>InventoryAI</h1>
+<h1>InventoryAi</h1>
 
 InventoryAi is an automated couting machine which counts all thoses products maintained or stored on Warehouses. Here it helps you in reducing the work load and consumes time.
 Beyond an Ai Machine, it helps in may other ways:
