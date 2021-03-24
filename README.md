@@ -11,6 +11,10 @@ and lots more.
 
 <h2>How to Integrate</h2>
 
+InventoryAi is build with 2 powerfull frameworks where Angular takes care of the Ui and Django on backend delivers a significant support to provide the best result by rendering the Ai Engine on back.
+
+<h3>Angular</h3>
+
 Install Node Js from the offcial [Node Js page.](https://nodejs.org/en/download/)
 
 Once Node is installed onto your system next in to clone this <code>[repo](https://github.com/haiiamnikhil/Django-Angular-Object-Counter)</code>
@@ -20,6 +24,8 @@ After cloning, navigate to <code>Django-Angular-Object-Counter\\Object-Detection
 <h3><code>npm install</code></h3>
 
 After installing the node packages navigate back to the home directory <code>Django-Angular-Object-Counter\\</code>
+
+<h3>Django</h3>
 
 Now create a **Pip Virtual Environment** using the following Command
 
