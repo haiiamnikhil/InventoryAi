@@ -9,7 +9,7 @@ Beyond an Ai Machine, it helps in may other ways:
 </ul>
 and lots more.
 
-<h4>Here is a simple and easy way of intregrating this</h4>
+<h3>How to Integrate</h3>
 
 Install Node Js from the offcial [Node Js page.](https://nodejs.org/en/download/)
 
@@ -58,4 +58,5 @@ After that run
 <h3><code>py manage.py runserver</code></h3>
 
 <h3>Point to be remembered</h3>
-**As per today (March 2021) this project is under development.**
+
+As per today (March 2021) this project is under development.
