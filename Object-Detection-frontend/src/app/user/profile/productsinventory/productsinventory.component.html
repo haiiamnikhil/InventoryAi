@@ -1,0 +1,63 @@
+<section class="section">
+    <div class="row" id="basic-table">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Table with outer spacing</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-lg" *ngFor='let value of productsCount'>
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Count</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor='let count of value'>
+                                    <tr>
+                                        <td class="text-bold-500">{{count.item}}</td>
+                                        <td>{{count.totalCount}}</td>
+                                        <td class="text-bold-500">{{count.lastDate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Table with outer spacing</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-lg" *ngFor='let files of csvFiles'>
+                                <thead>
+                                    <tr>
+                                        <th>Filenames</th>
+                                        <th>Files</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor='let file of files'>
+                                    <tr>
+                                        <td class="text-bold-500">{{file.filename}}</td>
+                                        <td><a class="btn btn-primary btn-sm" href="{{file.csvFile}}" download>Download</a></td>
+                                        <td class="text-bold-500">{{file.date}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

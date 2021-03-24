@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light info-color fixed-top" style="height: 60px;">
+    <div class="container" style="max-width: 95%;">
+    <h4>Dashboard</h4>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+        aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container" style="max-width:100%">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a type="button" class=" nav-link btn btn-primary btn-sm" style="font-weight: bold;">Upgrade
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" type="button" (click)="logout()" style="color: black !important"> <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</nav>
+
+<nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav text-center">
+      <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <a href="#">Brand</a></div></div>
+      <li [class.active]="viewMode == 'home'" (click)="viewMode = 'home'" ><a routerLink="/"><i class="fa fa-home"></i></a></li>
+      <li [class.active]="viewMode == 'upload'" (click)="viewMode = 'upload'" ><a routerLink="/upload"><i class="fa fa-upload"></i></a></li>
+      <li [class.active]="viewMode == 'history'" (click)="viewMode = 'history'"><a routerLink="/history"><i class="fa fa-history"></i></a></li>
+     <li><a href="#!"><i class="fa fa-cog"></i></a></li>
+     <li [class.active]="viewMode == 'payment'" (click)="viewMode = 'payment'"><a routerLink="/payment"><i class="fa fa-credit-card-alt"></i></a></li>
+     </ul>
+ </nav>

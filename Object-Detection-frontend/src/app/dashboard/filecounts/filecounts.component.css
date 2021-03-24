@@ -1,0 +1,11 @@
+
+.card-icon{
+    background-color: hsla(0,0%,100%,.15);
+    width: 6rem;
+    padding: .5rem;
+}
+
+.card-icon svg {
+    width: 50%;
+    height: 50%;
+}

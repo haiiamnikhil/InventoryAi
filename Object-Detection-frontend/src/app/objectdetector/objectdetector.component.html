@@ -1,0 +1,43 @@
+<div class="alert alert-warning alert-dismissible fade" [class.show]='showMessage' role="alert" *ngIf="message"
+  style="left: 4%; width: 96%; margin-top: 55px;">
+  <strong>{{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<app-categorieselector></app-categorieselector>
+<select class="form-control form-control-lg align-center" [(ngModel)]="detectType">
+  <option disabled>Choose...</option>
+  <option>Pipe</option>
+  <option>Glass</option>
+  <option>Person</option>
+  <option>Car</option>
+  <option>Chair</option>
+</select>
+<button class="btn btn-success align-center" style="top:90%" (click)="uploadData()" [disabled]="files.length == 0">Upload</button>
+<div class="frame">
+  <div class="container">
+  <div class="center">
+    <div [class.dropzone]="files.length == 0 || files.length == 1" [class.upload-image]="files.length > 0">
+      <div class="content" appDragndrop (dropedFiles)="getDropedFiles($event)">
+        <div *ngIf="files.length == 0">
+          <i class="fa fa-cloud-upload fa-5x upload text-center upload" style="color: #6c757d!important;"></i>
+          <span class="filename"></span>
+          <input type="file" class="input" *ngIf="viewMode == 'single'" (change)="getImage($event)">
+          <input type="file" class="input" *ngIf="viewMode == 'multiple'" (change)="getImage($event)" multiple>
+          <div class="title">Select or Drop file to upload</div>
+        </div>
+
+        <div class="row text-center text-lg-left" *ngIf="files.length > 0">
+
+          <div class="col-lg-3 col-md-4 col-xs-6" *ngFor="let image of files">
+            <a href="#" class="d-block mb-4 h-100" style="margin-bottom: 0!important;">
+              <img class="img-fluid img-thumbnail" [src]="image" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

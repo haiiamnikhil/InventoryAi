@@ -1,0 +1,25 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Django-ng</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="ang/favicon.ico">
+  <link rel="stylesheet" href="{% static 'assets/angular/styles.css' %}">
+<style>
+
+</style>
+</head>
+
+<body style="background-color:#ecf0f4">
+  {% block content %}{% endblock %}
+	<app-root><img src="{% static 'logo/logo.gif' %}"  alt="Loading..." style="position:fixed; top:50%; left:50%; transform: translate(-50%, -50%);"></app-root>
+  <script type="text/javascript" src="{% static 'assets/angular/polyfills.js' %}"></script>
+  <script type="text/javascript" src="{% static 'assets/angular/scripts.js' %}"></script>
+  <script type="text/javascript" src="{% static 'assets/angular/runtime.js' %}"></script>
+  <script type="text/javascript" src="{% static 'assets/angular/main.js' %}"></script>
+</body>
+</html>

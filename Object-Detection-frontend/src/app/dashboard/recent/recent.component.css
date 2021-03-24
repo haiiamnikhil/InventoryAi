@@ -1,0 +1,170 @@
+.card-header-actions .card-header .dropdown-menu {
+    margin-top: 0;
+    top: 0.5625rem !important;
+}
+
+.animated--fade-in-up.dropdown-menu {
+    margin-top: 0;
+    top: 0.125rem !important;
+}
+.dropdown-menu {
+    font-size: 0.9rem;
+    border: none;
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+}
+.animated--fade-in-up {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+    -webkit-animation-duration: 300ms;
+    animation-duration: 300ms;
+    -webkit-animation-timing-function: margin cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+    animation-timing-function: margin cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.dropdown .dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+}
+
+button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
+    cursor: pointer;
+}
+.btn-transparent-dark {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    color: rgba(33, 40, 50, 0.5) !important;
+}
+
+.timeline.timeline-xs .timeline-item .timeline-item-marker {
+    transform: translateX(0.5625rem);
+}
+
+@media (min-width: 576px){
+
+    .timeline .timeline-item .timeline-item-marker {
+        flex-direction: row;
+        transform: translateX(1.625rem);
+        margin-bottom: 0;
+    }
+}
+.timeline .timeline-item .timeline-item-marker {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.timeline.timeline-xs .timeline-item .timeline-item-marker .timeline-item-marker-text {
+    width: 3rem;
+    font-size: 0.7rem;
+}
+@media (min-width: 576px){
+
+    .timeline .timeline-item .timeline-item-marker .timeline-item-marker-text {
+        margin-right: 0.5rem;
+        margin-bottom: 0;
+    }
+}
+.timeline .timeline-item .timeline-item-marker .timeline-item-marker-text {
+    font-size: 0.875rem;
+    width: 6rem;
+    color: #a7aeb8;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.timeline.timeline-xs .timeline-item .timeline-item-marker .timeline-item-marker-indicator {
+    height: 0.875rem;
+    width: 0.875rem;
+    font-size: 0.875rem;
+    border: 0.125rem solid #fff;
+    margin-top: -0.125rem;
+}
+
+.timeline .timeline-item .timeline-item-marker .timeline-item-marker-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    background-color: #f2f6fc;
+    border-radius: 100%;
+}
+.bg-green {
+    background-color: #00ac69 !important;
+}
+
+.timeline.timeline-xs .timeline-item .timeline-item-content {
+    font-size: 0.875rem;
+    padding-top: 0;
+    padding-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+@media (min-width: 576px){
+
+    .timeline .timeline-item .timeline-item-content {
+        padding-top: 0.75rem;
+        padding-bottom: 3rem;
+        padding-left: 3rem;
+        border-left: solid 0.25rem #f2f6fc;
+    }
+}
+.timeline .timeline-item .timeline-item-content {
+    padding-top: 0;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    width: 100%;
+}
+
+
+.card-header-actions .card-header {
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5625rem;
+    padding-bottom: 0.5625rem;
+}
+
+.card .card-header {
+    font-weight: 500;
+}
+.card-header:first-child {
+    border-radius: 0.35rem 0.35rem 0 0;
+}
+.card-header {
+    padding: 1rem 1.35rem;
+    margin-bottom: 0;
+    background-color: rgba(33, 40, 50, 0.03);
+    border-bottom: 1px solid 
+}
+
+.dropdown .dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.35rem;
+}
+
+.timeline .timeline-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.table th{
+    border-top: none !important;
+}

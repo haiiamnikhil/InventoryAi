@@ -1,0 +1,13 @@
+app/__pycache__/
+app/detector/yolov3.weights
+app/detector/yolov4.weights
+app/detector/yolov3_custom.weights
+app/detector/yolov3_custom_last.weights
+app/detector/yolov3_custom.cfg
+app/detector/__pycache__/
+app/migrations/
+ObjectCounter/__pycache__/
+media/
+.idea/
+.vscode/
+Object-Counter-Mobile-App/

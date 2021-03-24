@@ -1,0 +1,39 @@
+<div class="row grid-margin" style="overflow: hidden; padding-left: 15px; margin-right:0">
+<div class="col-md-4">
+    <div class="card card-header-actions h-100">
+        <div class="card-header" style="border-bottom: 0;">
+            Total Count Per Unit
+            <div class="dropdown no-caret">
+                <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical text-gray-500"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+                <div class="dropdown-menu dropdown-menu-right animated--fade-in-up" aria-labelledby="dropdownMenuButton">
+                    <h6 class="dropdown-header">Filter Activity:</h6>
+                    <a class="dropdown-item" href="#!"><span class="badge badge-green-soft text-green my-1">Commerce</span></a>
+                    <a class="dropdown-item" href="#!"><span class="badge badge-blue-soft text-blue my-1">Reporting</span></a>
+                    <a class="dropdown-item" href="#!"><span class="badge badge-yellow-soft text-yellow my-1">Server</span></a>
+                    <a class="dropdown-item" href="#!"><span class="badge badge-purple-soft text-purple my-1">Users</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" *ngFor="let items of inventory">
+            <div class="timeline timeline-xs">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Object</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Updated</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let data of items">
+                      <tr>
+                        <td>{{data.item}}</td>
+                        <td>{{data.totalCount}}</td>
+                        <td>{{data.lastUpdated}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

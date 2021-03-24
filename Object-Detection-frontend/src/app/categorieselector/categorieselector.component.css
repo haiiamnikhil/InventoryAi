@@ -1,0 +1,16 @@
+@media (min-width: 1200px){
+    .col-xl-8 {
+        flex: 0 0 66.666667%;
+        max-width: 100%;
+    }
+}
+
+.card {
+    border-radius:1.25rem
+}
+
+.active {
+    background-color:#0020ab;
+    color:white;
+    transition:0.3s ease-in-out;
+}

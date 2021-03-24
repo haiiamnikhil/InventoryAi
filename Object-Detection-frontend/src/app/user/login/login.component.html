@@ -1,0 +1,70 @@
+
+            
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngFor='let error of message'>
+    <strong>{{error}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+            
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center align-items-center-login">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 col-lg-7">
+            <img src="../static/images/login-page-img.png" alt="">
+          </div>
+          <div class="col-md-6 col-lg-5">
+            <div class="login-box bg-white box-shadow border-radius-10">
+              <div class="login-title">
+                <h2 class="text-center text-primary">Login To AI Counter</h2>
+              </div>
+              <form (submit)=authUser()>
+                <label for="username">Username</label>
+                <div class="input-group custom">
+                  <div class="input-group-append custom">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                  </div>
+                  <input type="text" class="form-control form-control-lg" id="username" name="username" [(ngModel)]="username">
+                </div>
+                <label for="password">Password</label>
+                <div class="input-group custom">
+                  <div class="input-group-append custom">
+                    <span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
+                  </div>
+                  <input type="password" class="form-control form-control-lg" id="password" name="password" [(ngModel)]="password">
+                </div>
+                <div class="row pb-30">
+                  <div class="col-6">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                      <label class="custom-control-label" for="customCheck1">Remember</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="forgot-password"><a href="forgot-password.html">Forgot Password</a></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="input-group mb-0">
+                      <!--
+                        use code for form submit
+                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
+                      -->
+                      <button class="btn btn-primary btn-lg btn-block">
+                        <span class="spinner-border-sm" [class.spinner-border]="isBusy" role="status" aria-hidden="true"></span>
+                        Sign In</button>
+                    </div>
+                    <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
+                    <div class="input-group mb-0">
+                      <a class="btn btn-outline-primary btn-lg btn-block" routerLink="/register">Register To Create Account</a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
