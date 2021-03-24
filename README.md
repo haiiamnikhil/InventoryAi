@@ -43,7 +43,7 @@ Wait for the installation to be completed
 
 After installing, now you are free to run the project
 
-<h3>Running Project</h3>
+<h2>Running Project</h2>
 
 Brefore starting the server, delete the <code>sqllite</code> file present on the home directory.
 
