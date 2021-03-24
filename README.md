@@ -29,7 +29,9 @@ After installing environment activate environment uisng <code>cd env\\</code> pr
 
 Now your environemnt is activated. Next navigate back to home directory as said before.
 
-Once navigated back, install **requirements.txt** using <code>pip install -r requirements.txt</code>
+Once navigated back, install **requirements.txt** using
+
+<h3><code>pip install -r requirements.txt</code></h3>
 
 Wait for the installation to be completed
 
@@ -51,8 +53,9 @@ After that run
   <li>
     <code>py manage.py createsuperuser</code> create super user as your choice
   </li>
-  <li><code>py manage.py runserver</code></li>
 </ul>
+
+<h3><code>py manage.py runserver</code></h3>
 
 <h3>Point to be remembered</h3>
 As per today this project is under development.
