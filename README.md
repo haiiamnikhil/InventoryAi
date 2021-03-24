@@ -58,4 +58,4 @@ After that run
 <h3><code>py manage.py runserver</code></h3>
 
 <h3>Point to be remembered</h3>
-As per today this project is under development.
+**As per today (March 2021) this project is under development.**
