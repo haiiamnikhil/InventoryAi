@@ -17,7 +17,7 @@ InventoryAi is build with 2 powerfull frameworks. When Angular takes care of Ui 
 
 Install Node Js from the offcial [Node Js page.](https://nodejs.org/en/download/)
 
-Once Node is installed onto your system next in to clone this <code>[repo](https://github.com/haiiamnikhil/Django-Angular-Object-Counter)</code>
+Once Node is installed onto your system next in to clone this <code>[repo](https://github.com/haiiamnikhil/InventoryAi.git)</code>
 
 After cloning, navigate to <code>Django-Angular-Object-Counter\\Object-Detection-frontend\\</code>folder and install node packaged using the following command below
 
