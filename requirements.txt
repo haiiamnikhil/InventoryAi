@@ -58,9 +58,6 @@ tensorboard-plugin-wit==1.8.0
 tensorflow-gpu==2.2.0
 tensorflow-gpu-estimator==2.2.0
 termcolor==1.1.0
-torch==1.8.0+cu111
-torchaudio==0.8.0
-torchvision==0.9.0+cu111
 tqdm==4.58.0
 typing-extensions==3.7.4.3
 urllib3==1.26.3
