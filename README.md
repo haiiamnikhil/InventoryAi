@@ -11,7 +11,7 @@ and lots more.
 
 <h2>How to Integrate</h2>
 
-InventoryAi is build with 2 powerfull frameworks where Angular takes care of the Ui and Django on backend delivers a significant support to provide the best result by rendering the Ai Engine on back.
+InventoryAi is build with 2 powerfull frameworks. When Angular takes care of Ui on the other-hand, Django delivers a significant support to provide the best result by rendering the Ai Engine on backend side.
 
 <h3>Angular</h3>
 
