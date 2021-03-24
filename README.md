@@ -31,7 +31,7 @@ Now create a **Pip Virtual Environment** using the following Command
 
 <code>virtualenv env</code> (evn used here is just a name of environment, you are free to use any name as per your need)
 
-After installing environment activate environment uisng <code>cd env\\</code> press enter,then <code>Script\\activate\\</code>
+After installing environment activate environment uisng <code>cd env\\</code> press enter,then <code>Scripts\\activate\\</code>
 
 Now your environemnt is activated. Next navigate back to home directory as said before.
 
