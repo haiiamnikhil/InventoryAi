@@ -45,7 +45,7 @@ After installing, now you are free to run the project
 
 <h2>Running Project</h2>
 
-Brefore starting the server, delete the <code>sqllite</code> file present on the home directory.
+Brefore starting the server, make sure you have deleated the <code>db.sqlite3</code> file present in the home directory.
 
 After that run
 
