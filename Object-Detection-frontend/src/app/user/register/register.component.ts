@@ -16,12 +16,13 @@ export class RegisterComponent implements OnInit {
   last_name:string
   confirmpassword:string
   organisation_name:string
-  organisation_email:string
-  organisation_type:string
-  organisation_strength:string
-  message = []
+  plan:string = "Choose..."
+  // organisation_email:string
+  // organisation_type:string
+  // organisation_strength:string
+  message:string
   isBusy:boolean = false
-  viewMode = 'basic'
+  viewMode:string = 'basic'
 
   constructor(private router:Router, private apiservice:ApiService) { }
 
@@ -37,17 +38,19 @@ export class RegisterComponent implements OnInit {
       first_name: this.first_name,
       last_name: this.last_name,
       organisation_name:this.organisation_name,
-      organisation_email:this.organisation_email,
-      organisation_type:this.organisation_type,
-      organisation_strength:this.organisation_strength
+      plan:this.plan,
+      // organisation_email:this.organisation_email,
+      // organisation_type:this.organisation_type,
+      // organisation_strength:this.organisation_strength
     }
+    console.log(credentials)
     this.apiservice.register(credentials).subscribe(response => {
       if(response.status){
         this.router.navigate(['/login'])
       }
       else{
-        console.log(response.message)
-        this.message.push(response.message)
+        this.isBusy = false;
+        this.message = response.message
       }
     },
     error=> console.log(error)

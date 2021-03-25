@@ -1,5 +1,5 @@
 <div class="alert alert-warning alert-dismissible fade" [class.show]='showMessage' role="alert" *ngIf="message"
-  style="left: 4%; width: 96%; margin-top: 55px;">
+  style="left: 4%; width: 96%;">
   <strong>{{message}}</strong>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -14,7 +14,9 @@
   <option>Car</option>
   <option>Chair</option>
 </select>
-<button class="btn btn-success align-center" style="top:90%" (click)="uploadData()" [disabled]="files.length == 0">Upload</button>
+<button class="btn btn-success align-center" style="top:90%" (click)="uploadData()" [disabled]="files.length == 0 || isBusy">
+  <span class="spinner-border-sm" [class.spinner-border]="isBusy" role="status" aria-hidden="true"></span>
+  Upload</button>
 <div class="frame">
   <div class="container">
   <div class="center">

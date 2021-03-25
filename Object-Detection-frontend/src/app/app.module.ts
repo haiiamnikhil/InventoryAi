@@ -25,7 +25,8 @@ import { RecentComponent } from './dashboard/recent/recent.component';
 import { PaymentComponent } from './payment/payment.component';
 import { DetectiontableComponent } from './detectiontable/detectiontable.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { PackageComponent } from './package/package.component'
+import { PackageComponent } from './package/package.component';
+import { SidebarComponent } from './sidebar/sidebar.component'
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { PackageComponent } from './package/package.component'
     PaymentComponent,
     DetectiontableComponent,
     PackageComponent,
+    SidebarComponent,
   ],
   imports: [
     HttpClientModule,

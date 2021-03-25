@@ -12,7 +12,8 @@ export class DetectiontableComponent implements OnInit {
   multiDetectionHistory:any = []
   singleDetectionfilesLength:number
   multiDetectionfilesLength:number
-  page: number = 1
+  singleDetectionPage: number = 1
+  multiDetectionPage: number = 1
   perPageItem:number = 5
   constructor(private apiService: ApiService) { }
 

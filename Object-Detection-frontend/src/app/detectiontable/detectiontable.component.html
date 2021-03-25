@@ -1,4 +1,4 @@
-<div class="container" style="max-width: 90%; margin-top:80px">
+<div class="container" style="max-width: 90%">
     <div class="row">
         <div class="col-md-6" *ngFor="let data of singleDetectionHistory">
             <div class="text-center">
@@ -30,7 +30,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let values of data | paginate : {itemsPerPage:perPageItem, currentPage:page}; let i = index;"
+                            <tr *ngFor="let values of data | paginate : {id:'first',itemsPerPage:perPageItem, currentPage:singleDetectionPage}; let i = index;"
                                 [style.background-color]="i%2==1 ? 'white' : ''">
                                 <td>{{i+1}}</td>
                                 <td>{{values.uploadedName}}</td>
@@ -50,7 +50,7 @@
                         <div class="hint-text">Showing <b>5</b> out of <b>{{singleDetectionfilesLength}}</b> entries
                         </div>
                         <ul class="pagination">
-                            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                            <pagination-controls (pageChange)="singleDetectionPage = $event" id='first'></pagination-controls>
                         </ul>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let values of data | paginate : {itemsPerPage:perPageItem, currentPage:page}; let i = index;"
+                            <tr *ngFor="let values of data | paginate : {id:'second',itemsPerPage:perPageItem, currentPage:multiDetectionPage}; let i = index;"
                                 [style.background-color]="i%2==1 ? 'white' : ''">
                                 <td>{{i+1}}</td>
                                 <td>{{values.uploadedName}}</td>
@@ -108,7 +108,7 @@
                         <div class="hint-text">Showing <b>5</b> out of <b>{{multiDetectionfilesLength}}</b> entries
                         </div>
                         <ul class="pagination">
-                            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                            <pagination-controls (pageChange)="multiDetectionPage = $event" id="second"></pagination-controls>
                         </ul>
                     </div>
                 </div>

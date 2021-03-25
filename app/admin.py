@@ -8,10 +8,22 @@ class UserModelAdmin(admin.ModelAdmin):
 
 class ProductTotalCountAdmin(admin.ModelAdmin):
     list_display = ('user','item','totalCount','lastUpdated')
+    
+
+class ProductCountHistoryAdmin(admin.ModelAdmin):
+    list_display = ('user','item','count','addedDate')
+    
+    
+class UploadDataAdmin(admin.ModelAdmin):
+    list_display = ('user','category','detection_type','uploadedName','count','uploaded_at')
+    
+
+class UserPackageAdmin(admin.ModelAdmin):
+    list_display = ('user','packageType','allotatedCounts','remainingCounts','subscriptionUpdatedOn','subscribedOn')
 
 admin.site.register(UserModel,UserModelAdmin)
 
-admin.site.register(UploadData)
+admin.site.register(UploadData,UploadDataAdmin)
 
 admin.site.register(UserCSVRecord)
 
@@ -19,4 +31,6 @@ admin.site.register(UserProcessCount)
 
 admin.site.register(ProductTotalCount,ProductTotalCountAdmin)
 
-admin.site.register(ProductCountHistory)
+admin.site.register(ProductCountHistory, ProductCountHistoryAdmin)
+
+admin.site.register(UserPackage,UserPackageAdmin)

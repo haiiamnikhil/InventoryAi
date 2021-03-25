@@ -1,0 +1,17 @@
+.adminx-container{
+    display:flex;
+    justify-content:flex-start;
+    /* position: initial;
+    margin-top: 80px;
+    margin-left: 80px;
+    /* overflow-x: 0; */
+}
+
+.dashboard-items{
+    width:100%;
+    margin-top:75px
+}
+
+.sidebar{
+    width:100px
+}

@@ -36,4 +36,6 @@ urlpatterns = [
     path('api-single-detection/',detectionHistory,name='detectionHistory'),
     
     path('packages/',packagesView,name='packagesView'),
+    
+    path('activate/<uidb64>/<token>/',activate,name='activate'),
 ]

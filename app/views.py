@@ -1,5 +1,7 @@
 from django.http import JsonResponse
-from .models import ProductCountHistory, ProductTotalCount, UserCSVRecord, UploadData, UserModel, UserProcessCount
+from django.shortcuts import redirect, render
+from django.http.response import Http404
+from .models import ProductCountHistory, ProductTotalCount, UserCSVRecord, UploadData, UserModel, UserPackage, UserProcessCount
 from .detector import detector
 import os
 import cv2 as cv
@@ -10,15 +12,27 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework.parsers import JSONParser
 from django.contrib.auth.hashers import make_password
 import datetime as dt
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import EmailMessage
+
+
+COUNT_PACKAGES = {
+    'Basic' : 100,
+    'Normal' : 500,
+    'Professional' : 800,
+    'Warehouse' :1500
+} 
 
 
 @csrf_exempt
 def single_image_processor(request):
     if request.method == 'POST':
-        # print(request.__dict__)
         mode = 'single_object_detection'
         detectType = request.POST.get('detectType')
-        print(detectType)
         file = request.FILES.get('image')
 
         data = UploadData.objects.create(
@@ -84,9 +98,7 @@ def single_image_processor(request):
 
 
 @csrf_exempt
-def multi_image_processor(request):
-    print("multi Detectuionj")
-    
+def multi_image_processor(request):    
 
     filenames = []
     count = []
@@ -105,8 +117,12 @@ def multi_image_processor(request):
                 filename = data.image.name.split('/')[1]
             except:
                 pass
-
-            getCount, getDetection = detector.detect(filename, dataType, mode)
+            
+            try:
+                getCount, getDetection = detector.detect(filename, dataType, mode)
+            except:
+                pass
+        
             productCount += getCount
 
             cv.imwrite(os.path.join(
@@ -204,13 +220,42 @@ def registerAuth(request):
                 password=make_password(credentials['password']),
                 email=credentials['email'],
                 full_name=f"{credentials['first_name'] } {credentials['last_name']}",
-                organisation_name=credentials['organisation_name'],
-                organisation_strength=credentials['organisation_strength'],
-                organisation_type=credentials['organisation_type'],
-                organisation_email=credentials['organisation_email']
+                organisation_name=credentials['organisation_name']
             )
+            print(user.username)
+            plan = UserPackage.objects.create(user=user.username,packageType=credentials['plan'],
+                                              allotatedCounts=COUNT_PACKAGES[credentials['plan']])
+            
+            curret_site = get_current_site(request)
+            subject = "Account Activation OTL"
+            name = credentials['first_name'] + " " + credentials['last_name']
+            message = render_to_string('activate-account.html',{
+                'user':name,'domain':curret_site.domain,'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token':default_token_generator.make_token(user),
+            })
+            email = credentials['email']
+            sendEmail = EmailMessage(subject,message,to=[email])
+            sendEmail.send()
+            user.is_active = False
+            user.save()
+            
             return JsonResponse({'status': True, "message": "User Created"}, safe=False, status=200)
+        
+        
+def activate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = UserModel._default_manager.get(pk=uid)
 
+    except (TypeError, ValueError,OverflowError,UserModel.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user,token):
+        user.is_active = True
+        user.save()
+        return redirect('loginView')
+    else:
+        return Http404('Invalid Activation Link')
 
 @csrf_exempt
 def loginAuth(request):
@@ -241,6 +286,7 @@ def userDetails(request):
         getCount = UserProcessCount.objects.filter(user=request.user)
         count_serializer = RecordsCountSerializer(getCount, many=True)
         user_serializer = UserSerializer(user, many=True)
+        print(count_serializer.data)
         return JsonResponse({'status': True, 'message': user_serializer.data, 'count': count_serializer.data}, safe=False, status=200)
 
 
@@ -265,18 +311,15 @@ def getInventory(request):
 def productAnalytics(request):
     if request.method == 'GET':
         product = JSONParser().parse(request)
-        print(product)
 
 
 @csrf_exempt
 def periodicalSelector(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        print(data)
         getDetails = ProductCountHistory.objects.filter(
             user=request.user, item=data['item'], addedDate__range=[data['startDate'], data['endDate']])
         serializer = ProductCountHistorySerializer(getDetails, many=True)
-        print(serializer.data)
         return JsonResponse({'status': True, 'message': serializer.data}, safe=False, status=200)
 
 
@@ -284,7 +327,6 @@ def periodicalSelector(request):
 def productHistory(request):
     if request.method == 'GET':
         getItem = JSONParser().parse(request)
-        print(getItem)
         item = ProductCountHistory.objects.filter(user=request.user, item=getItem['item'], addedDate__range=[
                                                   getItem['startDate'], getItem['endDate']])
         serializer = ProductCountHistorySerializer(item, many=True)

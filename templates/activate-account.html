@@ -1,0 +1,6 @@
+{% autoescape off %}
+Hi {{ user }},  
+Please Click on the Link Below to Confirm your Account,
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}  
+If you think this is not Your Account Please feel Free to Reject 
+{% endautoescape %}

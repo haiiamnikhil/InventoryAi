@@ -24,9 +24,9 @@ def file_rename(instance,filename):
     upload_to = 'img'
     name,ext = os.path.splitext(filename)
     if instance.pk:
-        filename = f"{filename}.{ext}"
+        filename = f"{filename}{ext}"
     else:
-        filename = f"{name}-{''.join(random.choices(string.ascii_lowercase+string.digits,k=8))}.{ext}"
+        filename = f"{name}-{''.join(random.choices(string.ascii_lowercase+string.digits,k=8))}{ext}"
     
     return os.path.join(upload_to,filename)
 
@@ -43,6 +43,18 @@ class UserModel(AbstractUser):
     def __str__(self):
         return self.username
 
+
+class UserPackage(models.Model):
+    user = models.ForeignKey(UserModel,on_delete=models.CASCADE,null=True,blank=False)
+    packageType = models.CharField(max_length=50,null=True,blank=False,unique=False)
+    allotatedCounts = models.BigIntegerField(unique=False,default=0,null=True,blank=False)
+    remainingCounts = models.BigIntegerField(unique=False,default=0,null=True,blank=False)
+    subscriptionUpdatedOn = models.DateField(auto_now=True)
+    subscribedOn = models.DateField(auto_now=True)
+    
+    def __str__(self):
+        return str(self.user)
+    
 
 class UploadData(models.Model):
     user = models.ForeignKey(UserModel,on_delete=models.CASCADE,null=True)

@@ -2,28 +2,31 @@
   <div class="login-page" *ngSwitchCase="'/login'">
     <div class="fadeIn">
 
-    <router-outlet></router-outlet>
-      </div>
+      <router-outlet></router-outlet>
+    </div>
 
   </div>
   <div class="login-page" *ngSwitchCase="'/register'">
     <div class="fadeIn">
-    <router-outlet></router-outlet>
-  </div>
-
-  </div>
-  <div *ngSwitchCase="'/profile'">
-    <app-navbar></app-navbar>
-    <div class="fadeIn">
-    <router-outlet></router-outlet>
-  </div>
-
-  </div>
-  <div *ngSwitchDefault>
-    <app-navbar></app-navbar>
-    <div class="fadeIn">
       <router-outlet></router-outlet>
     </div>
 
+  </div>
+
+  <div *ngSwitchDefault>
+    <div>
+      <app-navbar></app-navbar>
+    </div>
+    <div class="fadeIn">
+      <div class="adminx-container">
+        <div class="sidebar">
+          <app-sidebar></app-sidebar>
+        </div>
+          <div class="dashboard-items">
+            <router-outlet></router-outlet>
+          </div>
+    </div>
+  </div>
+  
   </div>
 </div>
