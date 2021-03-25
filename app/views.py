@@ -223,7 +223,7 @@ def registerAuth(request):
                 organisation_name=credentials['organisation_name']
             )
             print(user.username)
-            plan = UserPackage.objects.create(user=user.username,packageType=credentials['plan'],
+            plan = UserPackage.objects.create(user=credentials[username],packageType=credentials['plan'],
                                               allotatedCounts=COUNT_PACKAGES[credentials['plan']])
             
             curret_site = get_current_site(request)
