@@ -1,8 +1,8 @@
 <div class="adminx-content grid-margin">
     <div class="adminx-main-content" *ngIf="count.length > 0">
-        <div class="container-fluid" *ngFor="let counts of count">
+        <div class="container-fluid">
 
-            <div class="row" *ngFor="let values of counts">
+            <div class="row" *ngFor="let values of count">
                 <div class="col-md-6 col-lg-3 d-flex">
                     <div class="card mb-grid w-100">
                         <div class="card-body d-flex flex-column">
@@ -12,7 +12,7 @@
                                 </h5>
 
                                 <div class="card-title-sub">
-                                    <h5>{{values.totalCount}}</h5>
+                                    <h5>{{values.totalCount}} / {{totalLimit}}</h5>
                                 </div>
                             </div>
 
@@ -32,9 +32,9 @@
                                 <i class="fa fa-envelope"></i>
                             </div>
                             <div class="card-body">
-                                <div class="card-info-title">Remaining Count</div>
+                                <div class="card-info-title">Remaining / Total </div>
                                 <h3 class="card-title mb-0">
-                                    {{remainingCount}}
+                                    {{remainingCount}} / {{totalLimit}}
                                 </h3>
                             </div>
                         </div>
@@ -174,9 +174,9 @@
                                 <i class="fa fa-envelope"></i>
                             </div>
                             <div class="card-body">
-                                <div class="card-info-title">Remaining Count</div>
+                                <div class="card-info-title">Remaining / Total</div>
                                 <h3 class="card-title mb-0">
-                                    0
+                                    {{remainingCount}} / {{totalLimit}}
                                 </h3>
                             </div>
                         </div>

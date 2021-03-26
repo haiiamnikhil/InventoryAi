@@ -16,7 +16,6 @@ export class RecentComponent implements OnInit {
     this.apiService.getInventory().subscribe(response=> {
       if (response.status){
         this.inventory.push(response.productCounts)
-        console.log(this.inventory)
       }
       else return
     }, err=> console.log(err))

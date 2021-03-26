@@ -1,6 +1,25 @@
-<div class="container" style="max-width: 90%">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container" style="max-width: 80%">
     <div class="row">
-        <div class="col-md-6" *ngFor="let data of singleDetectionHistory">
+        <div class="col-md-12 text-center" *ngFor="let data of singleDetectionHistory">
             <div class="text-center">
                 <h2>Single Detection</h2>
             </div>
@@ -47,7 +66,9 @@
                         </tbody>
                     </table>
                     <div class="clearfix">
-                        <div class="hint-text">Showing <b>5</b> out of <b>{{singleDetectionfilesLength}}</b> entries
+                        <div class="hint-text" *ngIf="singleDetectionfilesLength > perPageItem">Showing <b>{{perPageItem}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
+                        </div>
+                        <div class="hint-text" *ngIf="perPageItem > singleDetectionfilesLength">Showing <b>{{singleDetectionfilesLength}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
                         </div>
                         <ul class="pagination">
                             <pagination-controls (pageChange)="singleDetectionPage = $event" id='first'></pagination-controls>
@@ -57,7 +78,7 @@
             </div>
 
         </div>
-        <div class="col-md-6" *ngFor="let data of multiDetectionHistory">
+        <div class="col-md-12 text-center" *ngFor="let data of multiDetectionHistory">
             <div class="text-center">
                 <h2>Batch Detection</h2>
             </div>
@@ -95,7 +116,7 @@
                                 <td>{{values.count}}</td>
                                 <td>{{values.uploaded_at}}</td>
                                 <td>
-                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i
+                                    <a type="button" data-toggle="modal" data-target="#exampleModalCenter" class="view" title="View"><i
                                             class="fa fa-eye"></i></a>
                                     <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
                                             class="fa fa-trash-o"></i></a>
@@ -105,7 +126,9 @@
                         </tbody>
                     </table>
                     <div class="clearfix">
-                        <div class="hint-text">Showing <b>5</b> out of <b>{{multiDetectionfilesLength}}</b> entries
+                        <div class="hint-text" *ngIf="multiDetectionfilesLength > perPageItem">Showing <b>{{perPageItem}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
+                        </div>
+                        <div class="hint-text" *ngIf="perPageItem > multiDetectionfilesLength">Showing <b>{{multiDetectionfilesLength}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
                         </div>
                         <ul class="pagination">
                             <pagination-controls (pageChange)="multiDetectionPage = $event" id="second"></pagination-controls>
@@ -115,4 +138,6 @@
             </div>
         </div>
     </div>
+      
 </div>
+

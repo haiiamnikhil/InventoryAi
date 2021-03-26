@@ -1,3 +1,4 @@
+import re
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.http.response import Http404
@@ -6,7 +7,7 @@ from .detector import detector
 import os
 import cv2 as cv
 from django.views.decorators.csrf import csrf_exempt
-from .serializer import CsvSerializer, DetectionSerializer, MultiDetectionHistorySerializer, ProductCountHistorySerializer, ProductTotalCountSerializer, SingleDetectionHistorySerializer, UserSerializer, RecordsCountSerializer
+from .serializer import CsvSerializer, DetectionSerializer, MultiDetectionHistorySerializer, ProductCountHistorySerializer, ProductTotalCountSerializer, SingleDetectionHistorySerializer, UserPackageSerializer, UserSerializer, RecordsCountSerializer
 import pandas as pd
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.parsers import JSONParser
@@ -110,7 +111,13 @@ def multi_image_processor(request):
         dataType = request.POST.get('detectType')
         productCount = 0
 
+        userPackage = UserPackage.objects.get(user=request.user)
+        
+        if userPackage.remainingCounts <= 0:
+            return JsonResponse({"status":False, "message":"Your Limit has finised"},safe=False, status=200)
+        
         for file in request.FILES.getlist('image'):
+            
             data = UploadData.objects.create(
                 user=request.user, category=dataType, image=file, detection_type="Multiple")
             try:
@@ -165,7 +172,7 @@ def multi_image_processor(request):
             ProductCountHistory.objects.create(
                 user=request.user, item=dataType, count=getCount)
 
-        data = {'Files': filenames, 'Count': getCount}
+        data = {'Files': filenames, 'Count': count}
         df = pd.DataFrame(data)
 
         time = dt.datetime.now().time()
@@ -181,7 +188,7 @@ def multi_image_processor(request):
             pass
 
         df.to_csv(os.path.join('media/reports',
-                               f"{csvSaveName}.csv"), index=None)
+                                f"{csvSaveName}.csv"), index=None)
 
         
         csvFile = f"reports/{csvSaveName}.csv"
@@ -202,8 +209,12 @@ def multi_image_processor(request):
             add_total_count.save()
 
         serializer = CsvSerializer(reports, many=True)
-
-        return JsonResponse({"status": True, "csv": serializer.data, "data": detected_details}, safe=False, status=200)
+        print (serializer.data)
+        updateCount = UserPackage.objects.get(user=request.user)
+        updateCount.remainingCounts -= len(request.FILES.getlist('image'))
+        updateCount.save()
+        
+        return JsonResponse({"status": True, "csv": serializer.data[0], "data": detected_details}, safe=False, status=200)
 
 
 @csrf_exempt
@@ -222,9 +233,8 @@ def registerAuth(request):
                 full_name=f"{credentials['first_name'] } {credentials['last_name']}",
                 organisation_name=credentials['organisation_name']
             )
-            print(user.username)
-            plan = UserPackage.objects.create(user=credentials[username],packageType=credentials['plan'],
-                                              allotatedCounts=COUNT_PACKAGES[credentials['plan']])
+            plan = UserPackage.objects.create(user=user,packageType=credentials['plan'],
+                                              allotatedCounts=COUNT_PACKAGES[credentials['plan']],remainingCounts=COUNT_PACKAGES[credentials['plan']])
             
             curret_site = get_current_site(request)
             subject = "Account Activation OTL"
@@ -280,14 +290,13 @@ def isLoggedIn(request):
 
 
 @csrf_exempt
-def userDetails(request):
+def userCountAPI(request):
     if request.method == 'GET':
-        user = UserModel.objects.filter(username=request.user)
         getCount = UserProcessCount.objects.filter(user=request.user)
+        package = UserPackage.objects.filter(user=request.user)
+        package_serializer = UserPackageSerializer(package, many=True)
         count_serializer = RecordsCountSerializer(getCount, many=True)
-        user_serializer = UserSerializer(user, many=True)
-        print(count_serializer.data)
-        return JsonResponse({'status': True, 'message': user_serializer.data, 'count': count_serializer.data}, safe=False, status=200)
+        return JsonResponse({'status': True, 'count': count_serializer.data,'package':package_serializer.data}, safe=False, status=200)
 
 
 @csrf_exempt
@@ -341,3 +350,4 @@ def detectionHistory(request):
         multipleDetectionserializer = MultiDetectionHistorySerializer(getMultipleDetection, many=True)
         
         return JsonResponse({'status': True, 'singleDetection': singleDetectionserializer.data,'multiDetection':multipleDetectionserializer.data},safe=False, status=200)
+    

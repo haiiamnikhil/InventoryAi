@@ -89,8 +89,6 @@ export class ObjectdetectorComponent implements OnInit {
   
   uploadData() {
     this.isBusy= true;
-    console.log(this.processFiles)
-    console.log(this.detectType)
     const uploadData = new FormData();
     for (let i = 0; i < this.processFiles.length; i++){
       console.log(this.processFiles[i].name)
@@ -103,7 +101,6 @@ export class ObjectdetectorComponent implements OnInit {
         if (response.status) {
           this.isBusy = false
           this.getdata = response.data
-          console.log(response.data)
           this.count = response.count
         }
       },
@@ -111,18 +108,23 @@ export class ObjectdetectorComponent implements OnInit {
       )
     }
     else if(this.viewMode == 'multiple'){
-      console.log(this.viewMode)
       this.api.getMultiDetection(uploadData).subscribe(response => {
         if (response.status) {
           this.isBusy = false
           this.getdata = response.data
-          console.log(response.data)
           this.count = response.count
         }
-      },
-        error => console.log(error)
+        else{
+          this.message = response.message
+          this.showMessage = true
+          this.isBusy = false
+        }
+      },error => console.log(error)
       )
     }
+    setTimeout(() => {
+      this.showMessage = false
+    },3000)
   }
 
 }

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ProductCountHistory, ProductTotalCount, UploadData, UserCSVRecord, UserModel, UserProcessCount
+from .models import ProductCountHistory, ProductTotalCount, UploadData, UserCSVRecord, UserModel, UserPackage, UserProcessCount
 
 
 class DetectionSerializer(serializers.ModelSerializer):
@@ -46,3 +46,8 @@ class MultiDetectionHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadData
         fields = ['uploadedName','category','count','uploaded_at']
+        
+class UserPackageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserPackage
+        fields = '__all__'

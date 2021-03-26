@@ -128,7 +128,6 @@ export class CountanalyticsComponent implements OnInit {
           this.column.push(response.message[i].count)
           this.processedCategory.push(response.message[i].item)
         }
-        console.log([this.processedDate,this.processedCategory,this.column])
         this.generateGraph()
       }
     },err=> console.log(err))

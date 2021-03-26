@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   last_name:string
   confirmpassword:string
   organisation_name:string
-  plan:string = "Choose..."
+  plan:string = "Choose Plan"
   // organisation_email:string
   // organisation_type:string
   // organisation_strength:string

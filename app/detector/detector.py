@@ -25,7 +25,6 @@ def detect(filename,detectType,mode):
             pass
 
         filename = filename.replace(' ','_')
-        # print(os.path.abspath(os.path.join('media/img',filename)))
         img = cv2.imread(os.path.abspath(os.path.join('media/img',filename)),1)
         #frame_count =0
         #img = cv2.imread("room_ser.jpg")
@@ -59,15 +58,12 @@ def detect(filename,detectType,mode):
                     x = int(center_x - w / 2)
                     y = int(center_y - h / 2)
                     
-                    # print((x,y))
 
                     boxes.append([x, y, w, h])
-                    # print(len(boxes))
                     confidences.append(float(confidence))
                     class_ids.append(class_id)
 
         indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
-        # print(indexes)
         count=0
         font = cv2.FONT_HERSHEY_PLAIN
         for i in range(len(boxes)):
@@ -82,7 +78,6 @@ def detect(filename,detectType,mode):
                     cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
                     # cv2.putText(img, label, (x, y + 30), font, 1, color, 1)
                     count=count+1
-        # print(count)
         return count,img
     
     
@@ -93,9 +88,7 @@ def detect(filename,detectType,mode):
             pass
 
         filename = filename.replace(' ','_')
-        # print(os.path.abspath(os.path.join('media/img',filename)))
         img = cv2.imread(os.path.abspath(os.path.join('media/img',filename)),1)
-        print(f"{img} {filename}")
         #frame_count =0
         #img = cv2.imread("room_ser.jpg")
         
@@ -128,16 +121,13 @@ def detect(filename,detectType,mode):
                     # Rectangle coordinates
                         x = int(center_x - w / 2)
                         y = int(center_y - h / 2)
-                        
-                        # print((x,y))
+
 
                         boxes.append([x, y, w, h])
-                        # print(len(boxes))
                         confidences.append(float(confidence))
                         class_ids.append(class_id)
 
             indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
-            # print(indexes)
             count=0
             for i in range(len(boxes)):
                 if i in indexes:
@@ -148,7 +138,6 @@ def detect(filename,detectType,mode):
                         cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
                         # cv2.putText(img, label, (x, y + 30), font, 1, color, 1)
                         count=count+1
-            # print(count)
             return count,img
         
         except:

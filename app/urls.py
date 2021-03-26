@@ -13,7 +13,7 @@ urlpatterns = [
     path('logout/',logoutUser,name='logoutView'),
     
     path('profile/',userProfileView,name='userProfileView'),
-    path('user-details/',userDetails,name='userDetails'),
+    path('user-details/',userCountAPI,name='userDetails'),
     
     path('upload/',uploadFiles,name='singledetector'),
     path('process-image/',single_image_processor,name='process'),

@@ -10,22 +10,26 @@ export class FilecountsComponent implements OnInit {
 
   userdetails = []
   remainingCount:number
-  totalLimit:number = 100
+  totalLimit:number
   percentageCompleted:number
   alert:string
   count = []
 
   constructor(private apiService: ApiService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.apiService.userDetails().subscribe(response => {
       if (response.status) {
-        console.log(response.count[0])
-        let totalCount = response.count[0].totalCount
-        this.percentageCompleted = Math.round(totalCount/this.totalLimit*100)
-        console.log(this.percentageCompleted)
-        this.remainingCount = this.totalLimit - totalCount
-        
+        console.log(response)
+        let totalCount = response.count.length > 0 ? response.count : [];
+        this.remainingCount = response.package[0].remainingCounts
+        this.totalLimit = response.package[0].allotatedCounts
+
+        if (totalCount.length > 0){
+          this.percentageCompleted = Math.round(totalCount[0].totalCount/this.totalLimit*100)
+          this.count.push(totalCount[0])
+        }
+
         if(this.remainingCount <= 0){
           this.remainingCount = 0
         }
@@ -46,12 +50,10 @@ export class FilecountsComponent implements OnInit {
           this.percentageCompleted = 100
           this.alert = "background-color:#dc3545"
         }
-
-        this.count.push(response.count)
-        console.log(this.count)
       }
     },
       error => console.log(error))
+      console.log(this.totalLimit)
   }
 
 }
