@@ -11,10 +11,9 @@
 }
 
 .align-box-center {
-    position: absolute;
     top: 20%;
     left: 10%;
-    width: 82%;
+    width: 100%;
 }
 
 .grid-margin {
@@ -329,4 +328,15 @@ body.IE .register-page-wrap .container{
 
 .fileover{
   background-color: rgb(214, 214, 214)
+}
+
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 0 !important;
+  height: 0 !important;
+  background-color: #000;
 }

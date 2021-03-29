@@ -1,143 +1,141 @@
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<div class="container" style="max-width: 80%">
-    <div class="row">
+<app-categorieselector></app-categorieselector>
+<div class="container" style="max-width: 80%" [ngSwitch]='viewMode'>
+    <div *ngSwitchCase="'single'">
+
         <div class="col-md-12 text-center" *ngFor="let data of singleDetectionHistory">
             <div class="text-center">
                 <h2>Single Detection</h2>
             </div>
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <h2>Customer <b>Details</b></h2>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="search-box">
-                                    <button class="btn btn-primary btn-sm">Export Report</button>
-                                </div>
-                            </div>
+            <div class="card" style="margin-top:20px">
+                <div class="card-header">
+                    <div class="row text-center font-weight-bold">
+                        <div class="col-sm">
+                            SL.No
                         </div>
-                    </div>
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Image Name<i class="fa fa-sort"></i></th>
-                                <th>Object</th>
-                                <th>Count<i class="fa fa-sort"></i></th>
-                                <th>Date</th>
-                                <th>Action <i class="fa fa-sort"></i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let values of data | paginate : {id:'first',itemsPerPage:perPageItem, currentPage:singleDetectionPage}; let i = index;"
-                                [style.background-color]="i%2==1 ? 'white' : ''">
-                                <td>{{i+1}}</td>
-                                <td>{{values.uploadedName}}</td>
-                                <td>{{values.category}}</td>
-                                <td>{{values.count}}</td>
-                                <td>{{values.uploaded_at}}</td>
-                                <td class="text-center">
-                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                            class="fa fa-eye"></i></a>
-                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                            class="fa fa-trash-o"></i></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="clearfix">
-                        <div class="hint-text" *ngIf="singleDetectionfilesLength > perPageItem">Showing <b>{{perPageItem}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
+                        <div class="col-sm">
+                            Image Name
                         </div>
-                        <div class="hint-text" *ngIf="perPageItem > singleDetectionfilesLength">Showing <b>{{singleDetectionfilesLength}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
+                        <div class="col-sm">
+                            Object
                         </div>
-                        <ul class="pagination">
-                            <pagination-controls (pageChange)="singleDetectionPage = $event" id='first'></pagination-controls>
-                        </ul>
-                    </div>
+                        <div class="col-sm">
+                            Count
+                        </div>
+                        <div class="col-sm">
+                            Date
+                          </div>
+                          <div class="col-sm">
+                            Action
+                          </div>
+                      </div>
                 </div>
-            </div>
+                <div class="card-body" style="border-top: .2px solid #d2d2d2 !important; cursor: pointer;" *ngFor="let values of data | paginate : {id:'single',itemsPerPage:perPageItem, currentPage:singleDetectionPage}; let i = index;">
+                    <div class="row text-center">
+                        <div class="col-sm">
+                         {{i+1}}
+                        </div>
+                        <div class="col-sm">
+                           {{values.uploadedName}}
+                        </div>
+                        <div class="col-sm">
+                            {{values.category}}
+                        </div>
+                        <div class="col-sm">
+                            {{values.count}}
+                          </div>
+                          <div class="col-sm">
+                            {{values.uploaded_at}}
+                          </div>
+                          <div class="col-sm">
+                            <a type="button" data-toggle="modal" data-target="#exampleModalCenter" class="view" title="View"><i
+                                class="fa fa-eye"></i></a>
+                          </div>
+                      </div>
+                      <div class="col-md-12">
+                        <h1>Name</h1>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="hint-text" *ngIf="singleDetectionfilesLength > perPageItem">Showing <b>{{perPageItem}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
+                      </div>
+                      <div class="hint-text" *ngIf="perPageItem > singleDetectionfilesLength">Showing <b>{{singleDetectionfilesLength}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
+                      </div>
+                      <ul class="pagination">
+                          <pagination-controls (pageChange)="singleDetectionPage = $event" id="single"></pagination-controls>
+                      </ul>
+                  </div>
+                </div>
 
         </div>
-        <div class="col-md-12 text-center" *ngFor="let data of multiDetectionHistory">
+    </div>
+    <div *ngSwitchCase="'multiple'">
+
+        <div class="col-md-12 text-center"  *ngFor="let data of multiDetectionHistory">
             <div class="text-center">
                 <h2>Batch Detection</h2>
             </div>
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <h2>Customer <b>Details</b></h2>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="search-box">
-                                    <button class="btn btn-primary btn-sm">Export Report</button>
-                                </div>
-                            </div>
+            <div class="card" style="margin-top:20px">
+                <div class="card-header">
+                    <div class="row text-center font-weight-bold">
+                        <div class="col-sm">
+                            SL.No
                         </div>
-                    </div>
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Image Name<i class="fa fa-sort"></i></th>
-                                <th>Object</th>
-                                <th>Count<i class="fa fa-sort"></i></th>
-                                <th>Date</th>
-                                <th>Action <i class="fa fa-sort"></i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let values of data | paginate : {id:'second',itemsPerPage:perPageItem, currentPage:multiDetectionPage}; let i = index;"
-                                [style.background-color]="i%2==1 ? 'white' : ''">
-                                <td>{{i+1}}</td>
-                                <td>{{values.uploadedName}}</td>
-                                <td>{{values.category}}</td>
-                                <td>{{values.count}}</td>
-                                <td>{{values.uploaded_at}}</td>
-                                <td>
-                                    <a type="button" data-toggle="modal" data-target="#exampleModalCenter" class="view" title="View"><i
-                                            class="fa fa-eye"></i></a>
-                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                            class="fa fa-trash-o"></i></a>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="clearfix">
-                        <div class="hint-text" *ngIf="multiDetectionfilesLength > perPageItem">Showing <b>{{perPageItem}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
+                        <div class="col-sm">
+                            Image Name
                         </div>
-                        <div class="hint-text" *ngIf="perPageItem > multiDetectionfilesLength">Showing <b>{{multiDetectionfilesLength}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
+                        <div class="col-sm">
+                            Object
                         </div>
-                        <ul class="pagination">
-                            <pagination-controls (pageChange)="multiDetectionPage = $event" id="second"></pagination-controls>
-                        </ul>
-                    </div>
+                        <div class="col-sm">
+                            Count
+                        </div>
+                        <div class="col-sm">
+                            Date
+                          </div>
+                          <div class="col-sm">
+                            Action
+                          </div>
+                      </div>
                 </div>
-            </div>
+                <div class="card-body" style="border-top: .2px solid #d2d2d2 !important;" *ngFor="let values of data | paginate : {id:'multiple',itemsPerPage:perPageItem, currentPage:multiDetectionPage}; let i = index;">
+                    <div class="row text-center">
+                        <div class="col-sm">
+                         {{i+1}}
+                        </div>
+                        <div class="col-sm">
+                           {{values.uploadedName}}
+                        </div>
+                        <div class="col-sm">
+                            {{values.category}}
+                        </div>
+                        <div class="col-sm">
+                            {{values.count}}
+                          </div>
+
+                          <div class="col-sm">
+                            {{values.uploaded_at}}
+                          </div>
+                          <div class="col-sm">
+                            <a type="button" (click)="showChild($event)" class="view" id="dropButton" title="View"><i
+                                class="fa fa-eye"></i></a>
+                          </div>
+                      </div>
+                      <div class="col-md-12 detail_child" [class.show]="isDisplay" [class.hide]="!isDisplay" id="details_{{i+1}}">
+                        <h1>Name</h1>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="hint-text" *ngIf="multiDetectionfilesLength > perPageItem">Showing <b>{{perPageItem}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
+                      </div>
+                      <div class="hint-text" *ngIf="perPageItem > multiDetectionfilesLength">Showing <b>{{multiDetectionfilesLength}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
+                      </div>
+                      <ul class="pagination">
+                          <pagination-controls (pageChange)="multiDetectionPage = $event" id="multiple"></pagination-controls>
+                      </ul>
+                  </div>
+                </div>
         </div>
     </div>
-      
+        
 </div>
 
