@@ -25,7 +25,7 @@ SECRET_KEY = '%96bik_3cb*f(2pd%@i(r^iin&@b(67iul1_ri9*iiqqsmwtul'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.64','127.0.0.1']
+ALLOWED_HOSTS = ['192.168.1.64', '127.0.0.1', '192.168.1.105']
 
 
 # Application definition
@@ -122,7 +122,7 @@ STATIC_URL = '/static/'
 # STATICFILES_DIR = (os.path.join(BASE_DIR, 'static'),)
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),
+    os.path.join(BASE_DIR, 'static/'),
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -134,4 +134,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'haiiamnikhil@gmail.com'
-EMAIL_HOST_PASSWORD = 'haiiamnikhil@96'
+EMAIL_HOST_PASSWORD = 'iamnikhil@96'

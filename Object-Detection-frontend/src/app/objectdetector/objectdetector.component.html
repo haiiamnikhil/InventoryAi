@@ -12,9 +12,11 @@
   <option>Car</option>
   <option>Chair</option>
 </select>
-<button class="btn btn-success align-center" style="top:90%" (click)="uploadData()" [disabled]="files.length == 0 || isBusy">
-  <span class="spinner-border-sm" [class.spinner-border]="isBusy" role="status" aria-hidden="true"></span>
-  Upload</button>
+<!-- <div class="form-row justify-content-center" style="top: 10%;position: relative;">
+  <div class="form-group col-md-6">
+    <input type="text" class="form-control" id="batchLabel" placeholder="Batch Name" style="width:40%;position: relative;left:25%">
+  </div>
+</div> -->
 <div class="frame">
   <div class="container">
   <div class="center">
@@ -41,3 +43,6 @@
   </div>
 </div>
 </div>
+<button class="btn btn-success align-center" style="top:90%" (click)="uploadData()" [disabled]="files.length == 0 || isBusy">
+  <span class="spinner-border-sm" [class.spinner-border]="isBusy" role="status" aria-hidden="true"></span>
+  Upload</button>

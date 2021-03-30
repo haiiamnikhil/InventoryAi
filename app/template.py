@@ -3,13 +3,15 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 def historyView(request):
-    return render(request,'history.html')
+    return render(request, 'history.html')
+
 
 def paymentView(request):
     return render(request, 'payment.html')
-    
+
+
 def home(request):
-    return render(request,"demo.html")
+    return render(request, "demo.html")
 
 
 def uploadFiles(request):
@@ -41,8 +43,10 @@ def registerView(request):
 def userProfileView(request):
     return render(request, 'profile.html')
 
+
 def drag_and_drop(request):
     return render(request, 'draganddrop.html')
+
 
 def packagesView(request):
     return render(request, 'packages.html')

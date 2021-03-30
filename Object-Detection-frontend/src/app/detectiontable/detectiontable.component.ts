@@ -9,7 +9,8 @@ import { ApiService } from '../services/api.service';
 export class DetectiontableComponent implements OnInit {
   
   singleDetectionHistory:any = []
-  multiDetectionHistory:any = []
+  multiDetectionBatch:any = []
+  multiDetectionFiles:any=[]
   singleDetectionfilesLength:number
   multiDetectionfilesLength:number
   singleDetectionPage: number = 1
@@ -25,9 +26,12 @@ export class DetectiontableComponent implements OnInit {
     this.apiService.detectionHistory().subscribe(response =>{
       if (response.status){
         this.singleDetectionHistory.push(response.singleDetection)
-        this.multiDetectionHistory.push(response.multiDetection)
+        this.multiDetectionBatch.push(response.batchProcessing)
+        this.multiDetectionFiles.push(response.batchFiles)
         this.singleDetectionfilesLength = this.singleDetectionHistory[0].length
-        this.multiDetectionfilesLength = this.multiDetectionHistory[0].length
+        this.multiDetectionfilesLength = this.multiDetectionBatch[0].length
+        console.log(this.multiDetectionBatch)
+        console.log(this.multiDetectionFiles)
       }
     },err => console.log(err))
   }

@@ -2,12 +2,12 @@ import re
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.http.response import Http404
-from .models import ProductCountHistory, ProductTotalCount, UserCSVRecord, UploadData, UserModel, UserPackage, UserProcessCount
+from .models import ProductCountHistory, ProductTotalCount, UserCSVRecord, UploadData, UserModel, UserPackage, UserProcessCount, BatchProcessing, BatchFile
 from .detector import detector
 import os
 import cv2 as cv
 from django.views.decorators.csrf import csrf_exempt
-from .serializer import CsvSerializer, DetectionSerializer, MultiDetectionHistorySerializer, ProductCountHistorySerializer, ProductTotalCountSerializer, SingleDetectionHistorySerializer, UserPackageSerializer, UserSerializer, RecordsCountSerializer
+from .serializer import BatchFileSerializer, BatchProcessingSerializer, CsvSerializer, DetectionSerializer, MultiDetectionHistorySerializer, ProductCountHistorySerializer, ProductTotalCountSerializer, SingleDetectionHistorySerializer, UserPackageSerializer, RecordsCountSerializer
 import pandas as pd
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.parsers import JSONParser
@@ -22,11 +22,11 @@ from django.core.mail import EmailMessage
 
 
 COUNT_PACKAGES = {
-    'Basic' : 100,
-    'Normal' : 500,
-    'Professional' : 800,
-    'Warehouse' :1500
-} 
+    'Basic': 100,
+    'Normal': 500,
+    'Professional': 800,
+    'Warehouse': 1500
+}
 
 
 @csrf_exempt
@@ -99,7 +99,7 @@ def single_image_processor(request):
 
 
 @csrf_exempt
-def multi_image_processor(request):    
+def multi_image_processor(request):
 
     filenames = []
     count = []
@@ -112,24 +112,25 @@ def multi_image_processor(request):
         productCount = 0
 
         userPackage = UserPackage.objects.get(user=request.user)
-        
+
         if userPackage.remainingCounts <= 0:
-            return JsonResponse({"status":False, "message":"Your Limit has finised"},safe=False, status=200)
-        
+            return JsonResponse({"status": False, "message": "Your Limit has finised"}, safe=False, status=200)
+
         for file in request.FILES.getlist('image'):
-            
+
             data = UploadData.objects.create(
                 user=request.user, category=dataType, image=file, detection_type="Multiple")
             try:
                 filename = data.image.name.split('/')[1]
             except:
                 pass
-            
+
             try:
-                getCount, getDetection = detector.detect(filename, dataType, mode)
+                getCount, getDetection = detector.detect(
+                    filename, dataType, mode)
             except:
                 pass
-        
+
             productCount += getCount
 
             cv.imwrite(os.path.join(
@@ -171,6 +172,25 @@ def multi_image_processor(request):
         except:
             ProductCountHistory.objects.create(
                 user=request.user, item=dataType, count=getCount)
+        
+        try:
+            getLastRecord = BatchProcessing.objects.filter(user=request.user).last()
+            
+            if getLastRecord:
+                lastRecordCount = int(getLastRecord.batchId.split('_')[1])
+            else:
+                pass
+
+        except:
+            pass
+           
+        batch_id = f"Batch{lastRecordCount+1}-{dataType.capitalize()}"
+        
+        batchSegregate = BatchProcessing.objects.create(user=request.user,batchId=batch_id,
+                                                        batchObjectName=dataType,batchFileCount=len(request.FILES.getlist('image')),
+                                                        batchItemsTotalCount=productCount
+                                                        )
+        
 
         data = {'Files': filenames, 'Count': count}
         df = pd.DataFrame(data)
@@ -181,16 +201,15 @@ def multi_image_processor(request):
         date = date.strftime('%d-%m-%Y')
 
         csvSaveName = f"{request.user.username}-{date}-{time.replace(':','-')}"
-        
+
         try:
             os.mkdir('./media/reports')
         except:
             pass
 
         df.to_csv(os.path.join('media/reports',
-                                f"{csvSaveName}.csv"), index=None)
+                               f"{csvSaveName}.csv"), index=None)
 
-        
         csvFile = f"reports/{csvSaveName}.csv"
 
         reports = UserCSVRecord.objects.get_or_create(
@@ -209,11 +228,10 @@ def multi_image_processor(request):
             add_total_count.save()
 
         serializer = CsvSerializer(reports, many=True)
-        print (serializer.data)
         updateCount = UserPackage.objects.get(user=request.user)
         updateCount.remainingCounts -= len(request.FILES.getlist('image'))
         updateCount.save()
-        
+
         return JsonResponse({"status": True, "csv": serializer.data[0], "data": detected_details}, safe=False, status=200)
 
 
@@ -233,39 +251,40 @@ def registerAuth(request):
                 full_name=f"{credentials['first_name'] } {credentials['last_name']}",
                 organisation_name=credentials['organisation_name']
             )
-            plan = UserPackage.objects.create(user=user,packageType=credentials['plan'],
-                                              allotatedCounts=COUNT_PACKAGES[credentials['plan']],remainingCounts=COUNT_PACKAGES[credentials['plan']])
-            
+            plan = UserPackage.objects.create(user=user, packageType=credentials['plan'],
+                                              allotatedCounts=COUNT_PACKAGES[credentials['plan']], remainingCounts=COUNT_PACKAGES[credentials['plan']])
+
             curret_site = get_current_site(request)
             subject = "Account Activation OTL"
             name = credentials['first_name'] + " " + credentials['last_name']
-            message = render_to_string('activate-account.html',{
-                'user':name,'domain':curret_site.domain,'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':default_token_generator.make_token(user),
+            message = render_to_string('activate-account.html', {
+                'user': name, 'domain': curret_site.domain, 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
             })
             email = credentials['email']
-            sendEmail = EmailMessage(subject,message,to=[email])
+            sendEmail = EmailMessage(subject, message, to=[email])
             sendEmail.send()
             user.is_active = False
             user.save()
-            
+
             return JsonResponse({'status': True, "message": "User Created"}, safe=False, status=200)
-        
-        
+
+
 def activate(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
         user = UserModel._default_manager.get(pk=uid)
 
-    except (TypeError, ValueError,OverflowError,UserModel.DoesNotExist):
+    except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
         user = None
 
-    if user is not None and default_token_generator.check_token(user,token):
+    if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
         return redirect('loginView')
     else:
         return Http404('Invalid Activation Link')
+
 
 @csrf_exempt
 def loginAuth(request):
@@ -296,7 +315,7 @@ def userCountAPI(request):
         package = UserPackage.objects.filter(user=request.user)
         package_serializer = UserPackageSerializer(package, many=True)
         count_serializer = RecordsCountSerializer(getCount, many=True)
-        return JsonResponse({'status': True, 'count': count_serializer.data,'package':package_serializer.data}, safe=False, status=200)
+        return JsonResponse({'status': True, 'count': count_serializer.data, 'package': package_serializer.data}, safe=False, status=200)
 
 
 @csrf_exempt
@@ -343,11 +362,20 @@ def productHistory(request):
 
 
 def detectionHistory(request):
-    if request.method =='GET':
-        getSingleDetection = UploadData.objects.filter(user=request.user,detection_type="Single").all()
-        getMultipleDetection = UploadData.objects.filter(user=request.user,detection_type="Multiple").all()
-        singleDetectionserializer = SingleDetectionHistorySerializer(getSingleDetection, many=True)
-        multipleDetectionserializer = MultiDetectionHistorySerializer(getMultipleDetection, many=True)
-        
-        return JsonResponse({'status': True, 'singleDetection': singleDetectionserializer.data,'multiDetection':multipleDetectionserializer.data},safe=False, status=200)
-    
+    if request.method == 'GET':
+        getSingleDetection = UploadData.objects.filter(
+            user=request.user, detection_type="Single").all()
+        getMultipleDetection = UploadData.objects.filter(
+            user=request.user, detection_type="Multiple").all()
+        getBatchFileProcessing = BatchFile.objects.filter(user=request.user)
+        getBatchProcessing = BatchProcessing.objects.filter(user=request.user)
+        batchFileSerializer = BatchFileSerializer(getBatchFileProcessing,many=True)
+        batchProcessingSerializer = BatchProcessingSerializer(getBatchProcessing,many=True)
+        singleDetectionserializer = SingleDetectionHistorySerializer(
+            getSingleDetection, many=True)
+        multipleDetectionserializer = MultiDetectionHistorySerializer(
+            getMultipleDetection, many=True)
+
+        return JsonResponse({'status': True, 'singleDetection': singleDetectionserializer.data, 
+                             'batchFiles':batchFileSerializer.data,'batchProcessing':batchProcessingSerializer.data
+                             }, safe=False, status=200)

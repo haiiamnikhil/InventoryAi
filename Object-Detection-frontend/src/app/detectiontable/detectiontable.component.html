@@ -23,119 +23,150 @@
                         </div>
                         <div class="col-sm">
                             Date
-                          </div>
-                          <div class="col-sm">
-                            Action
-                          </div>
-                      </div>
-                </div>
-                <div class="card-body" style="border-top: .2px solid #d2d2d2 !important; cursor: pointer;" *ngFor="let values of data | paginate : {id:'single',itemsPerPage:perPageItem, currentPage:singleDetectionPage}; let i = index;">
-                    <div class="row text-center">
-                        <div class="col-sm">
-                         {{i+1}}
                         </div>
                         <div class="col-sm">
-                           {{values.uploadedName}}
+                            Action
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" style="border-top: .2px solid #d2d2d2 !important; cursor: pointer;"
+                    *ngFor="let values of data | paginate : {id:'single',itemsPerPage:perPageItem, currentPage:singleDetectionPage}; let i = index;">
+                    <div class="row text-center">
+                        <div class="col-sm">
+                            {{i+1}}
+                        </div>
+                        <div class="col-sm">
+                            {{values.uploadedName}}
                         </div>
                         <div class="col-sm">
                             {{values.category}}
                         </div>
                         <div class="col-sm">
                             {{values.count}}
-                          </div>
-                          <div class="col-sm">
+                        </div>
+                        <div class="col-sm">
                             {{values.uploaded_at}}
-                          </div>
-                          <div class="col-sm">
-                            <a type="button" data-toggle="modal" data-target="#exampleModalCenter" class="view" title="View"><i
-                                class="fa fa-eye"></i></a>
-                          </div>
-                      </div>
-                      <div class="col-md-12">
-                        <h1>Name</h1>
-                      </div>
+                        </div>
+                        <div class="col-sm">
+                            <a type="button" data-toggle="modal" data-target="#exampleModalCenter" class="view"
+                                title="View"><i class="fa fa-eye"></i></a>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                      <div class="hint-text" *ngIf="singleDetectionfilesLength > perPageItem">Showing <b>{{perPageItem}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
-                      </div>
-                      <div class="hint-text" *ngIf="perPageItem > singleDetectionfilesLength">Showing <b>{{singleDetectionfilesLength}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
-                      </div>
-                      <ul class="pagination">
-                          <pagination-controls (pageChange)="singleDetectionPage = $event" id="single"></pagination-controls>
-                      </ul>
-                  </div>
+                    <div class="col-md-12">
+                        <h1>Name</h1>
+                    </div>
                 </div>
+                <div class="card-footer">
+                    <div class="hint-text" *ngIf="singleDetectionfilesLength > perPageItem">Showing
+                        <b>{{perPageItem}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
+                    </div>
+                    <div class="hint-text" *ngIf="perPageItem > singleDetectionfilesLength">Showing
+                        <b>{{singleDetectionfilesLength}}</b> out of <b>{{singleDetectionfilesLength}}</b> entries
+                    </div>
+                    <ul class="pagination">
+                        <pagination-controls (pageChange)="singleDetectionPage = $event" id="single">
+                        </pagination-controls>
+                    </ul>
+                </div>
+            </div>
 
         </div>
     </div>
     <div *ngSwitchCase="'multiple'">
 
-        <div class="col-md-12 text-center"  *ngFor="let data of multiDetectionHistory">
+        <div class="col-md-12 text-center" *ngFor="let data of multiDetectionBatch">
             <div class="text-center">
                 <h2>Batch Detection</h2>
             </div>
-            <div class="card" style="margin-top:20px">
+            <div class="card" style="margin-top:20px" *ngFor="let multiData of multiDetectionFiles">
                 <div class="card-header">
                     <div class="row text-center font-weight-bold">
                         <div class="col-sm">
                             SL.No
                         </div>
                         <div class="col-sm">
-                            Image Name
+                            Name
                         </div>
                         <div class="col-sm">
                             Object
                         </div>
                         <div class="col-sm">
-                            Count
+                            Total Count
+                        </div>
+                        <div class="col-sm">
+                            Total File Count
                         </div>
                         <div class="col-sm">
                             Date
-                          </div>
-                          <div class="col-sm">
+                        </div>
+                        <div class="col-sm">
                             Action
-                          </div>
-                      </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body" style="border-top: .2px solid #d2d2d2 !important;" *ngFor="let values of data | paginate : {id:'multiple',itemsPerPage:perPageItem, currentPage:multiDetectionPage}; let i = index;">
+                <div class="card-body" style="border-top: .2px solid #d2d2d2 !important;"
+                    *ngFor="let values of data | paginate : {id:'multiple',itemsPerPage:perPageItem, currentPage:multiDetectionPage}; let i = index;">
                     <div class="row text-center">
                         <div class="col-sm">
-                         {{i+1}}
+                            {{i+1}}
                         </div>
                         <div class="col-sm">
-                           {{values.uploadedName}}
+                            {{values.batchId}}
                         </div>
                         <div class="col-sm">
-                            {{values.category}}
+                            {{values.batchObjectName}}
                         </div>
                         <div class="col-sm">
-                            {{values.count}}
-                          </div>
+                            {{values.batchItemsTotalCount}}
+                        </div>
 
-                          <div class="col-sm">
-                            {{values.uploaded_at}}
-                          </div>
-                          <div class="col-sm">
+                        <div class="col-sm">
+                            {{values.batchFileCount}}
+                        </div>
+                        <div class="col-sm">
+                            {{values.created}}
+                        </div>
+                        <div class="col-sm">
                             <a type="button" (click)="showChild($event)" class="view" id="dropButton" title="View"><i
-                                class="fa fa-eye"></i></a>
-                          </div>
-                      </div>
-                      <div class="col-md-12 detail_child" [class.show]="isDisplay" [class.hide]="!isDisplay" id="details_{{i+1}}">
-                        <h1>Name</h1>
-                      </div>
+                                    class="fa fa-eye"></i></a>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                      <div class="hint-text" *ngIf="multiDetectionfilesLength > perPageItem">Showing <b>{{perPageItem}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
-                      </div>
-                      <div class="hint-text" *ngIf="perPageItem > multiDetectionfilesLength">Showing <b>{{multiDetectionfilesLength}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
-                      </div>
-                      <ul class="pagination">
-                          <pagination-controls (pageChange)="multiDetectionPage = $event" id="multiple"></pagination-controls>
-                      </ul>
-                  </div>
+    
+                    <div class="col-md-12 detail_child" [class.show]="isDisplay" [class.hide]="!isDisplay"
+                        id="details_{{i+1}}" *ngFor="let values of multiData; let i = index">
+                        <div class="col-sm">
+                            {{i+1}}
+                        </div>
+                        <div class="col-sm">
+                            {{values.fileName}}
+                        </div>
+                        <div class="col-sm">
+                            {{values.ObjectType}}
+                        </div>
+                        <div class="col-sm">
+                            {{values.ObjectCount}}
+                        </div>
+
+                        <div class="col-sm">
+                            {{values.created}}
+                        </div>
+                    </div>
+    
                 </div>
+                <div class="card-footer">
+                    <div class="hint-text" *ngIf="multiDetectionfilesLength > perPageItem">Showing
+                        <b>{{perPageItem}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
+                    </div>
+                    <div class="hint-text" *ngIf="perPageItem > multiDetectionfilesLength">Showing
+                        <b>{{multiDetectionfilesLength}}</b> out of <b>{{multiDetectionfilesLength}}</b> entries
+                    </div>
+                    <ul class="pagination">
+                        <pagination-controls (pageChange)="multiDetectionPage = $event" id="multiple">
+                        </pagination-controls>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-        
-</div>
 
+</div>
