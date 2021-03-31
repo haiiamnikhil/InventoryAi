@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api.service';
@@ -23,7 +24,7 @@ export class ObjectdetectorComponent implements OnInit {
   isBusy: boolean = false
   presentViewMode:string
 
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private api: ApiService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.api.currentmessage.subscribe(message => {
@@ -51,13 +52,8 @@ export class ObjectdetectorComponent implements OnInit {
         }
         reader.readAsDataURL(event[i])
       }
-      this.message = "Only 1 image is allowed in Single Image Processing"
+      this.toastr.warning("Only 1 image is allowed in Single Image Processing")
       this.showMessage = true
-
-      setTimeout(() => {
-        this.showMessage = false
-      },5000)
-      
     }
     else {
       this.files = []
@@ -115,16 +111,13 @@ export class ObjectdetectorComponent implements OnInit {
           this.count = response.count
         }
         else{
-          this.message = response.message
+          this.toastr.error(response.message)
           this.showMessage = true
           this.isBusy = false
         }
       },error => console.log(error)
       )
     }
-    setTimeout(() => {
-      this.showMessage = false
-    },3000)
   }
 
 }

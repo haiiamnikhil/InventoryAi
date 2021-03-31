@@ -24,6 +24,10 @@ export class ApiService {
     this.messageSource.next(mode)
   }
 
+  setNotification(notification:any){
+    this.messageSource.next(notification)
+  }
+
   getsingleDetection(image:any):Observable<any>{
     return this.http.post('/process-image/',image)
   }

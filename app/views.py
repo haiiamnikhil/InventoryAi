@@ -173,25 +173,29 @@ def multi_image_processor(request):
         except:
             ProductCountHistory.objects.create(
                 user=request.user, item=dataType, count=getCount)
-        
+
         try:
-            getLastRecord = BatchProcessing.objects.filter(user=request.user).last()
-            print(getLastRecord)
-            if getLastRecord:
-                lastRecordCount = int(getLastRecord.batchId.split('_')[1])
-                print(lastRecordCount)
+            getLastRecord = BatchProcessing.objects.filter(
+                user=request.user).last()
+            if getLastRecord is not None:
+                lastRecordCount = int(getLastRecord.batchId.split('-')[1])
             else:
-                pass
+                lastRecordCount = 0
 
         except:
             pass
-           
-        batch_id = f"Batch{lastRecordCount+1}-{dataType.capitalize()}"
-        
-        batchSegregate = BatchProcessing.objects.create(user=request.user,batchId=batch_id,
-                                                        batchObjectName=dataType,batchFileCount=len(request.FILES.getlist('image')),
+
+        batch_id = f"Batch-{lastRecordCount+1}-{dataType.capitalize()}"
+
+        batchProcessSegregate = BatchProcessing.objects.create(user=request.user, batchId=batch_id,
+                                                        batchObjectName=dataType, batchFileCount=len(
+                                                            request.FILES.getlist('image')),
                                                         batchItemsTotalCount=productCount)
         
+        for i,names in enumerate(filenames):
+            batchFiles = BatchFile.objects.create(user=request.user, batchId=batchProcessSegregate, 
+                                                  fileName=names,ObjectType=dataType,ObjectCount=count[i])
+            
 
         data = {'Files': filenames, 'Count': count}
         df = pd.DataFrame(data)
@@ -368,24 +372,29 @@ def detectionHistory(request):
             user=request.user, detection_type="Single").all()
         # getMultipleDetection = UploadData.objects.filter(
         #     user=request.user, detection_type="Multiple").all()
-        
+
         getBatchProcessing = BatchProcessing.objects.filter(user=request.user)
-        
-        batchProcessingSerializer = BatchProcessingSerializer(getBatchProcessing,many=True)
+
+        batchProcessingSerializer = BatchProcessingSerializer(
+            getBatchProcessing, many=True)
         singleDetectionserializer = SingleDetectionHistorySerializer(
             getSingleDetection, many=True)
         # multipleDetectionserializer = MultiDetectionHistorySerializer(
         #     getMultipleDetection, many=True)
 
         return JsonResponse({'status': True, 'singleDetection': singleDetectionserializer.data,
-                             'batchProcessing':batchProcessingSerializer.data
+                             'batchProcessing': batchProcessingSerializer.data
                              }, safe=False, status=200)
-   
-        
+
+
 @csrf_exempt
 def getBatchFiles(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        getBatchFileProcessing = BatchFile.objects.filter(user=request.user, batchId__batchId = data['processId'])
-        batchFileSerializer = BatchFileSerializer(getBatchFileProcessing,many=True)
-        return JsonResponse({'status': True, 'batchFiles': batchFileSerializer.data},safe=False, status=200)
+        print(data)
+        getBatchFileProcessing = BatchFile.objects.filter(
+            user=request.user, batchId__batchId=data['processId'])
+        print(getBatchFileProcessing)
+        batchFileSerializer = BatchFileSerializer(
+            getBatchFileProcessing, many=True)
+        return JsonResponse({'status': True, 'batchFiles': batchFileSerializer.data}, safe=False, status=200)

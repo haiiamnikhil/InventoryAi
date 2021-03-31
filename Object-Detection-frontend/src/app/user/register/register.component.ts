@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit {
     console.log(credentials)
     this.apiservice.register(credentials).subscribe(response => {
       if(response.status){
+        this.apiservice.setNotification("Please Confirm your Account from " + this.email)
         this.router.navigate(['/login'])
       }
       else{

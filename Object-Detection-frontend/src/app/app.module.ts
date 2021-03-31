@@ -26,7 +26,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { DetectiontableComponent } from './detectiontable/detectiontable.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PackageComponent } from './package/package.component';
-import { SidebarComponent } from './sidebar/sidebar.component'
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { SidebarComponent } from './sidebar/sidebar.component'
     BrowserAnimationsModule,
     MatTableModule,
     NgApexchartsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ToastrModule.forRoot()
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

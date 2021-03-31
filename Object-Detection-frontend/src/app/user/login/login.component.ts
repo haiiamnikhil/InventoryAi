@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,12 @@ export class LoginComponent implements OnInit {
   message:any = []
   isBusy:boolean = false
 
-  constructor(private userAuthService: ApiService, private router: Router) { }
+  constructor(private userAuthService: ApiService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(){
-    
+    this.userAuthService.currentmessage.subscribe(message => {if (message){
+      this.toastr.success(message);
+    }})
   }
 
   authUser(){
@@ -34,7 +37,7 @@ export class LoginComponent implements OnInit {
         }
         else {
           this.isBusy = false;
-          this.message.push("Entered Credentials is Not Valid")
+          this.toastr.warning("Entered Credentials is Not Valid")
         }
       },
       error=>{

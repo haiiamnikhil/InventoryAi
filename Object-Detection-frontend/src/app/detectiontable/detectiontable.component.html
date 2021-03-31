@@ -132,7 +132,7 @@
                         <!-- <div *ngFor="let data of multiDetectionFiles"> -->
     
                             <div class="col-md-12" *ngFor="let data of multiDetectionFiles">
-                                <div class="row text-center" *ngFor="let values of data">
+                                <div class="row text-center" *ngFor="let values of data; let i = index">
                                     <div class="col-sm">
                                         {{i+1}}
                                     </div>

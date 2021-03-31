@@ -9,8 +9,9 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: ApiService) { }
 
-  ngOnInit():void{  
+  ngOnInit(){  
+    this.service.setNotification('Thank You!\nYou have Successfully logged out')
   }
 }
