@@ -57,15 +57,13 @@ class UserPackageSerializer(serializers.ModelSerializer):
 
 
 class BatchFileSerializer(serializers.ModelSerializer):
-    batch_id = serializers.ReadOnlyField(source = 'batchId.batchId')
-    
+
     class Meta:
         model = BatchFile
         fields = '__all__'
     
     
 class BatchProcessingSerializer(serializers.ModelSerializer):
-    batchfile = BatchFileSerializer(many=False,read_only = True)
     
     class Meta:
         model = BatchProcessing

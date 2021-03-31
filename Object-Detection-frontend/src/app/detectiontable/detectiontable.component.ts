@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -18,32 +18,50 @@ export class DetectiontableComponent implements OnInit {
   perPageItem:number = 10
   viewMode:string
   isDisplay:boolean = false
+  getElements:any
 
-  constructor(private apiService: ApiService, private reference: ElementRef) { }
+  constructor(private apiService: ApiService, private elref: ElementRef) { }
 
   ngOnInit(){
     this.apiService.currentmessage.subscribe(mode => this.viewMode = mode)
     this.apiService.detectionHistory().subscribe(response =>{
       if (response.status){
+        
+        console.log(this.multiDetectionFiles)
         this.singleDetectionHistory.push(response.singleDetection)
         this.multiDetectionBatch.push(response.batchProcessing)
-        this.multiDetectionFiles.push(response.batchFiles)
+        // this.multiDetectionFiles.push(response.batchFiles)
+
         this.singleDetectionfilesLength = this.singleDetectionHistory[0].length
-        this.multiDetectionfilesLength = this.multiDetectionBatch[0].length
-        console.log(this.multiDetectionBatch)
-        console.log(this.multiDetectionFiles)
+        // this.multiDetectionfilesLength = this.multiDetectionBatch[0].length
+
       }
-    },err => console.log(err))
+    },err => console.log(err))  
   }
 
-  showChild(event:any){
-    let getElements = event.currentTarget.parentNode.parentNode.nextSibling
-    if (getElements.style.display == 'block'){
-      getElements.style.display = 'none'
-    }
-    else{
-      getElements.style.display = 'block'
-    }
+  showChild(event:any,id:any){
+    this.multiDetectionFiles = []
+
+    let data = {processId:id}
+
+    this.getElements = event.currentTarget.parentNode.parentNode.nextSibling
+
+    console.log(this.getElements)
+    this.apiService.getBatchFiles(data).subscribe(response => {
+      if (response.status){
+        this.multiDetectionFiles.push(response.batchFiles)
+        console.log(response)
+        let element = this.elref.nativeElement.querySelectorAll('.batch_file_child')
+        console.log(element)
+        for (let i = 0; i < element.length; i++){
+          element[i].style.display = 'none'
+        }
+     
+        this.getElements.style.display = 'block'
+
+      }  
+    })
+
   }
 
 }

@@ -52,9 +52,6 @@
                                 title="View"><i class="fa fa-eye"></i></a>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <h1>Name</h1>
-                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="hint-text" *ngIf="singleDetectionfilesLength > perPageItem">Showing
@@ -78,7 +75,7 @@
             <div class="text-center">
                 <h2>Batch Detection</h2>
             </div>
-            <div class="card" style="margin-top:20px" *ngFor="let multiData of multiDetectionFiles">
+            <div class="card" style="margin-top:20px">
                 <div class="card-header">
                     <div class="row text-center font-weight-bold">
                         <div class="col-sm">
@@ -127,30 +124,39 @@
                             {{values.created}}
                         </div>
                         <div class="col-sm">
-                            <a type="button" (click)="showChild($event)" class="view" id="dropButton" title="View"><i
+                            <a type="button" (click)="showChild($event,values.batchId)" class="view" id="dropButton" title="View"><i
                                     class="fa fa-eye"></i></a>
                         </div>
                     </div>
+                    <div id="details_{{i+1}}" class="batch_file_child" style="display:none">
+                        <!-- <div *ngFor="let data of multiDetectionFiles"> -->
     
-                    <div class="col-md-12 detail_child" [class.show]="isDisplay" [class.hide]="!isDisplay"
-                        id="details_{{i+1}}" *ngFor="let values of multiData; let i = index">
-                        <div class="col-sm">
-                            {{i+1}}
-                        </div>
-                        <div class="col-sm">
-                            {{values.fileName}}
-                        </div>
-                        <div class="col-sm">
-                            {{values.ObjectType}}
-                        </div>
-                        <div class="col-sm">
-                            {{values.ObjectCount}}
-                        </div>
-
-                        <div class="col-sm">
-                            {{values.created}}
-                        </div>
+                            <div class="col-md-12" *ngFor="let data of multiDetectionFiles">
+                                <div class="row text-center" *ngFor="let values of data">
+                                    <div class="col-sm">
+                                        {{i+1}}
+                                    </div>
+                                    <div class="col-sm">
+                                        {{values.fileName}}
+                                    </div>
+                                    <div class="col-sm">
+                                        {{values.ObjectType}}
+                                    </div>
+                                    <div class="col-sm">
+                                        {{values.ObjectCount}}
+                                    </div>
+            
+                                    <div class="col-sm">
+                                        {{values.batchFileCount}}
+                                    </div>
+                                    <div class="col-sm">
+                                        {{values.created}}
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- </div> -->
                     </div>
+        
     
                 </div>
                 <div class="card-footer">

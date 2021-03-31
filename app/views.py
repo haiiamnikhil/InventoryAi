@@ -19,6 +19,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
+import json
 
 
 COUNT_PACKAGES = {
@@ -175,9 +176,10 @@ def multi_image_processor(request):
         
         try:
             getLastRecord = BatchProcessing.objects.filter(user=request.user).last()
-            
+            print(getLastRecord)
             if getLastRecord:
                 lastRecordCount = int(getLastRecord.batchId.split('_')[1])
+                print(lastRecordCount)
             else:
                 pass
 
@@ -188,8 +190,7 @@ def multi_image_processor(request):
         
         batchSegregate = BatchProcessing.objects.create(user=request.user,batchId=batch_id,
                                                         batchObjectName=dataType,batchFileCount=len(request.FILES.getlist('image')),
-                                                        batchItemsTotalCount=productCount
-                                                        )
+                                                        batchItemsTotalCount=productCount)
         
 
         data = {'Files': filenames, 'Count': count}
@@ -365,17 +366,26 @@ def detectionHistory(request):
     if request.method == 'GET':
         getSingleDetection = UploadData.objects.filter(
             user=request.user, detection_type="Single").all()
-        getMultipleDetection = UploadData.objects.filter(
-            user=request.user, detection_type="Multiple").all()
-        getBatchFileProcessing = BatchFile.objects.filter(user=request.user)
+        # getMultipleDetection = UploadData.objects.filter(
+        #     user=request.user, detection_type="Multiple").all()
+        
         getBatchProcessing = BatchProcessing.objects.filter(user=request.user)
-        batchFileSerializer = BatchFileSerializer(getBatchFileProcessing,many=True)
+        
         batchProcessingSerializer = BatchProcessingSerializer(getBatchProcessing,many=True)
         singleDetectionserializer = SingleDetectionHistorySerializer(
             getSingleDetection, many=True)
-        multipleDetectionserializer = MultiDetectionHistorySerializer(
-            getMultipleDetection, many=True)
+        # multipleDetectionserializer = MultiDetectionHistorySerializer(
+        #     getMultipleDetection, many=True)
 
-        return JsonResponse({'status': True, 'singleDetection': singleDetectionserializer.data, 
-                             'batchFiles':batchFileSerializer.data,'batchProcessing':batchProcessingSerializer.data
+        return JsonResponse({'status': True, 'singleDetection': singleDetectionserializer.data,
+                             'batchProcessing':batchProcessingSerializer.data
                              }, safe=False, status=200)
+   
+        
+@csrf_exempt
+def getBatchFiles(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        getBatchFileProcessing = BatchFile.objects.filter(user=request.user, batchId__batchId = data['processId'])
+        batchFileSerializer = BatchFileSerializer(getBatchFileProcessing,many=True)
+        return JsonResponse({'status': True, 'batchFiles': batchFileSerializer.data},safe=False, status=200)

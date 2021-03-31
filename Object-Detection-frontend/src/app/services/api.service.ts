@@ -74,4 +74,8 @@ export class ApiService {
   detectionHistory():Observable<any>{
     return this.http.get('/api-single-detection/',{headers:this.header})
   }
+
+  getBatchFiles(value:any):Observable<any>{
+    return this.http.post('/get-batch-files/',value,{headers:this.header})
+  }
 }

@@ -46,6 +46,9 @@ class UserModel(AbstractUser):
 
     def __str__(self):
         return self.username
+    
+    class Meta:
+        verbose_name_plural = "User Model"
 
 
 class UserPackage(models.Model):
@@ -62,6 +65,9 @@ class UserPackage(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    class Meta:
+        verbose_name_plural = "User Package"
 
 
 class UploadData(models.Model):
@@ -84,6 +90,9 @@ class UploadData(models.Model):
 
     def __str__(self):
         return self.filename
+    
+    class Meta:
+        verbose_name_plural = "Upload Data"
 
 
 class UserProcessCount(models.Model):
@@ -98,6 +107,9 @@ class UserProcessCount(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    class Meta:
+        verbose_name_plural = "User Process Count"
 
 
 class ProductTotalCount(models.Model):
@@ -111,6 +123,9 @@ class ProductTotalCount(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    class Meta:
+        verbose_name_plural = "Product Total Count"
 
 
 class UserCSVRecord(models.Model):
@@ -123,6 +138,9 @@ class UserCSVRecord(models.Model):
 
     def __str__(self):
         return str(self.filename)
+    
+    class Meta:
+        verbose_name_plural = "User CSV Record"
 
 
 class ProductCountHistory(models.Model):
@@ -136,6 +154,9 @@ class ProductCountHistory(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    class Meta:
+        verbose_name_plural = "Product Count History"
 
 
 class BatchProcessing(models.Model):
@@ -152,6 +173,9 @@ class BatchProcessing(models.Model):
 
     def __str__(self):
         return str(self.batchId)
+    
+    class Meta:
+        verbose_name_plural = "Batch Processing"
 
 
 class BatchFile(models.Model):
@@ -169,3 +193,16 @@ class BatchFile(models.Model):
     def __str__(self):
         return str(self.batchId)
     
+    class Meta:
+        verbose_name_plural = "Batch File"
+    
+
+class DataDetectionStatu(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True,blank=False)
+    
+    
+    def __str__(self):
+        return str(self.user)
+    
+    class Meta:
+        verbose_name_plural = "Data Detection Status"
