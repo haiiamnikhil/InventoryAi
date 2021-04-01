@@ -40,4 +40,6 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/',activate,name='activate'),
     
     path('get-batch-files/',getBatchFiles,name='getBatchFiles'),
+    
+    path('upload/detected/',detectedView,name='detectedView'),
 ]

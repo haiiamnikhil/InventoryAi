@@ -9,6 +9,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PackageComponent } from './package/package.component';
+import { DetectedComponent } from './detected/detected.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path:'packages',
     component:PackageComponent
+  },
+  {
+    path:'upload/detected',
+    component:DetectedComponent
   }
 ];
 

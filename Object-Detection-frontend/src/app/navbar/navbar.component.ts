@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
+    this.apiService.changeMode(null)
     this.apiService.logoutUser().subscribe(response=>
       {if(response.status){
         this.router.navigate(['/login'])

@@ -20,7 +20,6 @@ export class ObjectdetectorComponent implements OnInit {
   filename: string = "Choose..."
   getdata: any
   message: string
-  showMessage: boolean
   isBusy: boolean = false
   presentViewMode:string
 
@@ -40,6 +39,9 @@ export class ObjectdetectorComponent implements OnInit {
     },)
   }
 
+  getFile(index: number){
+    this.files.splice(index,1)
+  }
 
   getDropedFiles(event: any) {
     if (this.viewMode == 'single') {
@@ -53,7 +55,6 @@ export class ObjectdetectorComponent implements OnInit {
         reader.readAsDataURL(event[i])
       }
       this.toastr.warning("Only 1 image is allowed in Single Image Processing")
-      this.showMessage = true
     }
     else {
       this.files = []
@@ -70,7 +71,6 @@ export class ObjectdetectorComponent implements OnInit {
 
   getImage(event: any) {
     let images = event.target.files
-    console.log(event)
     if (images.length > 0) {
       for (let i = 0; i < images.length; i++) {
         this.processFiles.push(images[i])
@@ -87,7 +87,6 @@ export class ObjectdetectorComponent implements OnInit {
     this.isBusy= true;
     const uploadData = new FormData();
     for (let i = 0; i < this.processFiles.length; i++){
-      console.log(this.processFiles[i].name)
       uploadData.append('filename', this.processFiles[i].name)
       uploadData.append('image', this.processFiles[i], this.processFiles[i].name)
       uploadData.append('detectType', this.detectType)
@@ -109,11 +108,13 @@ export class ObjectdetectorComponent implements OnInit {
           this.isBusy = false
           this.getdata = response.data
           this.count = response.count
+          this.router.navigate(['/upload/detected'])
+          this.api.setMessages(response.data)
+          // console.log(response.data)
         }
         else{
-          this.toastr.error(response.message)
-          this.showMessage = true
           this.isBusy = false
+          this.toastr.error(response.message)
         }
       },error => console.log(error)
       )

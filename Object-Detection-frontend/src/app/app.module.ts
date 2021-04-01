@@ -28,6 +28,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PackageComponent } from './package/package.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToastrModule } from 'ngx-toastr';
+import { DetectedComponent } from './detected/detected.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ToastrModule } from 'ngx-toastr';
     DetectiontableComponent,
     PackageComponent,
     SidebarComponent,
+    DetectedComponent,
   ],
   imports: [
     HttpClientModule,

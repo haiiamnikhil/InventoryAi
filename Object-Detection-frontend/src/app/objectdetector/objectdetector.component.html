@@ -1,23 +1,15 @@
-<div class="alert alert-warning alert-dismissible fade" [class.show]='showMessage' role="alert" *ngIf="message">
-  <strong>{{message}}</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  </button>
-</div>
 <app-categorieselector></app-categorieselector>
-<select class="form-control form-control-lg align-center" [(ngModel)]="detectType">
-  <option disabled>Choose...</option>
-  <option>Pipe</option>
-  <option>Glass</option>
-  <option>Person</option>
-  <option>Car</option>
-  <option>Chair</option>
-</select>
-<!-- <div class="form-row justify-content-center" style="top: 10%;position: relative;">
-  <div class="form-group col-md-6">
-    <input type="text" class="form-control" id="batchLabel" placeholder="Batch Name" style="width:40%;position: relative;left:25%">
-  </div>
-</div> -->
-<div class="frame">
+<div class="justify-content-center">
+  <select class="form-control form-control-lg align-center" [(ngModel)]="detectType">
+    <option disabled>Choose...</option>
+    <option>Pipe</option>
+    <option>Glass</option>
+    <option>Person</option>
+    <option>Car</option>
+    <option>Chair</option>
+  </select>
+</div>
+<div [ngClass]="{'singleframe':viewMode == 'single','multiframe':viewMode == 'multiple'}">
   <div class="container">
   <div class="center">
     <div [class.dropzone]="files.length == 0 || files.length == 1" [class.upload-image]="files.length > 0">
@@ -30,12 +22,17 @@
           <div class="title">Select or Drop file to upload</div>
         </div>
 
-        <div class="row text-center text-lg-left" *ngIf="files.length > 0">
-
-          <div class="col-lg-3 col-md-4 col-xs-6" *ngFor="let image of files">
-            <a href="#" class="d-block mb-4 h-100" style="margin-bottom: 0!important;">
-              <img class="img-fluid img-thumbnail" [src]="image" alt="">
-            </a>
+        <div class="row text-center text-lg-left justify-content-center" *ngIf="files.length > 0">
+          <div class="card mt-3 ml-3 mr-3 mb-3 display-image" style="width: 18rem;cursor: unset;" *ngFor="let image of files; let i = index">
+            <div class="ver_mas text-center">
+              <button type="button" (click)="getFile(i)"><span class="fa fa-trash-o"></span></button>
+           </div>
+            <img [src]="image" class="card-img-top" width="300px" height="220px">
+            <div class="card-footer" *ngIf="isBusy">
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -43,6 +40,6 @@
   </div>
 </div>
 </div>
-<button class="btn btn-success align-center" style="top:90%" (click)="uploadData()" [disabled]="files.length == 0 || isBusy">
+<button class="btn btn-success align-center" style="top:30%" (click)="uploadData()" [disabled]="files.length == 0 || isBusy">
   <span class="spinner-border-sm" [class.spinner-border]="isBusy" role="status" aria-hidden="true"></span>
   Upload</button>

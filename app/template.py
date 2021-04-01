@@ -50,3 +50,7 @@ def drag_and_drop(request):
 
 def packagesView(request):
     return render(request, 'packages.html')
+
+
+def detectedView(request):
+    return render(request, 'detected.html')
