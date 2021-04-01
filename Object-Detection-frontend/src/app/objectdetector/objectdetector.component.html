@@ -1,5 +1,5 @@
 <app-categorieselector></app-categorieselector>
-<div class="justify-content-center">
+<div class="d-flex justify-content-center mt-4">
   <select class="form-control form-control-lg align-center" [(ngModel)]="detectType">
     <option disabled>Choose...</option>
     <option>Pipe</option>
@@ -9,7 +9,36 @@
     <option>Chair</option>
   </select>
 </div>
-<div [ngClass]="{'singleframe':viewMode == 'single','multiframe':viewMode == 'multiple'}">
+<div class="row justify-content-center mt-4">
+  <button class="btn btn-success" style="top:30%;width:20%" (click)="uploadData()" [disabled]="files.length == 0 || isBusy">
+    <span class="spinner-border-sm" [class.spinner-border]="isBusy" role="status" aria-hidden="true"></span>
+    Upload</button></div>
+<div class="d-flex justify-content-center mt-5 mb-5">
+  <div class="col-md-8 color-class px-4 mb-5">
+    <div class="card upload-div my-4" appDragndrop (dropedFiles)="getDropedFiles($event)">
+      <div *ngIf="files.length == 0" class="text-center">
+      <i class="fa fa-cloud-upload fa-5x upload text-center upload" ></i>
+      <input class="form-control file-upload" type="file" *ngIf="viewMode == 'single'" (change)="getImage($event)">
+      <input class="form-control file-upload" type="file" *ngIf="viewMode == 'multiple'" (change)="getImage($event)" multiple>
+      <div class="text-center text-muted content">Select or Drop file to upload</div>
+      </div>
+      <div class="row text-center text-lg-left justify-content-center" *ngIf="files.length > 0">
+        <div class="card mt-3 ml-3 mr-3 mb-3 display-image" style="width: 18rem;cursor: unset;" *ngFor="let image of files; let i = index">
+          <div class="ver_mas text-center">
+            <button type="button" (click)="getFile(i)"><span class="fa fa-trash-o"></span></button>
+         </div>
+          <img [src]="image" class="card-img-top" width="300px" height="220px">
+          <div class="card-footer" *ngIf="isBusy">
+            <div class="progress">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>        
+  </div>
+</div>
+<!-- <div [ngClass]="{'singleframe':viewMode == 'single','multiframe':viewMode == 'multiple'}">
   <div class="container">
   <div class="center">
     <div [class.dropzone]="files.length == 0 || files.length == 1" [class.upload-image]="files.length > 0">
@@ -39,7 +68,4 @@
     </div>
   </div>
 </div>
-</div>
-<button class="btn btn-success align-center" style="top:30%" (click)="uploadData()" [disabled]="files.length == 0 || isBusy">
-  <span class="spinner-border-sm" [class.spinner-border]="isBusy" role="status" aria-hidden="true"></span>
-  Upload</button>
+</div> -->

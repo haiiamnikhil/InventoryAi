@@ -189,10 +189,7 @@
 }
  
 .align-center{
-	top: 20%;
-	position: absolute;
-	width: 20%;
-	left: 40%;
+	width: 30%;
 }
 
 
@@ -268,3 +265,35 @@
 	-ms-transform: translate(0px, 0px);
 	opacity: 1;
 }
+
+.upload{
+	color: #6c757d!important;
+	position:absolute;
+	margin-top:15%
+}
+
+.color-class{
+	background-color: rgb(221, 221, 221);
+	height:100%
+  }
+  
+  .file-upload{
+	opacity: 0;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+  }
+  .upload-div{
+	min-height: 400px;
+	height: 100%;
+	width: 100%;
+  }
+
+  .overflow{
+	  overflow: scroll;
+	  overflow-x: hidden;
+  }
+
+  .content{
+	  position: absolute;
+  }
