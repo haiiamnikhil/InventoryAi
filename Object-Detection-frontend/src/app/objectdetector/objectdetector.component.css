@@ -269,7 +269,8 @@
 .upload{
 	color: #6c757d!important;
 	position:absolute;
-	margin-top:15%
+	top: 35%;
+    left: 45%;
 }
 
 .color-class{
@@ -296,4 +297,6 @@
 
   .content{
 	  position: absolute;
+	  top: 55%;
+	  left: 40%;
   }
