@@ -57,7 +57,12 @@ export class ObjectdetectorComponent implements OnInit {
       this.toastr.warning("Only 1 image is allowed in Single Image Processing")
     }
     else {
-      this.files = []
+      if (this.files.length > 0 && this.viewMode == 'multiple'){
+        return
+      }
+      else{
+        this.files = []
+      }
       for (let i = 0; i < event.length; i++) {
         this.processFiles.push(event[i])
         let reader = new FileReader();

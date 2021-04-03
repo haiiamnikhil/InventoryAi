@@ -48,5 +48,3 @@ admin.site.register(UserPackage, UserPackageAdmin)
 admin.site.register(BatchProcessing)
 
 admin.site.register(BatchFile)
-
-admin.site.register(DataDetectionStatu)

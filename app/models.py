@@ -163,7 +163,7 @@ class BatchProcessing(models.Model):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, null=True, blank=False)
     batchId = models.CharField(
-        max_length=50, unique=True, null=True, blank=False)
+        max_length=50, unique=False, null=True, blank=False)
     batchObjectName = models.CharField(
         max_length=50, unique=False, blank=False, null=True)
     batchFileCount = models.BigIntegerField(null=True, blank=False, default=0)
@@ -195,14 +195,3 @@ class BatchFile(models.Model):
     
     class Meta:
         verbose_name_plural = "Batch File"
-    
-
-class DataDetectionStatu(models.Model):
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True,blank=False)
-    
-    
-    def __str__(self):
-        return str(self.user)
-    
-    class Meta:
-        verbose_name_plural = "Data Detection Status"

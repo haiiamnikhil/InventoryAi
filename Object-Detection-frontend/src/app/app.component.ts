@@ -19,7 +19,12 @@ export class AppComponent implements OnInit {
           return
         }
         else{
-          this.router.navigate(['/login']);
+          if(this.router.url == '/register'){
+            return
+          }
+          else{
+            this.router.navigate(['/login']);
+          }
         }
       }
     )
