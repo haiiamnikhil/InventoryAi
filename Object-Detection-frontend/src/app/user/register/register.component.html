@@ -52,8 +52,8 @@
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" 
-                        [class.is-valid]="isValid"
+                        <input id="email" type="email" name="email" #userEmail='ngModel' placeholder="Email Address" class="form-control bg-white border-left-0 border-md" 
+                        [ngClass]="{'is-invalid' : !userEmail.value && userEmail.touched}"
                         [(ngModel)]="email">
                     </div>
 
@@ -63,8 +63,8 @@
                                 <i class="fa fa-user-circle text-muted"></i>
                             </span>
                         </div>
-                        <input id="username" type="text" name="username" placeholder=""name="username" placeholder="Username" class="form-control bg-white border-left-0 border-md" 
-                        [class.is-valid]="isValid"
+                        <input id="username" type="text" name="username" #userName="ngModel" placeholder="Username" placeholder="Username" class="form-control bg-white border-left-0 border-md" 
+                        [ngClass]="{'is-invalid' : !userEmail.value && userEmail.touched}"
                         [(ngModel)]="username">
                     </div>
                     <!-- Phone Number -->
@@ -91,8 +91,8 @@
                                 <i class="fa fa-black-tie text-muted"></i>
                             </span>
                         </div>
-                        <select id="plan" name="plan" class="form-control custom-select bg-white border-left-0 border-md text-muted"
-                        [class.is-valid]="isValid"
+                        <select id="plan" name="plan" #userPlans='ngModel' class="form-control custom-select bg-white border-left-0 border-md text-muted"
+                        [ngClass]="{'is-invalid' : !userPlans.value && userPlans.touched}"
                         [(ngModel)]="plan">
                             <option disabled>Choose Plan</option>
                             <option >Basic (0-100)</option>
@@ -107,8 +107,8 @@
                                 <i class="fa fa-building-o text-muted"></i>
                             </span>
                         </div>
-                        <input id="organisation_name" type="text" name="organisation_name" placeholder="Company Name" class="form-control bg-white border-left-0 border-md"
-                        [class.is-valid]="isValid"
+                        <input id="organisation_name" type="text" #organisationName="ngModel" name="organisation_name" placeholder="Company Name" class="form-control bg-white border-left-0 border-md"
+                        [ngClass]="{'is-invalid' : !organisationName.value && organisationName.touched}"
                         [(ngModel)]="organisation_name">
                     </div>
 
@@ -119,8 +119,8 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md" 
-                        [class.is-valid]="isValid"
+                        <input id="password" type="password" #userPassword='ngModel' name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md" 
+                        [ngClass]="{'is-invalid' : !userPassword.value && userPassword.touched}"
                         [(ngModel)]="password">
                     </div>
 
@@ -131,8 +131,8 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md"
-                        [class.is-valid]="isValid"
+                        <input id="passwordConfirmation" #conformPassword='ngModel' type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md"
+                        [ngClass]="{'is-invalid' : !conformPassword.value && conformPassword.touched}"
                         [(ngModel)]="confirmpassword">
                     </div>
 
