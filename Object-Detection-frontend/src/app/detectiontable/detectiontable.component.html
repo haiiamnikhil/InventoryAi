@@ -1,12 +1,12 @@
 <app-categorieselector></app-categorieselector>
-<div class="container" style="max-width: 80%" [ngSwitch]='viewMode'>
+<div class="container mt-5" style="max-width: 80%" [ngSwitch]='viewMode'>
     <div *ngSwitchCase="'single'">
 
         <div class="col-md-12 text-center" *ngFor="let data of singleDetectionHistory">
             <div class="text-center">
                 <h2>Single Detection</h2>
             </div>
-            <div class="card" style="margin-top:20px">
+            <div class="card mt-5">
                 <div class="card-header">
                     <div class="row text-center font-weight-bold">
                         <div class="col-sm">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="card-body" style="border-top: .2px solid #d2d2d2 !important; cursor: pointer;"
                     *ngFor="let values of data | paginate : {id:'single',itemsPerPage:perPageItem, currentPage:singleDetectionPage}; let i = index;">
-                    <div class="row text-center">
+                    <div class="row text-center d-flex align-items-center mt-3 mb-3">
                         <div class="col-sm">
                             {{i+1}}
                         </div>
@@ -75,7 +75,7 @@
             <div class="text-center">
                 <h2>Batch Detection</h2>
             </div>
-            <div class="card" style="margin-top:20px">
+            <div class="card mt-5" style="margin-top:20px">
                 <div class="card-header">
                     <div class="row text-center font-weight-bold">
                         <div class="col-sm">
@@ -103,7 +103,7 @@
                 </div>
                 <div class="card-body" style="border-top: .2px solid #d2d2d2 !important;"
                     *ngFor="let values of data | paginate : {id:'multiple',itemsPerPage:perPageItem, currentPage:multiDetectionPage}; let i = index;">
-                    <div class="row text-center">
+                    <div class="row text-center d-flex align-items-center mt-3 mb-3">
                         <div class="col-sm">
                             {{i+1}}
                         </div>
@@ -130,9 +130,27 @@
                     </div>
                     <div id="details_{{i+1}}" class="batch_file_child" style="display:none">
                         <!-- <div *ngFor="let data of multiDetectionFiles"> -->
-    
+                            <div class="card-header">
+                                <div class="row text-center font-weight-bold">
+                                    <div class="col-sm">
+                                        SL.No
+                                    </div>
+                                    <div class="col-sm">
+                                        Name
+                                    </div>
+                                    <div class="col-sm">
+                                        Object
+                                    </div>
+                                    <div class="col-sm">
+                                        Total Count
+                                    </div>
+                                    <div class="col-sm">
+                                        Date
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12" *ngFor="let data of multiDetectionFiles">
-                                <div class="row text-center" *ngFor="let values of data; let i = index">
+                                <div class="row text-center d-flex align-items-center mt-3 mb-3 border-shadow" *ngFor="let values of data; let i = index">
                                     <div class="col-sm">
                                         {{i+1}}
                                     </div>
@@ -145,10 +163,7 @@
                                     <div class="col-sm">
                                         {{values.ObjectCount}}
                                     </div>
-            
-                                    <div class="col-sm">
-                                        {{values.batchFileCount}}
-                                    </div>
+        
                                     <div class="col-sm">
                                         {{values.created}}
                                     </div>

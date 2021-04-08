@@ -8,6 +8,7 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
   title = 'Object-Detection-frontend';
 
   constructor(public router: Router, private apiService: ApiService){}

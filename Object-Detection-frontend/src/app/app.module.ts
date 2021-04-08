@@ -1,4 +1,3 @@
-import { CategorySelectorState, rootReducer } from './category.reducer';
 import { ApiService } from './services/api.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -30,7 +29,8 @@ import { PackageComponent } from './package/package.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DetectedComponent } from './detected/detected.component';
-import { NgReduxModule, NgRedux } from 'ng2-redux'
+import { StoreModule } from '@ngrx/store';
+import { categoryReducer } from './state/category.reducer';
 
 
 @NgModule({
@@ -66,14 +66,9 @@ import { NgReduxModule, NgRedux } from 'ng2-redux'
     NgApexchartsModule,
     NgxPaginationModule,
     ToastrModule.forRoot(),
-    NgReduxModule
+    StoreModule.forRoot({message:categoryReducer})  
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  constructor(ngRedux:NgRedux<CategorySelectorState>){
-    ngRedux.configureStore(rootReducer,{category:'single'});
-  }
-
-}
+export class AppModule { }

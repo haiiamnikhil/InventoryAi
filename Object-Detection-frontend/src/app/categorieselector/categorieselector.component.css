@@ -11,6 +11,21 @@
 
 .active {
     background-color:#0020ab;
-    color:white;
+    color:white !important;
     transition:0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.icon-style{
+    width:auto;
+    height:40px;
+}
+
+.active a{
+    color: white !important;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:none !important;
 }

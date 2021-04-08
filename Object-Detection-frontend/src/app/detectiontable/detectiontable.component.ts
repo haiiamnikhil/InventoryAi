@@ -1,3 +1,4 @@
+import { Store } from '@ngrx/store';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
@@ -20,10 +21,11 @@ export class DetectiontableComponent implements OnInit {
   isDisplay:boolean = false
   getElements:any
 
-  constructor(private apiService: ApiService, private elref: ElementRef) { }
+  constructor(private apiService: ApiService, private elref: ElementRef, private store: Store<{message: {category:string}}>) { }
 
   ngOnInit(){
-    this.apiService.currentmessage.subscribe(mode => this.viewMode = mode)
+    this.store.select('message').subscribe(mode => this.viewMode = mode.category)
+    console.log(this.viewMode)
     this.apiService.detectionHistory().subscribe(response =>{
       if (response.status){
         

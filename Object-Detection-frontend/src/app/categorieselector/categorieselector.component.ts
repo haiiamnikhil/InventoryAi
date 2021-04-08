@@ -1,7 +1,8 @@
-import { NgRedux } from 'ng2-redux';
+import { multiple, single } from './../state/category.actions';
 import { ApiService } from './../services/api.service';
 import { Component, OnInit } from '@angular/core';
-import { CategorySelectorState } from '../category.reducer';
+import { Store } from '@ngrx/store'
+
 
 @Component({
   selector: 'app-categorieselector',
@@ -10,14 +11,20 @@ import { CategorySelectorState } from '../category.reducer';
 })
 export class CategorieselectorComponent implements OnInit {
 
-  viewMode:string ="multi"
+  selectedCategory:any
 
-  constructor(private service: ApiService, private ngRedux:NgRedux<CategorySelectorState>) { }
+  constructor(private service: ApiService, private store: Store<{message:{category:string}}>) { }
 
   ngOnInit(){ 
+    this.store.select('message').subscribe(message=>this.selectedCategory = message.category)
   }
 
   presentMode(){
-    this.ngRedux.dispatch({type: this.viewMode})
+    if (this.selectedCategory == 'single'){
+      this.store.dispatch(single())
+    }
+    else{
+      this.store.dispatch(multiple())
+    }
   }
 }

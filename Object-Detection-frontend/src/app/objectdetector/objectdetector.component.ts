@@ -1,9 +1,8 @@
-import { NgRedux } from 'ng2-redux';
+import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { CategorySelectorState } from '../category.reducer';
 
 @Component({
   selector: 'app-objectdetector',
@@ -25,22 +24,20 @@ export class ObjectdetectorComponent implements OnInit {
   isBusy: boolean = false
   presentViewMode:string
 
-  constructor(private api: ApiService, private router: Router, private toastr: ToastrService, private ngRedux : NgRedux<CategorySelectorState>) { }
-
+  constructor(private api: ApiService, private router: Router, private toastr: ToastrService, private store: Store<{message:{category: string}}>) {
+  }
+  
   ngOnInit() {
-
-    this.ngRedux.subscribe(() => {
-      console.log(this.ngRedux.getState())
-    })
-
-    this.api.currentmessage.subscribe(message => {
-      if(message == 'single'){
+    this.store.select('message').subscribe(message => {
+      if(message.category == 'single'){
         this.files = []
-        this.viewMode = message
+        this.toastr.success(message.category)
+        this.viewMode = message.category
       }
-      else if(message == 'multiple'){
+      else if(message.category == 'multiple'){
         this.files = []
-        this.viewMode = message
+        this.toastr.success(message.category)
+        this.viewMode = message.category
       }
       else return
     },)

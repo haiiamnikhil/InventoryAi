@@ -44,3 +44,12 @@
 .show{
     display: block
 }
+
+.card:hover{
+    transform:none;
+}
+
+.border-shadow{
+    /* border-top: solid 1px #e0dddd; */
+    border-bottom: solid 1px #e0dddd;
+}
