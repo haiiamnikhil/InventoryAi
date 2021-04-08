@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,7 @@ export class ApiService {
   getsingleDetection(image:any):Observable<any>{
     return this.http.post('/process-image/',image)
   }
+  
   downloadImage(image:any):Observable<any>{
     return this.http.post('/download-image/',image)
   }

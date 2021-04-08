@@ -1,5 +1,7 @@
+import { NgRedux } from 'ng2-redux';
 import { ApiService } from './../services/api.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CategorySelectorState } from '../category.reducer';
 
 @Component({
   selector: 'app-categorieselector',
@@ -8,17 +10,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class CategorieselectorComponent implements OnInit {
 
-  @Output() selectedMode = new EventEmitter<any>();
+  viewMode:string ="multi"
 
-  viewMode:string ="single"
+  constructor(private service: ApiService, private ngRedux:NgRedux<CategorySelectorState>) { }
 
-  constructor(private service: ApiService) { }
-
-  ngOnInit(){
-    this.service.changeMode(this.viewMode)
+  ngOnInit(){ 
   }
 
   presentMode(){
-    this.service.changeMode(this.viewMode)
+    this.ngRedux.dispatch({type: this.viewMode})
   }
 }
