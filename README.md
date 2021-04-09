@@ -1,6 +1,6 @@
 <h1>InventoryAi</h1>
 
-InventoryAi is an automated couting machine which counts all thoses products maintained or stored on Warehouses. Here it helps you in reducing the work load and consumes time.
+InventoryAi is an automated counting machine that counts all those products maintained or stored in Warehouses. Here it helps you in reducing the workload and consumes time.
 Beyond an Ai Machine, it helps in may other ways:
 <ul>
 <li>Generate Total Count of Product</li>
