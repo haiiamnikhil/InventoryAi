@@ -31,12 +31,12 @@ export class ObjectdetectorComponent implements OnInit {
     this.store.select('message').subscribe(message => {
       if(message.category == 'single'){
         this.files = []
-        this.toastr.success(message.category)
+        
         this.viewMode = message.category
       }
       else if(message.category == 'multiple'){
         this.files = []
-        this.toastr.success(message.category)
+        
         this.viewMode = message.category
       }
       else return
@@ -58,6 +58,7 @@ export class ObjectdetectorComponent implements OnInit {
         }
         reader.readAsDataURL(event[i])
       }
+      this.toastr.clear()
       this.toastr.warning("Only 1 image is allowed in Single Image Processing")
     }
     else {
@@ -123,6 +124,7 @@ export class ObjectdetectorComponent implements OnInit {
         }
         else{
           this.isBusy = false
+          this.toastr.clear()
           this.toastr.error(response.message)
         }
       },error => console.log(error)

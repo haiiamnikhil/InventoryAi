@@ -42,4 +42,6 @@ urlpatterns = [
     path('get-batch-files/',getBatchFiles,name='getBatchFiles'),
     
     path('upload/detected/',detectedView,name='detectedView'),
+    
+    path('user/package/', userPackage, name='userPackage'),
 ]

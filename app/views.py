@@ -398,3 +398,14 @@ def getBatchFiles(request):
         batchFileSerializer = BatchFileSerializer(
             getBatchFileProcessing, many=True)
         return JsonResponse({'status': True, 'batchFiles': batchFileSerializer.data}, safe=False, status=200)
+
+
+@csrf_exempt
+def userPackage(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        getPresentPackage = UserPackage.objects.filter(user=request.user, packageType=data['package'].capitalize()).exists()
+        if getPresentPackage:
+            print("asdasghjdajs")
+            return JsonResponse({'status': False}, safe=False, status=200)
+        return JsonResponse({'status':True, 'message':'Your Subscription has been Renewied'}, safe=False, status=200)

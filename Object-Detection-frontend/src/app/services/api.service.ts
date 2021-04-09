@@ -84,4 +84,8 @@ export class ApiService {
   getBatchFiles(value:any):Observable<any>{
     return this.http.post('/get-batch-files/',value,{headers:this.header})
   }
+
+  userPlan(value:any):Observable<any>{
+    return this.http.post('/user/package/',value,{headers:this.header})
+  }
 }

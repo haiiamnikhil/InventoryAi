@@ -1,18 +1,85 @@
-.bg-gradient-primary-to-secondary {
-    background-color: #0061f2;
-    background-image: linear-gradient(
-135deg
-, #0061f2 0%, rgba(105, 0, 199, 0.8) 100%);
-}
-.table-responsive, .datatable {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+body {
+    background-color: #e6ebf4
 }
 
-.invoice .table tbody tr td {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 5px 6px 6px 2px #e9ecef
 }
 
+.heading {
+    font-size: 23px;
+    font-weight: 00
+}
+
+.text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #b1b6bd
+}
+
+.pricing {
+    border: 2px solid #304FFE;
+    background-color: #f2f5ff
+}
+
+.business {
+    font-size: 20px;
+    font-weight: 500
+}
+
+.plan {
+    color: #aba4a4
+}
+
+.dollar {
+    font-size: 16px;
+    color: #6b6b6f
+}
+
+.amount {
+    font-size: 50px;
+    font-weight: 500
+}
+
+.year {
+    font-size: 20px;
+    color: #6b6b6f;
+    margin-top: 19px
+}
+
+.detail {
+    font-size: 22px;
+    font-weight: 500
+}
+
+.cvv {
+    height: 44px;
+    width: 73px;
+    border: 2px solid #eee
+}
+
+.cvv:focus {
+    box-shadow: none;
+    border: 2px solid #304FFE
+}
+
+.email-text {
+    height: 55px;
+    border: 2px solid #eee
+}
+
+.email-text:focus {
+    box-shadow: none;
+    border: 2px solid #304FFE
+}
+
+.payment-button {
+    height: 70px;
+    font-size: 20px
+}
+
+.card{
+    transform:none;
+}

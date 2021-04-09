@@ -1,0 +1,555 @@
+body {
+  font-family: "Heebo", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #5f5f5f;
+  letter-spacing: 1px;
+}
+
+h2,
+h4 {
+  font-family: "Dosis", sans-serif;
+  font-style: normal;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #1c1d3e;
+}
+#canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+}
+.pos-r {
+  position: relative;
+}
+section {
+  padding: 10px 0;
+}
+.section-title {
+  margin-bottom: 50px;
+  position: relative;
+}
+.section-title p {
+  font-size: 16px;
+}
+.title-effect {
+  width: 50px;
+  height: 50px;
+  top: 0;
+  position: absolute;
+  left: 0;
+  opacity: 0.5;
+  animation: rotation 12.8s steps(1) 0s infinite;
+}
+.text-center .title-effect {
+  left: 50%;
+  margin-left: -25px;
+}
+.text-center .section-title h6 {
+  padding: 15px 0;
+}
+
+.title-effect .bar {
+  background: #2575fc;
+}
+.title-effect .bar-top {
+  width: 100%;
+  height: 7px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: left top;
+  transform: scale(0, 1);
+  animation: bar-top 3.2s linear 0s infinite;
+}
+.title-effect .bar-right {
+  width: 7px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform-origin: left top;
+  transform: scale(1, 0);
+  animation: bar-right 3.2s linear 0s infinite;
+}
+.title-effect .bar-bottom {
+  width: 100%;
+  height: 7px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform-origin: right top;
+  transform: scale(0, 1);
+  animation: bar-bottom 3.2s linear 0s infinite;
+}
+.title-effect .bar-left {
+  width: 7px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform-origin: left bottom;
+  transform: scale(1, 0);
+  animation: bar-left 3.2s linear 0s infinite;
+}
+
+.title {
+  position: relative;
+  color: #1c1d3e;
+  margin-bottom: 0;
+}
+.section-title h2 {
+  margin-bottom: 15px;
+}
+
+/*--rotation--*/
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bar-top {
+  0% {
+    transform: scale(0, 1);
+  }
+  12.5% {
+    transform: scale(1, 1);
+  }
+  87.5% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0, 1);
+  }
+}
+@keyframes bar-right {
+  0% {
+    transform: scale(1, 0);
+  }
+  12.5% {
+    transform: scale(1, 0);
+  }
+  25% {
+    transform: scale(1, 1);
+  }
+  75% {
+    transform: scale(1, 1);
+  }
+  87.5% {
+    transform: scale(1, 0);
+  }
+  100% {
+    transform: scale(1, 0);
+  }
+}
+@keyframes bar-bottom {
+  0% {
+    transform: scale(0, 1);
+  }
+  25% {
+    transform: scale(0, 1);
+  }
+  37.5% {
+    transform: scale(1, 1);
+  }
+  62.5% {
+    transform: scale(1, 1);
+  }
+  75% {
+    transform: scale(0, 1);
+  }
+  100% {
+    transform: scale(0, 1);
+  }
+}
+@keyframes bar-left {
+  0% {
+    transform: scale(1, 0);
+  }
+  37.5% {
+    transform: scale(1, 0);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  62.5% {
+    transform: scale(1, 0);
+  }
+  100% {
+    transform: scale(1, 0);
+  }
+}
+
+/* ------------------------
+    Price Table
+------------------------*/
+.price-table {
+  padding: 50px 30px;
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+  background: #ffffff;
+  text-align: center;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(72, 73, 121, 0.15);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(72, 73, 121, 0.15);
+  box-shadow: 0px 0px 15px 0px rgba(72, 73, 121, 0.15);
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  -moz-transition: all 0.5s ease-in-out 0s;
+  -ms-transition: all 0.5s ease-in-out 0s;
+  -o-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+}
+.price-title {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #2575fc;
+}
+.price-header {
+  position: relative;
+  z-index: 9;
+}
+.price-value {
+  display: inline-block;
+  width: 100%;
+}
+.price-value h2 {
+  font-size: 60px;
+  line-height: 60px;
+  font-weight: 800;
+  color: #1c1d3e;
+  margin-bottom: 0;
+  position: relative;
+  display: inline-block;
+}
+.price-value h2 span {
+  font-size: 26px;
+  left: -15px;
+  line-height: 24px;
+  margin: 0;
+  position: absolute;
+  top: 10px;
+  color: #5f5f5f;
+  font-weight: normal;
+}
+.price-value span {
+  margin: 15px 0;
+  display: block;
+}
+.price-list ul li {
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
+}
+.price-list ul li:last-child {
+  margin-bottom: 0;
+}
+.dark-bg .price-list ul li {
+  color: rgba(255, 255, 255, 0.8);
+}
+.price-list ul li:last-child {
+  margin-right: 0;
+}
+.price-list li i {
+  color: #2575fc;
+  line-height: 20px;
+  font-size: 20px;
+}
+
+.price-inside {
+  font-size: 80px;
+  line-height: 80px;
+  position: absolute;
+  left: 85%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.04);
+}
+.price-table::before {
+  background: #fafaff;
+  content: "";
+  height: 300px;
+  left: -25%;
+  position: absolute;
+  top: -10%;
+  transform: rotate(-10deg);
+  width: 150%;
+}
+.price-table.active::before {
+  transform: rotate(10deg);
+}
+
+.price-table.style-2 {
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: none;
+}
+.price-table.style-2::before {
+  background: rgba(255, 255, 255, 0.03);
+  top: 50%;
+  transform: translateY(-50%) rotate(-10deg);
+}
+.price-table.style-2 .price-title {
+  color: #005bea;
+}
+.price-table.style-3.active .price-title {
+  color: #ffffff;
+}
+.price-table.style-2 .price-value h2,
+.price-table.style-3.active .price-value h2 {
+  color: #ffffff;
+}
+.price-table.style-2 .price-list {
+  margin-top: 20px;
+}
+.price-table.style-2.active::before {
+  transform: rotate(0);
+}
+.price-table.style-2 .price-inside {
+  color: rgba(255, 255, 255, 0.04);
+}
+.price-table.style-2 .btn,
+.price-table.style-3.active .btn {
+  -webkit-box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.price-table.active {
+  padding: 70px 30px;
+}
+.price-table.style-3.active {
+  background: #2575fc;
+  color: #ffffff;
+}
+.price-table.active .price-value h2 span {
+  color: #ffffff;
+}
+.price-table.style-3:before,
+.price-table.style-4:before {
+  display: none;
+}
+.price-table.style-3 .price-list {
+  margin-top: 25px;
+}
+
+.price-table.style-4 .price-list {
+  margin: 25px 0;
+}
+.price-table.style-4 h3 {
+  text-transform: capitalize;
+}
+
+.btn {
+  padding: 12px 25px;
+  font-weight: 500;
+  background: none;
+  color: #1c1d3e;
+  overflow: hidden;
+  border-radius: 7px;
+  border: none;
+  position: relative;
+  z-index: 9;
+  transition: all 0.5s ease-in-out 0s;
+  box-shadow: 0px 0px 15px 0px rgba(72, 73, 121, 0.15);
+}
+.btn.btn-theme {
+  background: rgb(0, 91, 234);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 91, 234, 1) 0%,
+    rgba(37, 117, 252, 1) 80%
+  );
+  color: #ffffff;
+}
+.btn.focus,
+.btn:focus {
+  box-shadow: none;
+}
+.btn:hover {
+  transform: translateY(-3px);
+}
+.btn.btn-circle {
+  border-radius: 30px;
+}
+
+.btn span {
+  display: inline-block;
+  opacity: 0;
+  -webkit-transform: translate3d(10, 10px, 0);
+  -moz-transform: translate3d(10, 10px, 0);
+  -ms-transform: translate3d(10, 10px, 0);
+  -o-transform: translate3d(10, 10px, 0);
+  transform: translate3d(10, 10px, 0);
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  -moz-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  -o-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.price-table:hover {
+  -webkit-box-shadow: 0px 20px 50px 0px rgba(153, 153, 153, 0.5);
+  -moz-box-shadow: 0px 20px 50px 0px rgba(153, 153, 153, 0.5);
+  box-shadow: 0px 20px 50px 0px rgba(153, 153, 153, 0.5);
+}
+
+.btn::before {
+  content: attr(data-text);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.3s cubic-bezier(0.75, 0, 0.125, 1) 0s;
+  width: 100%;
+  padding: 12px 0;
+}
+.btn:hover:before {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0);
+  -moz-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  -o-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+.btn:hover span {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.btn:hover span:nth-child(1) {
+  -webkit-transition-delay: 0.01s;
+  -moz-transition-delay: 0.01s;
+  -o-transition-delay: 0.01s;
+  transition-delay: 0.01s;
+}
+.btn:hover span:nth-child(2) {
+  -webkit-transition-delay: 0.05s;
+  -moz-transition-delay: 0.05s;
+  -o-transition-delay: 0.05s;
+  transition-delay: 0.05s;
+}
+.btn:hover span:nth-child(3) {
+  -webkit-transition-delay: 0.1s;
+  -moz-transition-delay: 0.1s;
+  -o-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+.btn:hover span:nth-child(4) {
+  -webkit-transition-delay: 0.15s;
+  -moz-transition-delay: 0.15s;
+  -o-transition-delay: 0.15s;
+  transition-delay: 0.15s;
+}
+.btn:hover span:nth-child(5) {
+  -webkit-transition-delay: 0.2s;
+  -moz-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+.btn:hover span:nth-child(6) {
+  -webkit-transition-delay: 0.25s;
+  -moz-transition-delay: 0.25s;
+  -o-transition-delay: 0.25s;
+  transition-delay: 0.25s;
+}
+.btn:hover span:nth-child(7) {
+  -webkit-transition-delay: 0.3s;
+  -moz-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+.btn:hover span:nth-child(8) {
+  -webkit-transition-delay: 0.35s;
+  -moz-transition-delay: 0.35s;
+  -o-transition-delay: 0.35s;
+  transition-delay: 0.35s;
+}
+.btn:hover span:nth-child(9) {
+  -webkit-transition-delay: 0.4s;
+  -moz-transition-delay: 0.4s;
+  -o-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+}
+.btn:hover span:nth-child(10) {
+  -webkit-transition-delay: 0.45s;
+  -moz-transition-delay: 0.45s;
+  -o-transition-delay: 0.45s;
+  transition-delay: 0.45s;
+}
+.btn:hover span:nth-child(11) {
+  -webkit-transition-delay: 0.5s;
+  -moz-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+.btn:hover span:nth-child(12) {
+  -webkit-transition-delay: 0.55s;
+  -moz-transition-delay: 0.55s;
+  -o-transition-delay: 0.55s;
+  transition-delay: 0.55s;
+}
+.btn:hover span:nth-child(13) {
+  -webkit-transition-delay: 0.6s;
+  -moz-transition-delay: 0.6s;
+  -o-transition-delay: 0.6s;
+  transition-delay: 0.6s;
+}
+.btn:hover span:nth-child(14) {
+  -webkit-transition-delay: 0.65s;
+  -moz-transition-delay: 0.65s;
+  -o-transition-delay: 0.65s;
+  transition-delay: 0.65s;
+}
+.btn:hover span:nth-child(15) {
+  -webkit-transition-delay: 0.7s;
+  -moz-transition-delay: 0.7s;
+  -o-transition-delay: 0.7s;
+  transition-delay: 0.7s;
+}
+.btn:hover span:nth-child(16) {
+  -webkit-transition-delay: 0.75s;
+  -moz-transition-delay: 0.75s;
+  -o-transition-delay: 0.75s;
+  transition-delay: 0.75s;
+}
+.btn:hover span:nth-child(17) {
+  -webkit-transition-delay: 0.8s;
+  -moz-transition-delay: 0.8s;
+  -o-transition-delay: 0.8s;
+  transition-delay: 0.8s;
+}
+.btn:hover span:nth-child(18) {
+  -webkit-transition-delay: 0.85s;
+  -moz-transition-delay: 0.85s;
+  -o-transition-delay: 0.85s;
+  transition-delay: 0.85s;
+}
+.btn:hover span:nth-child(19) {
+  -webkit-transition-delay: 0.95s;
+  -moz-transition-delay: 0.95s;
+  -o-transition-delay: 0.95s;
+  transition-delay: 0.95s;
+}
+.btn:hover span:nth-child(20) {
+  -webkit-transition-delay: 1s;
+  -moz-transition-delay: 1s;
+  -o-transition-delay: 1s;
+  transition-delay: 1s;
+}
