@@ -1,30 +1,97 @@
-<div class="container mt-5 mb-5 d-flex justify-content-center">
-    <div class="card p-5">
+<div class="container mt-5 mb-5 d-flex justify-content-center fade-in">
+    <div class="card p-5 mb-5">
         <div>
             <h4 class="heading">Upgrade your plan</h4>
-            <p class="text">Please make the payment to start enjoying all the features of our premium plan as soon as possible</p>
+            <p class="text">Please make the payment to start enjoying all the features of our premium plan as soon as
+                possible</p>
         </div>
         <div class="pricing p-3 rounded mt-4 d-flex justify-content-between">
-            <div class="images d-flex flex-row align-items-center"> <img src="https://i.imgur.com/S17BrTx.png" class="rounded" width="60">
-                <div class="d-flex flex-column ml-4"> <span class="business">Small Business</span> <span class="plan"><a routerLink="/packages">CHANGE PLAN</a></span> </div>
+            <div class="images d-flex flex-row align-items-center"> <img src="https://i.imgur.com/S17BrTx.png"
+                    class="rounded" width="60">
+                <div class="d-flex flex-column ml-4"> <span class="business">Small Business</span> <span class="plan">
+                        <!-- <a routerLink="/packages">CHANGE PLAN</a> -->
+                        <div class="dropdown">
+                            <button id="dLabel" class="dropdown-select" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                {{selectedPackage}}
+                                <span class="caret fa fa-caret-down"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                <li (click)="selectedPackage = 'Basic'">Basic</li>
+                                <li (click)="selectedPackage = 'Premium'">Premium</li>
+                                <li (click)="selectedPackage = 'Professional'">Professional</li>
+                            </ul>
+                        </div>
+                    </span> </div>
             </div>
             <!--pricing table-->
-            <div class="d-flex flex-row align-items-center"> <sup class="dollar font-weight-bold">$</sup> <span class="amount ml-1 mr-1">8,350</span> <span class="year font-weight-bold">/ year</span> </div> <!-- /pricing table-->
-        </div> <span class="detail mt-5">Payment details</span>
-        <div class="credit rounded mt-4 d-flex justify-content-between align-items-center">
-            <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/qHX7vY1.png" class="rounded" width="70">
-                <div class="d-flex flex-column ml-3"> <span class="business">Credit Card</span> <span class="plan">1234 XXXX XXXX 2570</span> </div>
+            <div class="d-flex flex-row align-items-center"> <sup class="dollar font-weight-bold">$</sup> <span
+                    class="amount ml-1 mr-1">8,350</span> <span class="year font-weight-bold">/ year</span> </div>
+            <!-- /pricing table-->
+        </div>
+        <span class="detail mt-3">Payment details</span>
+        <form class="form-card mt-4">
+
+            <div class="row justify-content-center form-group">
+                <div class="col-12 px-auto">
+                    <div class="custom-control custom-radio custom-control-inline"> <input id="customRadioInline1"
+                            type="radio" name="customRadioInline1" class="custom-control-input" checked="true"> <label
+                            for="customRadioInline1" class="custom-control-label label-radio">Private</label> </div>
+                    <div class="custom-control custom-radio custom-control-inline"> <input id="customRadioInline2"
+                            type="radio" name="customRadioInline1" class="custom-control-input"> <label
+                            for="customRadioInline2" class="custom-control-label label-radio">Business</label> </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="input-group"> <input type="text" name="Name" placeholder="John Doe"> <label>Name</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="input-group"> <input type="text" id="cr_no" name="card-no"
+                            placeholder="0000 0000 0000 0000" minlength="19" maxlength="19"> <label>Card Number</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group"> <input type="text" id="exp" name="expdate" placeholder="MM/YY"
+                                    minlength="5" maxlength="5"> <label>Expiry Date</label> </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group"> <input type="password" name="cvv"
+                                    placeholder="&#9679;&#9679;&#9679;" minlength="3" maxlength="3"> <label>CVV</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="credit rounded mt-4 d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/qHX7vY1.png" class="rounded"
+                    width="70">
+                <div class="d-flex flex-column ml-3"> <span class="business">Credit Card</span> <span class="plan">1234
+                        XXXX XXXX 2570</span> </div>
             </div>
             <div> <input type="text" class="form-control cvv" placeholder="CVC"> </div>
         </div>
         <div class="credit rounded mt-2 d-flex justify-content-between align-items-center">
-            <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/qHX7vY1.png" class="rounded" width="70">
-                <div class="d-flex flex-column ml-3"> <span class="business">Credit Card</span> <span class="plan">2344 XXXX XXXX 8880</span> </div>
+            <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/qHX7vY1.png" class="rounded"
+                    width="70">
+                <div class="d-flex flex-column ml-3"> <span class="business">Credit Card</span> <span class="plan">2344
+                        XXXX XXXX 8880</span> </div>
             </div>
             <div> <input type="text" class="form-control cvv" placeholder="CVC"> </div>
-        </div>
-        <h6 class="mt-4 text-primary">ADD PAYMENT METHOD</h6>
-        <div class="email mt-2"> <input type="text" class="form-control email-text" placeholder="Email Address"> </div>
-        <div class="mt-3"> <button class="btn btn-primary btn-block payment-button">Proceed to payment <i class="fa fa-long-arrow-right"></i></button> </div>
+        </div> -->
+            <!-- <h6 class="mt-4 text-primary">ADD PAYMENT METHOD</h6> -->
+            <!-- <div class="email mt-2"> <input type="text" class="form-control email-text" placeholder="Email Address">
+            </div> -->
+            <div class="mt-3"> <button class="btn btn-primary btn-block payment-button">Proceed to payment <i
+                        class="fa fa-long-arrow-right"></i></button> </div>
+        </form>
     </div>
 </div>

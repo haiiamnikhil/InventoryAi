@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+  selectedPackage: string = "Basic"
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    console.log(this.selectedPackage)
   }
 
 }

@@ -82,4 +82,180 @@ body {
 
 .card{
     transform:none;
+    cursor:unset;
+}
+
+.form-card input,
+.form-card textarea {
+    padding: 10px 15px 5px 15px;
+    border: none;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: arial;
+    color: #2C3E50;
+    font-size: 14px;
+    letter-spacing: 1px
+}
+
+.form-card input:focus,
+.form-card textarea:focus {
+    -moz-box-shadow: 0px 0px 0px 1.5px skyblue !important;
+    -webkit-box-shadow: 0px 0px 0px 1.5px skyblue !important;
+    box-shadow: 0px 0px 0px 1.5px skyblue !important;
+    font-weight: bold;
+    border: 1px solid #304FFE;
+    outline-width: 0
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    overflow: hidden
+}
+
+.input-group input {
+    position: relative;
+    height: 80px;
+    margin-left: 1px;
+    margin-right: 1px;
+    border-radius: 6px;
+    padding-top: 30px;
+    padding-left: 25px
+}
+
+.input-group label {
+    position: absolute;
+    height: 24px;
+    background: none;
+    border-radius: 6px;
+    line-height: 48px;
+    font-size: 15px;
+    color: gray;
+    width: 100%;
+    font-weight: 100;
+    padding-left: 25px
+}
+
+input:focus+label {
+    color: #304FFE
+}
+
+.btn-pay {
+    background-color: #304FFE;
+    height: 60px;
+    color: #ffffff !important;
+    font-weight: bold
+}
+
+.btn-pay:hover {
+    background-color: #3F51B5
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+
+img {
+    border-radius: 5px
+}
+
+.radio-group {
+    position: relative;
+    margin-bottom: 25px
+}
+
+.radio {
+    display: inline-block;
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 2px solid lightgrey;
+    cursor: pointer;
+    margin: 12px 25px 12px 0px
+}
+
+.radio:hover {
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2)
+}
+
+.radio.selected {
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 155, 0.4);
+    border: 2px solid blue
+}
+
+.label-radio {
+    font-weight: bold;
+    color: #000000
+}
+
+
+
+
+#dLabel {
+    width: 170px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: #d5d7e0;
+  border: solid 1px #cccccc;
+  text-align: left;
+  padding: 7.5px 15px;
+  color: rgb(46, 46, 46);
+  font-weight: bold;
+  letter-spacing: 0.7px;
+}
+
+ .caret {
+    float: right;
+    margin-top: 3px;
+    display: block;
+  }
+
+.dropdown-menu {
+  width: 170px;
+  padding: 0;
+  margin: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.dropdown button:hover, .dropdown button:focus {
+  border: none;
+  outline: 0;
+}
+
+.dropdown.open button#dLabel {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+ 
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23);
+  border: solid 1px #666;
+   border-bottom: none;
+}
+
+.dropdown.open ul {
+   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23);
+  border: solid 1px #666;
+  border-top: none;
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.dropdown-menu li {
+ 
+     line-height: 1.5;
+  letter-spacing: 0.7px;
+  color: #666;
+    font-size: 14px;
+  cursor: pointer;
+  padding: 7.5px 15px;
+  border-top: solid 1px #f3f3f3;
+  
+ 
+ 
+}
+
+.dropdown-menu li:hover {
+  background-color: #ccc;
 }
