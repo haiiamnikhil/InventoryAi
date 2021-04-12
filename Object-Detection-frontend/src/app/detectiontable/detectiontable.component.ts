@@ -56,9 +56,12 @@ export class DetectiontableComponent implements OnInit {
         let element = this.elref.nativeElement.querySelectorAll('.batch_file_child')
         console.log(element)
         for (let i = 0; i < element.length; i++){
-          element[i].style.display = 'none'
+          if (element[i] == this.getElements && this.getElements.style.display == 'block'){
+            this.getElements.style.display = 'none'
+          }else{
+            element[i].style.display = 'none'
+          }
         }
-     
         this.getElements.style.display = 'block'
 
       }  

@@ -59,10 +59,6 @@ export class PaymentComponent implements OnInit {
         "color": "#0069d9"
       }
     };
-    options.handler = ((response) => {
-      options['payment_response_id'] = response.razorpay_payment_id;
-      this.service.razorPay({payment: options});
-  });
   let rzp = new this.winRef.nativeWindow.Razorpay(options);
   rzp.open();
     // this.service.razorPay(data).subscribe(data => console.log(data));
