@@ -38,7 +38,7 @@ const routes: Routes = [
     component:ObjectdetectorComponent
   },
   {
-    path:'payment',
+    path:'packages/payment',
     component:PaymentComponent
   },
   {

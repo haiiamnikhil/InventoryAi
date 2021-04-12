@@ -31,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { DetectedComponent } from './detected/detected.component';
 import { StoreModule } from '@ngrx/store';
 import { categoryReducer } from './state/category.reducer';
+import { packageReducer } from './state/payment.reducer';
 
 
 @NgModule({
@@ -66,7 +67,7 @@ import { categoryReducer } from './state/category.reducer';
     NgApexchartsModule,
     NgxPaginationModule,
     ToastrModule.forRoot(),
-    StoreModule.forRoot({message:categoryReducer})  
+    StoreModule.forRoot({message:categoryReducer, userPackage:packageReducer})  
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

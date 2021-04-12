@@ -17,21 +17,21 @@
                                 <span class="caret fa fa-caret-down"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                <li (click)="selectedPackage = 'Basic'">Basic</li>
-                                <li (click)="selectedPackage = 'Premium'">Premium</li>
-                                <li (click)="selectedPackage = 'Professional'">Professional</li>
+                                <li (click)="changePackage('basic')">Basic</li>
+                                <li (click)="changePackage('premium')">Premium</li>
+                                <li (click)="changePackage('professional')">Professional</li>
                             </ul>
                         </div>
                     </span> </div>
             </div>
             <!--pricing table-->
             <div class="d-flex flex-row align-items-center"> <sup class="dollar font-weight-bold">$</sup> <span
-                    class="amount ml-1 mr-1">8,350</span> <span class="year font-weight-bold">/ year</span> </div>
+                    class="amount ml-1 mr-1">{{amount}}</span> <span class="year font-weight-bold">/ year</span> </div>
             <!-- /pricing table-->
         </div>
         <span class="detail mt-3">Payment details</span>
-        <form class="form-card mt-4">
-
+        <form class="form-card mt-4" (submit)="pay()">
+            
             <div class="row justify-content-center form-group">
                 <div class="col-12 px-auto">
                     <div class="custom-control custom-radio custom-control-inline"> <input id="customRadioInline1"

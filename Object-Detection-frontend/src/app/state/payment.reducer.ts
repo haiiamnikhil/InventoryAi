@@ -5,11 +5,10 @@ import { createReducer } from '@ngrx/store';
 
 
 const _packageReducer = createReducer(selectedPackage,
-    on(basic, (state) => {return{package: state.package = 'Basic'}}),
-    on(premium,(state) => {return{package: state.package = 'Premium'}}),
-    on(professional, (state) => {return{package: state.package = 'Professional'}})
+    on(basic, (state) => {return{package: state.package = 'Basic',amount: state.amount = 50}}),
+    on(premium,(state) => {return{package: state.package = 'Premium', amount: state.amount = 100}}),
+    on(professional, (state) => {return{package: state.package = 'Professional', amount: state.amount = 500}}),
     )
-
 export function packageReducer(state, action){
     return _packageReducer(state,action);
 }

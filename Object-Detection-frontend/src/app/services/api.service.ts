@@ -88,4 +88,8 @@ export class ApiService {
   userPlan(value:any):Observable<any>{
     return this.http.post('/user/package/',value,{headers:this.header})
   }
+
+  razorPay(data:any):Observable<any>{
+    return this.http.post('/packages/payment/razorpay/',data,{headers:this.header})
+  }
 }

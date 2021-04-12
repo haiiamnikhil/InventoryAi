@@ -30,7 +30,8 @@ urlpatterns = [
     
     path('periodical-select/',periodicalSelector,name='periodicalSelector'),
     
-    path('payment/',paymentView,name='paymentView'),
+    path('packages/payment/',paymentView,name='paymentView'),
+    path('packages/payment/razorpay/',razorpay,name='razorPay'),
     
     path('history/',historyView,name='historyView'),
     path('api-single-detection/',detectionHistory,name='detectionHistory'),

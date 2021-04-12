@@ -1,4 +1,3 @@
-import re
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.http.response import Http404
@@ -19,7 +18,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
-import json
+import razorpay
 
 
 COUNT_PACKAGES = {
@@ -404,8 +403,22 @@ def getBatchFiles(request):
 def userPackage(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
+        print(data['package'].capitalize())
         getPresentPackage = UserPackage.objects.filter(user=request.user, packageType=data['package'].capitalize()).exists()
+        print(getPresentPackage)
         if getPresentPackage:
             print("asdasghjdajs")
-            return JsonResponse({'status': False}, safe=False, status=200)
-        return JsonResponse({'status':True, 'message':'Your Subscription has been Renewied'}, safe=False, status=200)
+            return JsonResponse({'status': False, 'message':'Your Subscription has been Renewied'}, safe=False, status=200)
+        return JsonResponse({'status':True}, safe=False, status=200)
+    
+@csrf_exempt
+def razorpay(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        print(data)
+        order_amount = 50000
+        order_currency = 'INR'
+        client = razorpay.Client(auth=('rzp_test_yYjR1Ke61gVKzM','P72uFUBJl62a1Cho9Hgub5eN'))
+        payment = client.order.create({'amount':order_amount,'currency':order_currency,'payment_capture':'0'})
+        order_receipt = 'order_rcptid_11'
+        notes = {'Shipping address': 'Bommanahalli, Bangalore'}
