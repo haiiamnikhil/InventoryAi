@@ -31,8 +31,6 @@ export class PaymentComponent implements OnInit {
         this.amount = data.amount
       }
     });
-   // console.log(this.selectedPackage, this.amount)
-
   }
 
   changePackage(changedPackage: string){
@@ -46,17 +44,28 @@ export class PaymentComponent implements OnInit {
       this.store.dispatch(professional())
     }
   }
+
   pay(){
-    let data = {
-      key:"rzp_test_yYjR1Ke61gVKzM",
-      amount:this.amount*100,
-      currency : 'INR',
-      name : this.selectedPackage,
-      description:'This is a text description',
-      order_id:'8asd0198',
-      modal:{escape:false},
-      theme:{color:"#F37254"}
-    }
-    this.service.razorPay(data).subscribe(response=>console.log(response))
+    let options:any = {
+      "key": "rzp_test_yYjR1Ke61gVKzM",
+      "amount": this.amount*100,
+      "name": this.selectedPackage,
+      "description": "dummy data",
+      "image": "./assets/images/logo.png",
+      "modal": {
+        "escape": false
+      }, 
+      "theme": {
+        "color": "#0069d9"
+      }
+    };
+    options.handler = ((response) => {
+      options['payment_response_id'] = response.razorpay_payment_id;
+      this.service.razorPay({payment: options});
+  });
+  let rzp = new this.winRef.nativeWindow.Razorpay(options);
+  rzp.open();
+    // this.service.razorPay(data).subscribe(data => console.log(data));
   }
+
 }

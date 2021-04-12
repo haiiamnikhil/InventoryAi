@@ -32,6 +32,7 @@ import { DetectedComponent } from './detected/detected.component';
 import { StoreModule } from '@ngrx/store';
 import { categoryReducer } from './state/category.reducer';
 import { packageReducer } from './state/payment.reducer';
+import { WindowRefService } from './window-ref.service';
 
 
 @NgModule({
@@ -69,7 +70,7 @@ import { packageReducer } from './state/payment.reducer';
     ToastrModule.forRoot(),
     StoreModule.forRoot({message:categoryReducer, userPackage:packageReducer})  
   ],
-  providers: [ApiService],
+  providers: [ApiService,WindowRefService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
