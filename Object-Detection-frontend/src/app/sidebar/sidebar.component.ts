@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,9 +8,14 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
+  @Output() name = new EventEmitter();
+  viewMode:boolean = false;
+
   constructor(public router : Router) { }
 
   ngOnInit(): void {
   }
+
+  
 
 }

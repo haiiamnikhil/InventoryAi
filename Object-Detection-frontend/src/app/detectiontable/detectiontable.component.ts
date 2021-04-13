@@ -43,26 +43,27 @@ export class DetectiontableComponent implements OnInit {
 
   showChild(event:any,id:any){
     this.multiDetectionFiles = []
-
+ 
     let data = {processId:id}
 
     this.getElements = event.currentTarget.parentNode.parentNode.nextSibling
-
-    console.log(this.getElements)
     this.apiService.getBatchFiles(data).subscribe(response => {
       if (response.status){
         this.multiDetectionFiles.push(response.batchFiles)
-        console.log(response)
+
         let element = this.elref.nativeElement.querySelectorAll('.batch_file_child')
-        console.log(element)
+
+        if (this.getElements.style.display == 'block'){
+          this.getElements.style.display = 'none'
+        }
+        else{
+          this.getElements.style.display = 'block'
+        }
         for (let i = 0; i < element.length; i++){
-          if (element[i] == this.getElements && this.getElements.style.display == 'block'){
-            this.getElements.style.display = 'none'
-          }else{
+          if (element[i] != this.getElements){
             element[i].style.display = 'none'
           }
         }
-        this.getElements.style.display = 'block'
 
       }  
     })

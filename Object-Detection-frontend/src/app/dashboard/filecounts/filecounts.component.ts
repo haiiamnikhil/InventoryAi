@@ -20,7 +20,6 @@ export class FilecountsComponent implements OnInit {
   ngOnInit(){
     this.apiService.userDetails().subscribe(response => {
       if (response.status) {
-        console.log(response)
         let totalCount = response.count.length > 0 ? response.count : [];
         this.remainingCount = response.package[0].remainingCounts
         this.totalLimit = response.package[0].allotatedCounts
@@ -53,7 +52,6 @@ export class FilecountsComponent implements OnInit {
       }
     },
       error => console.log(error))
-      console.log(this.totalLimit)
   }
 
 }

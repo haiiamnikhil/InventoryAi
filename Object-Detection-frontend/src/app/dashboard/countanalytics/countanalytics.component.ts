@@ -53,7 +53,7 @@ export class CountanalyticsComponent implements OnInit {
     this.chartOptions = {
       series: [
         {
-          name: this.processedCategory,
+          name: this.processedCategory[0],
           data: this.column
         }
       ],

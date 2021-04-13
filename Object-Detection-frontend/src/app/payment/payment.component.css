@@ -259,3 +259,13 @@ img {
 .dropdown-menu li:hover {
   background-color: #ccc;
 }
+
+
+#container.drishy #modal{
+    width:50% !important;
+    height:70% !important;
+  }
+
+  #content{
+    height:100% !important;
+  }

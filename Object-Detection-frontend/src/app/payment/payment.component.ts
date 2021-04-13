@@ -23,8 +23,8 @@ export class PaymentComponent implements OnInit {
     this.store.select('userPackage').subscribe(data => {
       sessionStorage.setItem('state',JSON.stringify(data))
       if (data.package == oldState.package) {
-        this.selectedPackage = oldState.package
-        this.amount = oldState.amount
+        this.selectedPackage = data.package
+        this.amount = data.amount
       }
       else{
         this.selectedPackage = data.package

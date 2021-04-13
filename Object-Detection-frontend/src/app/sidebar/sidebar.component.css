@@ -1,4 +1,4 @@
-#sidebar-wrapper {
+/* #sidebar-wrapper {
     z-index: 1000;
     width: 5%;
     height: 100%;
@@ -28,10 +28,7 @@
     position: absolute;
     margin-right: -220px;
   }
-  
-  /*-------------------------------*/
-  /*     Sidebar nav styles        */
-  /*-------------------------------*/
+
   .navbar {
   padding: 0;
   }
@@ -160,11 +157,6 @@
   .dropdown-menu.show {
     top: 0;
   }
-  /*Fontawesome icons*/
-  
-  /*-------------------------------*/
-  /*       Hamburger-Cross         */
-  /*-------------------------------*/
   
   .hamburger {
   position: fixed;
@@ -276,10 +268,7 @@
   -webkit-transition: all .35s ease-in-out;
   }
   
-  /*-------------------------------*/
-  /*            Overlay            */
-  /*-------------------------------*/
-  
+
   .overlay {
     position: fixed;
     display: none;
@@ -295,4 +284,110 @@
   
    li:nth-child(5n+3) .active{
     background-color: red
+  } */
+
+
+
+
+
+
+  .container {
+    height: 100%;
+    width: 100%;
+    background: #343a40;
+    font-family: "Poppins", sans-serif;
+    position: relative;
   }
+  
+  .menu-expanded {
+    max-width: 0px;
+    opacity: 0;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    transition: all 0.4s ease 0s;
+    overflow: hidden;
+  }
+  
+  .menu-expanded ul {
+    margin: 0;
+    list-style: none;
+    font-size: 32px;
+    text-align: left;
+    line-height: 2em;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .hamburguer-menu {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    position: relative;
+    z-index: 10000;
+    cursor: pointer;
+  }
+  
+  .line {
+    display: block;
+    width: 30px;
+    background: #fff;
+    height: 2px;
+    margin: 5px 5px;
+    transition: all 0.4s ease;
+    z-index: 1;
+  }
+  
+  input {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+    z-index: 2;
+  }
+  
+  .change .first-line {
+    transform: rotate(45deg) translate(0px, 0px);
+  }
+  
+  .change .second-line {
+    transform: rotate(-45deg) translate(8px, -8px);
+  }
+  
+  .change ~ .menu-expanded {
+    max-width: 400px;
+    opacity: 1;
+  }
+  
+  @media (max-width: 400px) {
+    .menu-expanded {
+      width: 100%;
+    }
+  }
+
+  .icon-menu ul li{
+    text-decoration: none;
+    list-style: none;
+    font-size:32px;
+    line-height:3em;
+  }
+
+  .icon-menu ul{
+    padding-left: 0px;
+    text-align:center;
+  }
+  
+  .change ~ .icon-menu{
+    display:none;
+  }
+
+
+  

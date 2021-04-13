@@ -53,3 +53,8 @@
     /* border-top: solid 1px #e0dddd; */
     border-bottom: solid 1px #e0dddd;
 }
+
+.batch_file_child{
+    transition: top 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
+
+}

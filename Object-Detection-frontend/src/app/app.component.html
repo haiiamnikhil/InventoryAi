@@ -14,7 +14,7 @@
   </div>
 
   <div *ngSwitchDefault>
-    <div>
+    <!-- <div>
       <app-navbar></app-navbar>
     </div>
     <div class="fadeIn">
@@ -25,6 +25,20 @@
           <div class="dashboard-items">
             <router-outlet></router-outlet>
           </div>
+    </div>
+  </div> -->
+
+  <div class="main">
+    <div class="sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="body">
+      <div class="top-nav">
+        <app-navbar></app-navbar>
+      </div>
+      <div class="main-body">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
   

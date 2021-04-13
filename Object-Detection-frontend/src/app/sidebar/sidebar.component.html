@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+<!-- <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav text-center">
       <div class="sidebar-header">
       <div class="sidebar-brand">
@@ -6,7 +6,28 @@
       <li [class.active]="router.url == '/'" ><a routerLink="/"><i class="fa fa-home"></i></a></li>
       <li [class.active]="router.url == '/upload'" ><a routerLink="/upload"><i class="fa fa-upload"></i></a></li>
       <li [class.active]="router.url == '/history'"><a routerLink="/history"><i class="fa fa-history"></i></a></li>
-     <!-- <li  [class.active]="router.url == '/packages'"><a routerLink="/packages"><i class="fa fa-cog"></i></a></li> -->
-     <!-- <li [class.active]="router.url == '/payment'" ><a routerLink="/payment"><i class="fa fa-credit-card-alt"></i></a></li> -->
      </ul>
  </nav>
+
+  -->
+
+  <div class="container">
+    <div class="hamburguer-menu" [class.change]='viewMode' (click)="viewMode = !viewMode">
+      <span class="line first-line"></span>
+      <span class="line second-line"></span>
+    </div>
+    <div class="icon-menu">
+      <ul>
+        <li [class.active]="router.url == '/'" ><a routerLink="/"><i class="fa fa-home"></i></a></li>
+        <li [class.active]="router.url == '/upload'" ><a routerLink="/upload"><i class="fa fa-upload"></i></a></li>
+        <li [class.active]="router.url == '/history'"><a routerLink="/history"><i class="fa fa-history"></i></a></li>
+      </ul>
+    </div>
+    <div class="menu-expanded">
+      <ul>
+        <li><a href="#">Work</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>

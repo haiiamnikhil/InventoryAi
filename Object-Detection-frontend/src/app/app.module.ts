@@ -68,7 +68,7 @@ import { WindowRefService } from './window-ref.service';
     NgApexchartsModule,
     NgxPaginationModule,
     ToastrModule.forRoot(),
-    StoreModule.forRoot({message:categoryReducer, userPackage:packageReducer})  
+    StoreModule.forRoot({message:categoryReducer, userPackage:packageReducer}),
   ],
   providers: [ApiService,WindowRefService],
   bootstrap: [AppComponent]
