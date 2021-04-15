@@ -17,17 +17,17 @@
       <span class="line second-line"></span>
     </div>
     <div class="icon-menu">
-      <ul>
+      <ul class="list-view">
         <li [class.active]="router.url == '/'" ><a routerLink="/"><i class="fa fa-home"></i></a></li>
         <li [class.active]="router.url == '/upload'" ><a routerLink="/upload"><i class="fa fa-upload"></i></a></li>
         <li [class.active]="router.url == '/history'"><a routerLink="/history"><i class="fa fa-history"></i></a></li>
       </ul>
     </div>
     <div class="menu-expanded">
-      <ul>
-        <li><a href="#">Work</a></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Contact</a></li>
+      <ul class="list-view">
+        <li [class.active]="router.url == '/'" ><a routerLink="/">Work</a></li>
+        <li [class.active]="router.url == '/upload'"><a routerLink="/upload">Home</a></li>
+        <li [class.active]="router.url == '/history'"><a routerLink="/history">Contact</a></li>
       </ul>
     </div>
   </div>

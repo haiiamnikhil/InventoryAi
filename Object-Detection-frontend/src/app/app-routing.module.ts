@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PackageComponent } from './package/package.component';
 import { DetectedComponent } from './detected/detected.component';
+import { UserapiviewComponent } from './userapiview/userapiview.component';
 
 
 const routes: Routes = [
@@ -52,7 +53,11 @@ const routes: Routes = [
   {
     path:'upload/detected',
     component:DetectedComponent
-  }
+  },
+  {
+    path:'api/v1/user/object-counter',
+    component:UserapiviewComponent
+  },
 ];
 
 @NgModule({

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
           return
         }
         else{
-          if(this.router.url == '/register'){
+          if(this.router.url == '/register' || this.router.url == '/api/v1/user/object-counter'){
             return
           }
           else{

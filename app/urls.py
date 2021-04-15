@@ -1,3 +1,4 @@
+from .api import *
 from django.urls import path
 from .views import  *
 from .template import *
@@ -31,7 +32,7 @@ urlpatterns = [
     path('periodical-select/',periodicalSelector,name='periodicalSelector'),
     
     path('packages/payment/',paymentView,name='paymentView'),
-    path('packages/payment/razorpay/',razorpay,name='razorPay'),
+    path('packages/payment/razorpay/',payment_gateway,name='razorPay'),
     
     path('history/',historyView,name='historyView'),
     path('api-single-detection/',detectionHistory,name='detectionHistory'),
@@ -45,4 +46,7 @@ urlpatterns = [
     path('upload/detected/',detectedView,name='detectedView'),
     
     path('user/package/', userPackage, name='userPackage'),
+    
+    path('api/v1/user/object-counter/',userApiView,name='userView'),
+    path('api/v1/object-counter/',apiProcessor,name='apiProcessor'),
 ]

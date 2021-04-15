@@ -297,6 +297,7 @@
     background: #343a40;
     font-family: "Poppins", sans-serif;
     position: relative;
+    padding: 0;
   }
   
   .menu-expanded {
@@ -381,7 +382,6 @@
   }
 
   .icon-menu ul{
-    padding-left: 0px;
     text-align:center;
   }
   
@@ -389,5 +389,7 @@
     display:none;
   }
 
-
+  .list-view{
+    padding:20px;
+  }
   

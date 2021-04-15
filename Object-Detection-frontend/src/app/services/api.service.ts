@@ -92,4 +92,8 @@ export class ApiService {
   razorPay(data:any):Observable<any>{
     return this.http.post('/packages/payment/razorpay/',data,{headers:this.header})
   }
+
+  userApiView(value:any):Observable<any>{
+    return this.http.post('api/v1/object-counter/',value)
+  }
 }

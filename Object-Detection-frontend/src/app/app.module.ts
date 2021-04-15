@@ -33,6 +33,7 @@ import { StoreModule } from '@ngrx/store';
 import { categoryReducer } from './state/category.reducer';
 import { packageReducer } from './state/payment.reducer';
 import { WindowRefService } from './window-ref.service';
+import { UserapiviewComponent } from './userapiview/userapiview.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { WindowRefService } from './window-ref.service';
     PackageComponent,
     SidebarComponent,
     DetectedComponent,
+    UserapiviewComponent,
   ],
   imports: [
     HttpClientModule,

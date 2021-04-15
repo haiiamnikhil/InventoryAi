@@ -412,7 +412,7 @@ def userPackage(request):
         return JsonResponse({'status':True}, safe=False, status=200)
     
 @csrf_exempt
-def razorpay(request):
+def payment_gateway(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
         print(data)
@@ -422,3 +422,4 @@ def razorpay(request):
         payment = client.order.create({'amount':order_amount,'currency':order_currency,'payment_capture':'0'})
         order_receipt = 'order_rcptid_11'
         notes = {'Shipping address': 'Bommanahalli, Bangalore'}
+        

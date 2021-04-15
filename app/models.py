@@ -195,3 +195,16 @@ class BatchFile(models.Model):
     
     class Meta:
         verbose_name_plural = "Batch File"
+        
+class GuestDetections(models.Model):
+    filename = models.CharField(max_length=100, unique=False, null=True, blank=False)
+    file = models.FileField(upload_to="Guest-Detections/",blank= False, null=True, unique=False)
+    uploaderIp = models.CharField(max_length=50, unique=False, blank=False, null=True)
+    detectClass = models.CharField(max_length=50, unique=False, blank=False, null=True)
+    uploaded_at = models.DateField(auto_now=True)
+    
+    def __str__(self):
+        return str(self.uploaderIp)
+    
+    class Meta:
+        verbose_name_plural = "Guest Detection"

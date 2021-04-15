@@ -17,7 +17,8 @@
 .main{
     display:flex;
     flex-direction:row;
-    height:100vh;
+    height:100%;
+    overflow-x: hidden;
 }
 
 .body{
@@ -28,3 +29,6 @@
     overflow-x: none;
 }
 
+.main-body{
+    height:100vh;
+}
