@@ -34,6 +34,7 @@ import { categoryReducer } from './state/category.reducer';
 import { packageReducer } from './state/payment.reducer';
 import { WindowRefService } from './window-ref.service';
 import { UserapiviewComponent } from './userapiview/userapiview.component';
+import { VideodetectionComponent } from './videodetection/videodetection.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { UserapiviewComponent } from './userapiview/userapiview.component';
     SidebarComponent,
     DetectedComponent,
     UserapiviewComponent,
+    VideodetectionComponent,
   ],
   imports: [
     HttpClientModule,

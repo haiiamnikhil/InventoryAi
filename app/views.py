@@ -6,7 +6,7 @@ from .detector import detector
 import os
 import cv2 as cv
 from django.views.decorators.csrf import csrf_exempt
-from .serializer import BatchFileSerializer, BatchProcessingSerializer, CsvSerializer, DetectionSerializer, MultiDetectionHistorySerializer, ProductCountHistorySerializer, ProductTotalCountSerializer, SingleDetectionHistorySerializer, UserPackageSerializer, RecordsCountSerializer
+from .serializer import BatchFileSerializer, BatchProcessingSerializer, CsvSerializer, DetectionSerializer, ProductCountHistorySerializer, ProductTotalCountSerializer, SingleDetectionHistorySerializer, UserPackageSerializer, RecordsCountSerializer
 import pandas as pd
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.parsers import JSONParser

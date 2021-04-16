@@ -1,3 +1,4 @@
+import { VideodetectionComponent } from './videodetection/videodetection.component';
 import { DetectiontableComponent } from './detectiontable/detectiontable.component';
 import { ObjectdetectorComponent } from './objectdetector/objectdetector.component';
 import { NgModule } from '@angular/core';
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path:'upload',
     component:ObjectdetectorComponent
+  },
+  {
+    path:'video-detection',
+    component:VideodetectionComponent
   },
   {
     path:'packages/payment',

@@ -1,0 +1,102 @@
+.container{
+    height:100vh;
+}
+
+.align-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.select-class {
+    width: 20%;
+    height: 38px;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: rebeccapurple;
+    outline: none;
+}
+
+.select-class:hover{
+    background-color:rgb(238, 238, 238);
+    color:rebeccapurple;
+    font-weight:bold;
+    outline: none;
+    transition:0.5s ease-in-out;
+}
+
+.select-class option:hover{
+    background-color:rgb(95, 95, 95);
+    color:white;
+    font-weight:bold;
+    transition:0.5s ease-in-out;
+}
+
+.file{
+    display: flex;
+    align-items:center;
+    min-height:250px;
+}
+
+.file-uploader {
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction:column;
+}
+.file-uploader input{
+    opacity: 0;
+    height:100%;
+    width: 100%;
+    position: absolute;
+}
+.file-uploader span{
+    vertical-align:middle;
+    width:100%;
+    text-align:center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+svg path{
+    fill: #929292;
+}
+
+.card img{
+    width: 100%;
+    height: 100%;
+}
+
+.btn-submit{
+    width: 20%;
+    border-radius: 30px;
+    font-weight: bold;
+    color:rgb(3, 109, 112);
+    border-color: cornflowerblue;
+    background-color: rgb(230, 230, 230);
+}
+
+.btn-submit:hover{
+    background-color: rgb(3, 109, 112);
+    color:white;
+    font-weight: bold;
+    transition:0.3s ease-in-out;
+}
+
+.card{
+    cursor: unset;
+    transform:none;
+}
+
+.card-header{
+    border-bottom: none;
+    background:ghostwhite;
+}
+
+.card-footer{
+    border-top: none;
+    background:ghostwhite;
+}

@@ -49,4 +49,6 @@ urlpatterns = [
     
     path('api/v1/user/object-counter/',userApiView,name='userView'),
     path('api/v1/object-counter/',apiProcessor,name='apiProcessor'),
+    
+    path('video-detection/',videoDetectorView,name='videoDetector'),
 ]

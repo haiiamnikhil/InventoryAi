@@ -198,9 +198,11 @@ class BatchFile(models.Model):
         
 class GuestDetections(models.Model):
     filename = models.CharField(max_length=100, unique=False, null=True, blank=False)
-    file = models.FileField(upload_to="Guest-Detections/",blank= False, null=True, unique=False)
+    uploadFile = models.FileField(upload_to="Guest-Detections/",blank= False, null=True, unique=False)
+    detectedFile = models.FileField(upload_to="Guest-Detections/detected/",blank=False, null=True, unique=False)
     uploaderIp = models.CharField(max_length=50, unique=False, blank=False, null=True)
     detectClass = models.CharField(max_length=50, unique=False, blank=False, null=True)
+    count = models.IntegerField(null=True, blank=False, unique=False, default=0)
     uploaded_at = models.DateField(auto_now=True)
     
     def __str__(self):

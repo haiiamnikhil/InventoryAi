@@ -54,3 +54,7 @@ def packagesView(request):
 
 def detectedView(request):
     return render(request, 'detected.html')
+
+
+def videoDetectorView(request):
+    return render(request, 'video-detection.html')

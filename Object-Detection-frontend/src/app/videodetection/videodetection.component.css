@@ -1,0 +1,57 @@
+.video-div{
+    min-height:400px;
+    height:100%;
+    width:100%;
+}
+
+.report-div{
+    min-height:400px;
+    height:100%;
+    width:100%;
+}
+
+.container{
+    max-width: 90%;
+}
+
+.player{
+    height:100%;
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+.report{
+    flex-direction: row;
+}
+
+.player-body{
+    width: 100%;
+    height:100%;
+}
+
+.card{
+    cursor: unset;
+    transform:none;
+}
+
+.col-md-6 .select-items{
+    width: 100%;
+    height: 35px;
+    border-radius: 40px;
+    border-color: #bfbfbf;
+}
+
+.content-column{
+    display:flex;
+    flex-direction:column;
+}
+
+.content-row{
+    display:flex;
+    flex-direction:row;
+}
+
+.btn-style{
+    border-radius:20px;
+}

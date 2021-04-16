@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import BatchFile, BatchProcessing, ProductCountHistory, ProductTotalCount, UploadData, UserCSVRecord, UserModel, UserPackage, UserProcessCount
+from .models import BatchFile, BatchProcessing, GuestDetections, ProductCountHistory, ProductTotalCount, UploadData, UserCSVRecord, UserModel, UserPackage, UserProcessCount
 
 
 class DetectionSerializer(serializers.ModelSerializer):
@@ -67,4 +67,10 @@ class BatchProcessingSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = BatchProcessing
+        fields = '__all__'
+        
+class GuestImageProcessingSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = GuestDetections
         fields = '__all__'
