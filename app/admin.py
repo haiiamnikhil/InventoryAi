@@ -50,3 +50,7 @@ admin.site.register(BatchProcessing)
 admin.site.register(BatchFile)
 
 admin.site.register(GuestDetections)
+
+admin.site.register(CameraCredentials)
+
+admin.site.register(VideoDetection)

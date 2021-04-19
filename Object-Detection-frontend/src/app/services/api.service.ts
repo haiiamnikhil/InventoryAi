@@ -94,6 +94,10 @@ export class ApiService {
   }
 
   userApiView(value:any):Observable<any>{
-    return this.http.post('api/v1/object-counter/',value)
+    return this.http.post('/api/v1/object-counter/',value)
+  }
+
+  getCameraCredentials():Observable<any>{
+    return this.http.post('/api/v1/add/video/credentials/',{headers:this.header})
   }
 }

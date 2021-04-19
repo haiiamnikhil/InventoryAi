@@ -1,6 +1,10 @@
-from rest_framework import serializers
-from .models import BatchFile, BatchProcessing, GuestDetections, ProductCountHistory, ProductTotalCount, UploadData, UserCSVRecord, UserModel, UserPackage, UserProcessCount
+from rest_framework import fields, serializers
+from .models import BatchFile, BatchProcessing, CameraCredentials, GuestDetections, ProductCountHistory, ProductTotalCount, UploadData, UserCSVRecord, UserModel, UserPackage, UserProcessCount
 
+class CameraCredentialsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CameraCredentials
+        fields = '__all__'
 
 class DetectionSerializer(serializers.ModelSerializer):
     class Meta:

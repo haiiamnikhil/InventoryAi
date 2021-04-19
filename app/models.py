@@ -3,6 +3,7 @@ import random
 import string
 import os
 from django.contrib.auth.models import AbstractUser
+from datetime import datetime as dt
 
 
 USER_TYPE = (
@@ -210,3 +211,30 @@ class GuestDetections(models.Model):
     
     class Meta:
         verbose_name_plural = "Guest Detection"
+        
+        
+class VideoDetection(models.Model):
+    user = models.ForeignKey(UserModel,null=True, blank=False, unique=False, on_delete=models.CASCADE)
+    filaname = models.CharField(max_length=100, default=f"VID-REC-{UserModel.get_username}-{dt.now().strftime('%Y-%m-%d')}")
+    detectedVideo = models.FileField(upload_to="DetectedVideo",blank=False,null=True,unique=False)
+    processDate = models.DateField(auto_now=True)
+    
+    def __str__(self):
+        return str(self.detectedVideo.name)
+    
+    class Meta:
+        verbose_name_plural = "User Video Detections"
+        
+
+class CameraCredentials(models.Model):
+    user = models.ForeignKey(UserModel,null=True,blank=False, unique=False, on_delete=models.CASCADE)
+    cameraUsername = models.CharField(max_length=50, unique=False, blank=False, null=True)
+    cameraPassword = models.CharField(max_length=100,unique=False,null=True, blank=False)
+    cameraIp = models.CharField(max_length=50, unique=False, blank=False, null=True)
+    cameraPort = models.CharField(max_length=20,unique=False,null=True, blank=False)
+    
+    def __str__(self):
+        return str(self.user)
+    
+    class Meta:
+        verbose_name_plural = "Camera Credentials"

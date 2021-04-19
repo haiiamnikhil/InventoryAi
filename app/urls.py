@@ -1,7 +1,11 @@
+from os import name
 from .api import *
 from django.urls import path
 from .views import  *
 from .template import *
+from .apivideo import *
+from django.views.generic import TemplateView
+
 
 urlpatterns = [
     path('',home,name='home'),
@@ -13,7 +17,7 @@ urlpatterns = [
     path('register-auth/',registerAuth,name='registerAuth'),
     path('logout/',logoutUser,name='logoutView'),
     
-    path('profile/',userProfileView,name='userProfileView'),
+    path('profile/',TemplateView.as_view(template_name = "profile.html"),name='userProfileView'),
     path('user-details/',userCountAPI,name='userDetails'),
     
     path('upload/',uploadFiles,name='singledetector'),
@@ -51,4 +55,7 @@ urlpatterns = [
     path('api/v1/object-counter/',apiProcessor,name='apiProcessor'),
     
     path('video-detection/',videoDetectorView,name='videoDetector'),
+    
+    path('api/v1/video-detection/',videoDetector,name='videoDetectorProcessor'),
+    path('api/v1/add/video/credentials/',cameraCredentialsSaver,name="videoCredentials"),
 ]

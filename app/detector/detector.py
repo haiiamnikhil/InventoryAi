@@ -185,6 +185,7 @@ def detect(filename, detectType, mode):
                     center_y = int(detection[1] * height)
                     w = int(detection[2] * width)
                     h = int(detection[3] * height)
+                    # print(center_x,center_y)
 
                 # Rectangle coordinates
                     x = int(center_x - w / 2)
@@ -196,17 +197,95 @@ def detect(filename, detectType, mode):
 
         indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
         count = 0
-        font = cv2.FONT_HERSHEY_PLAIN
+        # font = cv2.FONT_HERSHEY_PLAIN
         for i in range(len(boxes)):
             if i in indexes:
                 x, y, w, h = boxes[i]
+                # print(x, y, w, h)
+                centerPoint = (round(abs(x+w)/2),round(abs(y+h)/2))
+                # print(centerPoint)
                 label = str(classes[class_ids[i]])
+                center_w = int(img.shape[1]/2)
+                
                 if label == detectType.lower():
                     try:
                         color = colors
                     except:
                         color = (0, 255, 100)
+                    # print(centerPoint)
+                    # print((x+w,0),(x+w,w+h))
+                    # cv2.line(img,(int(x+w/2),0),(int(x+w/2),int(w+h/2)),(0,255,0),5)
                     cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
                     # cv2.putText(img, label, (x, y + 30), font, 1, color, 1)
                     count = count+1
         return count, img
+    
+    
+def videoDetector(username,password,domain,detectType):
+    VID_DIM = (1280,720)
+    img = cv2.VideoCapture(f"rtsp://{username}:{password}@{domain}/1")
+    while True:
+        staus,frame = img.read()
+        #frame_count =0
+        #img = cv2.imread("room_ser.jpg")
+        if staus is not None:
+        # img = cv2.resize(img, None, fx=0.4, fy=0.4)
+            height, width, channels = frame.shape
+
+            # Detecting objects
+            blob = cv2.dnn.blobFromImage(
+                img, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
+
+            net.setInput(blob)
+            outs = net.forward(output_layers)
+
+            # Showing informations on the screen
+            class_ids = []
+            confidences = []
+            boxes = []
+            for out in outs:
+                for detection in out:
+                    scores = detection[5:]
+                    class_id = np.argmax(scores)
+                    confidence = scores[class_id]
+                    if confidence > DEFAULT_CONFIDENCE:
+                        # Object detected
+                        center_x = int(detection[0] * width)
+                        center_y = int(detection[1] * height)
+                        w = int(detection[2] * width)
+                        h = int(detection[3] * height)
+                        # print(center_x,center_y)
+
+                    # Rectangle coordinates
+                        x = int(center_x - w / 2)
+                        y = int(center_y - h / 2)
+
+                        boxes.append([x, y, w, h])
+                        confidences.append(float(confidence))
+                        class_ids.append(class_id)
+
+            indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
+            count = 0
+            # font = cv2.FONT_HERSHEY_PLAIN
+            for i in range(len(boxes)):
+                if i in indexes:
+                    x, y, w, h = boxes[i]
+                    # print(x, y, w, h)
+                    centerPoint = (round(abs(x+w)/2),round(abs(y+h)/2))
+                    # print(centerPoint)
+                    label = str(classes[class_ids[i]])
+                    center_w = int(img.shape[1]/2)
+                    
+                    if label == detectType.lower():
+                        try:
+                            color = colors
+                        except:
+                            color = (0, 255, 100)
+                        # print(centerPoint)
+                        # cv2.line(img,(int(x+w/2),0),(int(x+w/2),int(w+h/2)),(0,255,0),5)
+                        cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
+                        
+                        count = count+1
+            return count, img
+        else:
+            pass
