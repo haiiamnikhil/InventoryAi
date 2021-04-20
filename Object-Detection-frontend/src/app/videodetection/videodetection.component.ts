@@ -11,6 +11,8 @@ export class VideodetectionComponent implements OnInit {
   password: string
   ip: string
   port: string
+  class:string
+  isDetections: boolean = true
 
   constructor(private apiService: ApiService) { }
 
@@ -18,12 +20,11 @@ export class VideodetectionComponent implements OnInit {
   }
 
   startVideo(){
-    this.apiService.getCameraCredentials().subscribe(response=>
-      {if (response.status){
-        
-      }},
-      err=> console.log(err)
-      )
+    let data = {
+      detectClass: this.class, 
+      detections : this.isDetections
+    }
+    this.apiService.videoDetector(data).subscribe(response=>console.log(response),err=> console.log(err))
   }
 
 }

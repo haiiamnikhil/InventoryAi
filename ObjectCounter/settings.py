@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ObjectCounter.wsgi.application'
+ASGI_APPLICATION = 'ObjectCounter.asgi.application'
 AUTH_USER_MODEL = 'app.UserModel'
 
 # Database

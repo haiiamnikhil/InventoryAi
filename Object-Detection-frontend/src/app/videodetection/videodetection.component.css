@@ -55,3 +55,11 @@
 .btn-style{
     border-radius:20px;
 }
+
+video{
+    outline: none;
+}
+
+select{
+    outline:none;
+}

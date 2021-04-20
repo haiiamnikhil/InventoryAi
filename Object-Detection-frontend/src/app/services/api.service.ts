@@ -100,4 +100,8 @@ export class ApiService {
   getCameraCredentials():Observable<any>{
     return this.http.post('/api/v1/add/video/credentials/',{headers:this.header})
   }
+
+  videoDetector(data:any):Observable<any>{
+    return this.http.post('/api/v1/video-detection/',data,{headers:this.header})
+  }
 }
