@@ -1,4 +1,8 @@
 
+.container{
+    max-width:90%;
+}
+
 .card-icon{
     background-color: hsla(0,0%,100%,.15);
     width: 6rem;
@@ -8,4 +12,41 @@
 .card-icon svg {
     width: 50%;
     height: 50%;
+}
+
+.count-items{
+    display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 250px;
+width: 250px;
+line-height:30px;
+}
+.icon{
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: darkorange;
+}
+.icon-container h6{
+    margin-bottom:0;
+}
+
+.box{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.box .card{
+    background: white;
+    border: none;
+    box-shadow: #e4e4e4 0px 0px 20px 0px;
+    transition: 0.2s;
+}
+.box .card:hover{
+    transform: scale(1.05);
+    box-shadow:#dadada 0px 0px 20px 10px;
 }

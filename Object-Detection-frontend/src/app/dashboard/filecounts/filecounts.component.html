@@ -1,8 +1,77 @@
 <div class="adminx-content grid-margin mt-4">
     <div class="adminx-main-content" *ngIf="count.length > 0">
         <div class="container-fluid">
-
+            <div class="container">
             <div class="row" *ngFor="let values of count">
+                <!-- <div class="col-md-12 d-flex justify-content-between mb-4 align-items-center">
+                    <div class="mr-auto p-2">
+                        <h1>Count Analytics</h1>
+                    </div>
+                    <div class="p-2">
+                        <select name="" id="">
+                            <option disabled>Hello</option>
+                            <option>World</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-md-12 box">
+                        <div class="card d-flex">
+                            <div class="card-body count-items">
+                                <div class="icon-container icon rounded-circle border border-circle mb-2">
+                                    <i class="fa fa-bolt"></i>
+                                </div>
+                                <div class="count">
+                                    <h3>{{values.totalCount}} / {{totalLimit}}</h3>
+                                </div>
+                                <div class="text">
+                                    <p>{{percentageCompleted}}%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card d-flex">
+                            <div class="card-body count-items">
+                                <div class="icon-container icon rounded-circle border border-circle mb-2">
+                                    <i class="fa fa-bolt"></i>
+                                </div>
+                                <div class="count">
+                                    <h3>{{remainingCount}} / {{totalLimit}}</h3>
+                                </div>
+                                <div class="text">
+                                    <p>Dummy Text</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card d-flex">
+                            <div class="card-body count-items">
+                                <div class="icon-container icon rounded-circle border border-circle mb-2">
+                                    <i class="fa fa-bolt"></i>
+                                </div>
+                                <div class="count">
+                                    <h3>{{values.singleCount}}</h3>
+                                </div>
+                                <div class="text">
+                                    <p>Dummy Text</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card d-flex">
+                            <div class="card-body count-items">
+                                <div class="icon-container icon rounded-circle border border-circle mb-2">
+                                    <i class="fa fa-bolt"></i>
+                                </div>
+                                <div class="count">
+                                    <h3>{{values.multiCount}}</h3>
+                                </div>
+                                <div class="text">
+                                    <p>Dummy Text</p>
+                                </div>
+                            </div>
+                        </div>
+                
+                </div>
+            </div>
+
+            <!-- <div class="row" *ngFor="let values of count">
                 <div class="col-md-6 col-lg-3 d-flex">
                     <div class="card mb-grid w-100">
                         <div class="card-body d-flex flex-column">
@@ -138,7 +207,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+        </div>
         </div>
     </div>
     <div class="adminx-main-content" *ngIf="count.length == 0">
@@ -284,3 +354,75 @@
         </div>
     </div>
 </div>
+
+
+<!-- <div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-between mb-4 align-items-center">
+            <div class="mr-auto p-2">
+                <h1>Count Analytics</h1>
+            </div>
+            <div class="p-2">
+                <select name="" id="">
+                    <option disabled>Hello</option>
+                    <option>World</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12 d-flex justify-content-between box">
+                <div class="card d-flex">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h1>Count</h1>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-flex">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h1>Count</h1>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-flex">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h1>Count</h1>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-flex">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h1>Count</h1>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
+                </div>
+        
+        </div>
+    </div>
+</div> -->

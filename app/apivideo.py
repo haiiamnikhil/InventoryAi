@@ -77,3 +77,10 @@ def video_streaming_view(request):
 #             data = JSONParser().parse(request)
 #             print(data)
 #             return Response(status = 200, data = {'staus':True,'message': 'User Credentials Exists'})
+
+
+def videoDetection(request):
+    if request.method == 'POST':
+        pass
+    text = "hello World"
+    return render(request,'videoDetections.html',{'word':text})
