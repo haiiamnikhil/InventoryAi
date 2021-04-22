@@ -20,3 +20,20 @@
 svg{
     width:100% !important;
 }
+
+.container{
+    max-width: 90%;
+}
+
+.align-items{
+    justify-content:space-between;
+}
+
+.row .card{
+    box-shadow: none;
+    border: none
+}
+
+.flex-row{
+    background-color: white;
+}

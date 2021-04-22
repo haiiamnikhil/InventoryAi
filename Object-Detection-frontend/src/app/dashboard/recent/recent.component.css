@@ -172,3 +172,7 @@ button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled)
 .card{
     transform:none;
 }
+
+.container{
+    max-width: 92%;
+}

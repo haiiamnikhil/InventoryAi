@@ -2,7 +2,7 @@
     <div class="adminx-main-content" *ngIf="count.length > 0">
         <div class="container-fluid">
             <div class="container">
-            <div class="row" *ngFor="let values of count">
+            <div class="row box" *ngFor="let values of count">
                 <!-- <div class="col-md-12 d-flex justify-content-between mb-4 align-items-center">
                     <div class="mr-auto p-2">
                         <h1>Count Analytics</h1>
@@ -14,60 +14,57 @@
                         </select>
                     </div>
                 </div> -->
-                <div class="col-md-12 box">
-                        <div class="card d-flex">
-                            <div class="card-body count-items">
-                                <div class="icon-container icon rounded-circle border border-circle mb-2">
-                                    <i class="fa fa-bolt"></i>
-                                </div>
-                                <div class="count">
-                                    <h3>{{values.totalCount}} / {{totalLimit}}</h3>
-                                </div>
-                                <div class="text">
-                                    <p>{{percentageCompleted}}%</p>
-                                </div>
-                            </div>
+                <div class="card d-flex mb-3">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle mb-2">
+                            <i class="fa fa-bolt"></i>
                         </div>
-                        <div class="card d-flex">
-                            <div class="card-body count-items">
-                                <div class="icon-container icon rounded-circle border border-circle mb-2">
-                                    <i class="fa fa-bolt"></i>
-                                </div>
-                                <div class="count">
-                                    <h3>{{remainingCount}} / {{totalLimit}}</h3>
-                                </div>
-                                <div class="text">
-                                    <p>Dummy Text</p>
-                                </div>
-                            </div>
+                        <div class="count">
+                            <h3>{{values.totalCount}} / {{totalLimit}}</h3>
                         </div>
-                        <div class="card d-flex">
-                            <div class="card-body count-items">
-                                <div class="icon-container icon rounded-circle border border-circle mb-2">
-                                    <i class="fa fa-bolt"></i>
-                                </div>
-                                <div class="count">
-                                    <h3>{{values.singleCount}}</h3>
-                                </div>
-                                <div class="text">
-                                    <p>Dummy Text</p>
-                                </div>
-                            </div>
+                        <div class="text">
+                            <p>{{percentageCompleted}}%</p>
                         </div>
-                        <div class="card d-flex">
-                            <div class="card-body count-items">
-                                <div class="icon-container icon rounded-circle border border-circle mb-2">
-                                    <i class="fa fa-bolt"></i>
-                                </div>
-                                <div class="count">
-                                    <h3>{{values.multiCount}}</h3>
-                                </div>
-                                <div class="text">
-                                    <p>Dummy Text</p>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="card d-flex mb-3">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle mb-2">
+                            <i class="fa fa-bolt"></i>
                         </div>
-                
+                        <div class="count">
+                            <h3>{{remainingCount}} / {{totalLimit}}</h3>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-flex mb-3">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle mb-2">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h3>{{values.singleCount}}</h3>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-flex mb-3">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle mb-2">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h3>{{values.multiCount}}</h3>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

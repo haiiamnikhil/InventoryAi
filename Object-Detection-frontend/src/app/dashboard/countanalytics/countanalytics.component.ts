@@ -45,6 +45,7 @@ export class CountanalyticsComponent implements OnInit {
   column:any = []
   processedDate:any = []
   processedCategory:any = []
+  chartType:any = 'line'
 
   constructor(private apiService: ApiService) {
   }
@@ -58,8 +59,9 @@ export class CountanalyticsComponent implements OnInit {
         }
       ],
       chart: {
-        height: 350,
-        type: "line",
+        width:"80%",
+        height: 400,
+        type: this.chartType.toLowerCase(),
         zoom: {
           enabled: false
         }

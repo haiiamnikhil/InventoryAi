@@ -1,4 +1,57 @@
-<div class="content-wrapper" style="overflow: hidden; padding-left: 5px">
+<!-- <div class="container"> -->
+
+  <div class="container mb-4">
+    <div class="row align-items-center flex-row">
+          <div class="card p-2 flex-grow-1">
+            <div class="card-body">
+              <div id="chart">
+                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [yaxis]="chartOptions.yaxis"
+                [xaxis]="chartOptions.xaxis" [labels]="chartOptions.labels" [stroke]="chartOptions.stroke"
+                [title]="chartOptions.title" [dataLabels]="chartOptions.dataLabels" [fill]="chartOptions.fill"
+                [tooltip]="chartOptions.tooltip"></apx-chart>
+              </div>
+            </div>
+        </div>
+        <div class="card p-2">
+            <div class="card-body">
+                <div class="filter">
+                    <form (submit)="getAnalysis()">
+                        <div class="form-group">
+                            <label for="category">Select Category</label>
+                            <select name="category" [(ngModel)]="category" class="form-control">
+                              <option disabled>Choose...</option>
+                              <option>Pipe</option>
+                              <option>Person</option>
+                              <option>Cars</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                              <label for="from_date">Start Date</label>
+                              <input id="start_date" type="date" name="start_date" [(ngModel)]="startDate" class="form-control">
+                            </div>
+                            <div class="col">
+                              <label for="end_date">End Date</label>
+                              <input type="date" class="form-control" id="end_date" name="end_date" [(ngModel)]="endDate" required data-error="Start Date is required.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Graph Type</label>
+                            <select name="graphtype" class="form-control" [(ngModel)]="chartType">
+                              <option>Line</option>
+                              <option>Bar</option>
+                            </select>
+                        </div>
+                        <div class="form-group text-center">
+                          <button class="btn btn-primary">Filter</button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="content-wrapper" style="overflow: hidden; padding-left: 5px">
   <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
@@ -29,7 +82,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="object_name">Object Type</label>
-                      <select class="form-control form-control-md align-center" id="object_name" name="category" [(ngModel)]="category">
+                      <select class="form-control align-center" id="object_name" name="category" [(ngModel)]="category">
                         <option disabled>Choose...</option>
                         <option>Pipe</option>
                         <option>Person</option>
@@ -55,6 +108,16 @@
                   </div>
                 </div>
                 <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <select name="graphtype" class="form-control" [(ngModel)]="chartType">
+                        <option>Line</option>
+                        <option>Bar</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
                   
                   <div class="col-md-12">
                     <input type="submit" class="btn btn-success btn-send pt-2 btn-block" value="Get Analytics" />
@@ -68,4 +131,5 @@
     </div>
   </div>
   </div>
-</div>
+</div> -->
+<!-- </div> -->
