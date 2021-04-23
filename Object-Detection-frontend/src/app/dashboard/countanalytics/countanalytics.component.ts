@@ -8,9 +8,12 @@ import {
   ApexTooltip,
   ApexTitleSubtitle,
   ApexXAxis,
-  ApexGrid
+  ApexGrid,
+  ApexResponsive,
+  ApexNonAxisChartSeries
 } from "ng-apexcharts";
 import { ApiService } from 'src/app/services/api.service';
+import Swal from 'sweetalert2'
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -26,6 +29,13 @@ export type ChartOptions = {
   tooltip: ApexTooltip;
 };
 
+export type DonutChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+}
+
 @Component({
   selector: 'app-countanalytics',
   templateUrl: './countanalytics.component.html',
@@ -35,6 +45,7 @@ export class CountanalyticsComponent implements OnInit {
 
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+  public donutChart : Partial<DonutChartOptions>
 
   category:string = "Choose..."
   defaultCategory:string
@@ -46,11 +57,13 @@ export class CountanalyticsComponent implements OnInit {
   processedDate:any = []
   processedCategory:any = []
   chartType:any = 'line'
+  inputValue:any
+  displayModal:boolean = true
 
   constructor(private apiService: ApiService) {
   }
 
-  generateGraph(){
+  generateLineChart(){
     this.chartOptions = {
       series: [
         {
@@ -59,15 +72,15 @@ export class CountanalyticsComponent implements OnInit {
         }
       ],
       chart: {
-        width:"80%",
+        width:"100%",
         height: 400,
         type: this.chartType.toLowerCase(),
         zoom: {
-          enabled: false
+          enabled: true,
         }
       },
       dataLabels: {
-        enabled: false
+        enabled: true
       },
       stroke: {
         curve: "straight"
@@ -88,9 +101,36 @@ export class CountanalyticsComponent implements OnInit {
     };
   }
 
+  generateDonutChart(){
+    this.donutChart = {
+      series: this.column,
+      chart: {
+        width:"100%",
+        height:400,
+        type: "donut"
+      },
+      labels: this.processedDate,
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
+  }
+
   ngOnInit(){
     this.apiService.getInventory().subscribe(response=>{
       if (response.status) {
+
+        console.log(response)
 
         for (let i = 0; i < response.productCounts.length; i++) {
           
@@ -107,7 +147,8 @@ export class CountanalyticsComponent implements OnInit {
         }
 
         this.data.push(response.productCounts)
-        this.generateGraph()
+        this.generateLineChart()
+        this.generateDonutChart()
         };
       }
     ,err=>console.log(err))
@@ -130,7 +171,9 @@ export class CountanalyticsComponent implements OnInit {
           this.column.push(response.message[i].count)
           this.processedCategory.push(response.message[i].item)
         }
-        this.generateGraph()
+        this.generateLineChart()
+        this.generateDonutChart()
+        // this.displayModal = false
       }
     },err=> console.log(err))
   }

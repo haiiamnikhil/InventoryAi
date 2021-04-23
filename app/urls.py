@@ -59,5 +59,5 @@ urlpatterns = [
     path('api/v1/video-detection/',video_streaming_view,name='videoDetectorProcessor'),
     path('api/v1/add/video/credentials/',cameraCredentialsSaver,name="videoCredentials"),
     
-    path('api/video-detection/',videoDetection,name='videoDetection')
+    path('api/video-detection/',videoDetection,name='videoDetection'),
 ]

@@ -352,8 +352,8 @@ body.IE .register-page-wrap .container {
   top: 0;
   left: 0;
   z-index: 1040;
-  width: 0 !important;
-  height: 0 !important;
+  width: 100vw;
+  height: 100vh;
   background-color: #000;
 }
 

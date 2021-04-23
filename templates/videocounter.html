@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="sidebar">
+            <div class="container">
+                <div class="hamburguer-menu">
+                  <span class="line first-line"></span>
+                  <span class="line second-line"></span>
+                </div>
+                <div class="icon-menu">
+                  <ul class="list-view">
+                    <li><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li><a href="/upload"><i class="fa fa-upload"></i></a></li>
+                    <li><a href="/history"><i class="fa fa-history"></i></a></li>
+                    <li><a href="/video-detection"><i class="fa fa-video-camera"></i></a></li>
+                  </ul>
+                </div>
+                <div class="menu-expanded">
+                  <ul class="list-view">
+                    <li ><a routerLink="/">Work</a></li>
+                    <li><a routerLink="/upload">Home</a></li>
+                    <li><a routerLink="/history">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+        </div>
+        <div class="body">
+          <div class="top-nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light info-color" style="height: 60px;">
+                <div class="container" style="max-width: 95%;">
+                <h4>Dashboard</h4>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+                    aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="container" style="max-width:100%">
+            
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a type="button" class=" nav-link btn btn-primary btn-sm" href="/packages" style="font-weight: bold;">Upgrade
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" type="button"  style="color: black !important"> <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </nav>
+          </div>
+          <div class="main-body">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
