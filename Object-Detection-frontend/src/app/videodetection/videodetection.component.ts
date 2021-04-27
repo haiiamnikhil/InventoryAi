@@ -17,16 +17,10 @@ export class VideodetectionComponent implements OnInit {
 
   constructor(private apiService: ApiService, private router: Router) { }
 
-  ngOnInit(): void {
-    window.location.href = '/video-counter/'
+  ngOnInit(){
+    if (this.router.url == '/video-detection'){
+      window.location.href = '/video-detection/'
+    }
   }
-
-  // startVideo(){
-  //   let data = {
-  //     detectClass: this.class, 
-  //     detections : this.isDetections
-  //   }
-  //   this.apiService.videoDetector(data).subscribe(response=>console.log(response),err=> console.log(err))
-  // }
-
 }
+  

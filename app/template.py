@@ -57,4 +57,4 @@ def detectedView(request):
 
 
 def videoDetectorView(request):
-    return render(request, 'video-detection.html')
+    return render(request, 'videocounter.html')

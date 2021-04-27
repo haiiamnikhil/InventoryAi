@@ -60,4 +60,6 @@ urlpatterns = [
     path('api/v1/add/video/credentials/',cameraCredentialsSaver,name="videoCredentials"),
     
     path('api/video-detection/',videoDetection,name='videoDetection'),
+
+    path('video-object-detector/',video_streaming_view,name='videoStreaming')
 ]
