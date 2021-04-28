@@ -450,3 +450,7 @@ display: block;
     padding:20px;
   }
   
+
+  .bg-light-custom{
+    background-color: #f8f9fa;
+  }

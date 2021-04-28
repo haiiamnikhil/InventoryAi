@@ -12,6 +12,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { PackageComponent } from './package/package.component';
 import { DetectedComponent } from './detected/detected.component';
 import { UserapiviewComponent } from './userapiview/userapiview.component';
+import { UploadvideocounterComponent } from './uploadvideocounter/uploadvideocounter.component';
 
 
 const routes: Routes = [
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path:'api/v1/user/object-counter',
     component:UserapiviewComponent
+  },
+  {
+    path:'upload/video-counter',
+    component:UploadvideocounterComponent
   },
 ];
 

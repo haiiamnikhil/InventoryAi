@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-xl-12 select mb-5 round-border">
+            <h2 class="p-2 flex-grow-1"><i class="fa fa-file-video-o mr-3" aria-hidden="true"></i>Upload Video</h2>
+            <select name="" id="" class="p-2 form-control-sm" [(ngModel)]="class">
+                <option>Person</option>
+                <option>Car</option>
+            </select>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-xl-12 items-self-align bg-color round-border" *ngIf="!url && !isBusy">
+            <div class="file-upload">
+                <input type="file" class="form-control upload-video" accept="video/*" (change)="onChange($event)">
+            </div>
+            <div class="overlay">
+                <div class="icon">
+                    <i class="fa fa-cloud-upload ft-size-100"></i>
+                </div>
+                <div class="content">
+                    <span class="text-muted">Upload Video</span>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-xl-12 items-self-align bg-color round-border" *ngIf="isBusy">
+            <div class="loader">
+            </div>
+        </div> -->
+        <div class="col-xl-12 items-self-align bg-color round-border video" *ngIf="url">
+            <div class="back-blur" *ngIf="isBusy"></div>
+            <div class="loader" *ngIf="isBusy"></div>
+            <video [src]="url" controls class="video-player"></video>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center my-4">
+            <button class="btn btn-primary" (click)="uploadData()" [disabled]="isBusy"><i class="fa fa-upload mx-2"></i>Upload</button>
+        </div>
+    </div>
+</div>

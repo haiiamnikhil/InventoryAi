@@ -238,3 +238,17 @@ class CameraCredentials(models.Model):
     
     class Meta:
         verbose_name_plural = "Camera Credentials"
+
+
+class VideoUpload(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True, blank= False, unique=False)
+    fileName = models.CharField(max_length=100, unique=False, null=True, blank=False)
+    videoFile = models.FileField(upload_to='Uploaded-Video',blank=False,null=True)
+    detectedVideo = models.FileField(upload_to='User-Upload-Detected-Video',null=True, blank=False)
+    uploadDate = models.DateField(null=True, auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "User Video Upload"
+
+    def __str__(self):
+        return str(self.usser)

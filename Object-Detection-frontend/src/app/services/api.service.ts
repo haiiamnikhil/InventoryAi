@@ -104,4 +104,8 @@ export class ApiService {
   videoDetector(data:any):Observable<any>{
     return this.http.post('/api/v1/video-detection/',data,{headers:this.header})
   }
+
+  videoUpload(data:any):Observable<any>{
+    return this.http.post('api/upload/video/',data)
+  }
 }

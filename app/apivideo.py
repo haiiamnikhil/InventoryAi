@@ -84,3 +84,14 @@ def videoDetection(request):
         pass
     text = "hello World"
     return render(request,'videoDetections.html',{'word':text})
+
+@csrf_exempt
+def videoUploader(request):
+    if request.method == 'POST':
+        data = request.FILES.get('file')
+        print(data)
+        return JsonResponse({'status': True},status=200, safe=False)
+
+def videoUploadDetectProcessor(request):
+    if request.method == 'POST':
+        return JsonResponse({'staus':True,'message':'Video Uploaded'},safe=False, status=200)

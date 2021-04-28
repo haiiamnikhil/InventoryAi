@@ -58,3 +58,7 @@ def detectedView(request):
 
 def videoDetectorView(request):
     return render(request, 'videocounter.html')
+
+@csrf_exempt
+def videoUploadDetectView(request):
+    return render(request, 'videoUploader.html')

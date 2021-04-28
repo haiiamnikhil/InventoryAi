@@ -61,5 +61,9 @@ urlpatterns = [
     
     path('api/video-detection/',videoDetection,name='videoDetection'),
 
-    path('video-object-detector/',video_streaming_view,name='videoStreaming')
+    path('video-object-detector/',video_streaming_view,name='videoStreaming'),
+
+    path('upload/video-counter/',videoUploadDetectView,name='videoUploder'),
+    path('api/upload/video/',videoUploader,name='videoUpload'),
+    path('api/upload/video-counter/',videoUploadDetectProcessor,name='videoUploadProcessor')
 ]
