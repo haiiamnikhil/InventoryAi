@@ -1,6 +1,6 @@
 <app-categorieselector></app-categorieselector>
 
-<section class="container-fluid mt-5 d-flex flex-column">
+<section class="container-fluid mt-5 d-flex flex-column fade-in">
   <div class="row justify-content-center">
     <div class="col-md-8 custom-border bg-custom d-flex justify-content-center align-items-center h-90">
       <h2 class="p-2 flex-grow-1"><i class="mx-2 fa fa-picture-o font-40"></i>Upload Image</h2>
@@ -22,7 +22,7 @@
       </div>
       </div>
       <div class="row text-center text-lg-left justify-content-center" *ngIf="files.length > 0">
-        <div class="card mx-3 my-3 display-image" style="width: 18rem;cursor: unset;" *ngFor="let image of files; let i = index">
+        <div class="card mx-3 my-3 display-image fade-in" style="width: 18rem;cursor: unset;" *ngFor="let image of files; let i = index">
           <div class="ver_mas text-center">
             <button type="button" (click)="getFile(i)"><span class="fa fa-trash-o"></span></button>
          </div>

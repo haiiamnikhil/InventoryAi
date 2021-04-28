@@ -1,10 +1,15 @@
 <app-categorieselector></app-categorieselector>
 <div class="container mt-5" style="max-width: 80%" [ngSwitch]='viewMode'>
-    <div *ngSwitchCase="'single'">
+    <div class="fade-in" *ngSwitchCase="'single'">
 
         <div class="col-md-12 text-center" *ngFor="let data of singleDetectionHistory">
-            <div class="text-center">
-                <h2>Single Detection</h2>
+            <div class="row justify-content-between">
+                <div class="heading">
+                    <h2>Single Detection</h2>
+                </div>
+                <div class="action-button">
+                    <button class="btn btn-success">Export</button>
+                </div>
             </div>
             <div class="card mt-5">
                 <div class="card-header">
@@ -69,11 +74,16 @@
 
         </div>
     </div>
-    <div *ngSwitchCase="'multiple'">
+    <div class="fade-in" *ngSwitchCase="'multiple'">
 
-        <div class="col-md-12 text-center" *ngFor="let data of multiDetectionBatch">
-            <div class="text-center">
-                <h2>Batch Detection</h2>
+        <div class="col-md-12 d-flex flex-column" *ngFor="let data of multiDetectionBatch">
+            <div class="row justify-content-between">
+                <div class="heading">
+                    <h2>Batch Detection</h2>
+                </div>
+                <div class="action-button">
+                    <button class="btn btn-success">Export</button>
+                </div>
             </div>
             <div class="card mt-5" style="margin-top:20px">
                 <div class="card-header">
