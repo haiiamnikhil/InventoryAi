@@ -1,6 +1,51 @@
 <app-categorieselector></app-categorieselector>
-<div class="d-flex justify-content-center mt-4 cs-sel">
-  <select class="form-control form-control-lg align-center" [(ngModel)]="detectType">
+
+<section class="container-fluid mt-5 d-flex flex-column">
+  <div class="row justify-content-center">
+    <div class="col-md-8 custom-border bg-custom d-flex justify-content-center align-items-center h-90">
+      <h2 class="p-2 flex-grow-1"><i class="mx-2 fa fa-picture-o font-40"></i>Upload Image</h2>
+      <select class="p-2 form-control custom-select" [(ngModel)]="detectType">
+        <option disabled>Choose...</option>
+        <option>Person</option>
+        <option>Car</option> 
+      </select>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8 min-dimensions pd-0 d-flex justify-content-center custom-border bg-custom" appDragndrop (dropedFiles)="getDropedFiles($event)">
+      <div class="file-input card-custom" *ngIf="files.length == 0">
+        <input class="form-control file-upload" type="file" *ngIf="viewMode == 'single'" (change)="getImage($event)">
+      <input class="form-control file-upload" type="file" *ngIf="viewMode == 'multiple'" (change)="getImage($event)" multiple>
+      <div class="overlay">
+        <i class="fa fa-cloud-upload fa-5x upload text-center upload" ></i>
+        <span>Select or Drop file to upload</span>
+      </div>
+      </div>
+      <div class="row text-center text-lg-left justify-content-center" *ngIf="files.length > 0">
+        <div class="card mx-3 my-3 display-image" style="width: 18rem;cursor: unset;" *ngFor="let image of files; let i = index">
+          <div class="ver_mas text-center">
+            <button type="button" (click)="getFile(i)"><span class="fa fa-trash-o"></span></button>
+         </div>
+          <img [src]="image" class="card-img-top" width="300px" height="220px">
+          <div class="card-footer" *ngIf="isBusy">
+            <div class="progress">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-8 d-flex justify-content-center">
+      <button class="btn btn-primary text-uppercase" (click)="uploadData()" [disabled]="files.length == 0 || isBusy">
+        <span class="spinner-border-sm mx-2" [class.spinner-border]="isBusy" role="status" aria-hidden="true"></span>
+        <i class="mx-2 fa fa-upload" *ngIf="!isBusy"></i>Upload</button>
+    </div>
+  </div>
+</section>
+<!-- <div class="d-flex justify-content-center mt-4 cs-sel">
+  <select class="form-control form-control-lg align-center">
     <option disabled>Choose...</option>
     <option>Pipe</option>
     <option>Glass</option>
@@ -8,8 +53,8 @@
     <option>Car</option>
     <option>Chair</option>
   </select>
-</div>
-<div class="row justify-content-center mt-4 cs-btn">
+</div> -->
+<!-- <div class="row justify-content-center mt-4 cs-btn">
   <button class="btn btn-success" style="top:30%;width:20%" (click)="uploadData()" [disabled]="files.length == 0 || isBusy">
     <span class="spinner-border-sm" [class.spinner-border]="isBusy" role="status" aria-hidden="true"></span>
     <i class="fa fa-play" *ngIf="!isBusy"></i>
@@ -18,7 +63,7 @@
   <div class="col-md-8 color-class px-4 mb-5" [class.col-md-8]="files.length == 0 || files.length == 1" [class.col-md-10]="files.length > 1">
     <div class="card upload-div my-4" appDragndrop (dropedFiles)="getDropedFiles($event)">
       <div *ngIf="files.length == 0" class="text-center">
-      <i class="fa fa-cloud-upload fa-5x upload text-center upload" ></i>
+      
       <input class="form-control file-upload" type="file" *ngIf="viewMode == 'single'" (change)="getImage($event)">
       <input class="form-control file-upload" type="file" *ngIf="viewMode == 'multiple'" (change)="getImage($event)" multiple>
       <div class="text-center text-muted content">Select or Drop file to upload</div>
@@ -38,35 +83,4 @@
       </div>
     </div>        
   </div>
-</div>
-<!-- <div [ngClass]="{'singleframe':viewMode == 'single','multiframe':viewMode == 'multiple'}">
-  <div class="container">
-  <div class="center">
-    <div [class.dropzone]="files.length == 0 || files.length == 1" [class.upload-image]="files.length > 0">
-      <div class="content" appDragndrop (dropedFiles)="getDropedFiles($event)">
-        <div *ngIf="files.length == 0">
-          <i class="fa fa-cloud-upload fa-5x upload text-center upload" style="color: #6c757d!important;"></i>
-          <span class="filename"></span>
-          <input type="file" class="input" *ngIf="viewMode == 'single'" (change)="getImage($event)">
-          <input type="file" class="input" *ngIf="viewMode == 'multiple'" (change)="getImage($event)" multiple>
-          <div class="title">Select or Drop file to upload</div>
-        </div>
-
-        <div class="row text-center text-lg-left justify-content-center" *ngIf="files.length > 0">
-          <div class="card mt-3 ml-3 mr-3 mb-3 display-image" style="width: 18rem;cursor: unset;" *ngFor="let image of files; let i = index">
-            <div class="ver_mas text-center">
-              <button type="button" (click)="getFile(i)"><span class="fa fa-trash-o"></span></button>
-           </div>
-            <img [src]="image" class="card-img-top" width="300px" height="220px">
-            <div class="card-footer" *ngIf="isBusy">
-              <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 </div> -->

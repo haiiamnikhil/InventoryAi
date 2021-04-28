@@ -62,24 +62,14 @@
   opacity: 1;
 }
 
-.upload {
-  color: #6c757d !important;
-  position: absolute;
-  top: 35%;
-  left: 45%;
-}
+
 
 .color-class {
   background-color: rgb(221, 221, 221);
   height: 100%;
 }
 
-.file-upload {
-  opacity: 0;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-}
+
 .upload-div {
   min-height: 400px;
   height: 100%;
@@ -124,4 +114,71 @@
 
 .card{
   cursor:unset;
+}
+
+
+.bg-custom{
+  background-color:#f2f5ff;
+}
+
+.min-dimensions{
+  min-height: 480px;
+}
+
+.card-custom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 20px;
+}
+
+.pd-0{
+  padding: 0;
+}
+
+.overlay{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 0;
+}
+
+.file-upload {
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.upload {
+  color: #6c757d !important;
+}
+
+.custom-border{
+  border: 2px solid #304ffe;
+  border-radius: 6px;
+}
+
+.card:hover{
+  box-shadow: unset;
+}
+
+.h-90{
+  height:90px;
+}
+
+.font-40{
+  font-size: 35px;
+}
+
+.custom-select{
+  width: 20%;
+  height: 50px;
+  border-radius: 20px;
+}
+
+.btn{
+  height:45px;
+  width:50%;
 }
