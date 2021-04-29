@@ -54,3 +54,5 @@ admin.site.register(GuestDetections)
 admin.site.register(CameraCredentials)
 
 admin.site.register(VideoDetection)
+
+admin.site.register(VideoUpload)

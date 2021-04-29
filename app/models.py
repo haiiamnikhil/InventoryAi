@@ -243,7 +243,8 @@ class CameraCredentials(models.Model):
 class VideoUpload(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True, blank= False, unique=False)
     fileName = models.CharField(max_length=100, unique=False, null=True, blank=False)
-    videoFile = models.FileField(upload_to='Uploaded-Video',blank=False,null=True)
+    detectedClass = models.CharField(max_length=50,unique=False, blank=False, null=True)
+    videoFile = models.FileField(upload_to='Uploaded-Video',blank=True,null=True)
     detectedVideo = models.FileField(upload_to='User-Upload-Detected-Video',null=True, blank=False)
     uploadDate = models.DateField(null=True, auto_now=True)
 
@@ -251,4 +252,4 @@ class VideoUpload(models.Model):
         verbose_name_plural = "User Video Upload"
 
     def __str__(self):
-        return str(self.usser)
+        return str(self.user)

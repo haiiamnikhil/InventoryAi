@@ -1,4 +1,4 @@
-<div class="adminx-content grid-margin mt-4">
+<div class="adminx-content grid-margin mt-4 fade-in">
     <div class="adminx-main-content" *ngIf="count.length > 0">
         <div class="container-fluid">
             <div class="container">
@@ -210,8 +210,74 @@
     </div>
     <div class="adminx-main-content" *ngIf="count.length == 0">
         <div class="container-fluid">
+            <div class="container">
+            <div class="row box" *ngFor="let values of count">
+                <!-- <div class="col-md-12 d-flex justify-content-between mb-4 align-items-center">
+                    <div class="mr-auto p-2">
+                        <h1>Count Analytics</h1>
+                    </div>
+                    <div class="p-2">
+                        <select name="" id="">
+                            <option disabled>Hello</option>
+                            <option>World</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="card d-flex mb-3">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle mb-2">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h3>{{values.totalCount}} / {{totalLimit}}</h3>
+                        </div>
+                        <div class="text">
+                            <p>{{percentageCompleted}}%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-flex mb-3">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle mb-2">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h3>{{remainingCount}} / {{totalLimit}}</h3>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-flex mb-3">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle mb-2">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h3>{{values.singleCount}}</h3>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-flex mb-3">
+                    <div class="card-body count-items">
+                        <div class="icon-container icon rounded-circle border border-circle mb-2">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <div class="count">
+                            <h3>{{values.multiCount}}</h3>
+                        </div>
+                        <div class="text">
+                            <p>Dummy Text</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <div class="row">
+            <!-- <div class="row" *ngFor="let values of count">
                 <div class="col-md-6 col-lg-3 d-flex">
                     <div class="card mb-grid w-100">
                         <div class="card-body d-flex flex-column">
@@ -221,14 +287,14 @@
                                 </h5>
 
                                 <div class="card-title-sub">
-                                    <h5>0</h5>
+                                    <h5>{{values.totalCount}} / {{totalLimit}}</h5>
                                 </div>
                             </div>
 
                             <div class="progress mt-auto">
-                                <div class="progress-bar" role="progressbar" width='0%'
-                                    [style]="alert" attr.aria-valuenow="0%" aria-valuemin="0"
-                                    aria-valuemax="100">0%</div>
+                                <div class="progress-bar" role="progressbar" [style.width.%]="percentageCompleted"
+                                    [style]="alert" attr.aria-valuenow="{{percentageCompleted}}" aria-valuemin="0"
+                                    aria-valuemax="100">{{percentageCompleted}}%</div>
                             </div>
                         </div>
                     </div>
@@ -241,7 +307,7 @@
                                 <i class="fa fa-envelope"></i>
                             </div>
                             <div class="card-body">
-                                <div class="card-info-title">Remaining / Total</div>
+                                <div class="card-info-title">Remaining / Total </div>
                                 <h3 class="card-title mb-0">
                                     {{remainingCount}} / {{totalLimit}}
                                 </h3>
@@ -310,7 +376,7 @@
                             <div class="card-body">
                                 <div class="card-info-title">Single Count</div>
                                 <h3 class="card-title mb-0">
-                                    0
+                                    {{values.singleCount}}
                                 </h3>
                             </div>
                         </div>
@@ -341,13 +407,13 @@
                             <div class="card-body">
                                 <div class="card-info-title">Multi Count</div>
                                 <h3 class="card-title mb-0">
-                                    0
+                                    {{values.multiCount}}
                                 </h3>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

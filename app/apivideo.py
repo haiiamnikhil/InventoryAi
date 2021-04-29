@@ -7,6 +7,7 @@ import cv2 as cv
 from .models import VideoDetection,CameraCredentials
 from django.views.decorators.csrf import csrf_exempt
 from .detector import detector
+from .models import VideoUpload
 
 
 @csrf_exempt
@@ -62,23 +63,6 @@ def video_streaming_view(request):
         return StreamingHttpResponse(video_streaming(get_frames(data),data),content_type='multipart/x-mixed-replace; boundary=frame')
 
 
-# class CameraCredentialsSaver(APIView):
-#     model = CameraCredentials
-#     serializer_class = CameraCredentialsSerializer
-#     permission_classes = (AllowAny, )
-    
-#     def post(self, request, *args, **kwargs):
-#         data = JSONParser.parse(request)
-#         cameraAuth = CameraCredentials.objects.filter(user=request.user).exists()
-#         if cameraAuth:
-#             return Response(status = 200, data = {'staus':True,'message': 'User Credentials Exists'})
-#             # return JsonResponse({'staus':True,'message':'User Credentials Exists'},safe=False, status=200)
-#         else:
-#             data = JSONParser().parse(request)
-#             print(data)
-#             return Response(status = 200, data = {'staus':True,'message': 'User Credentials Exists'})
-
-
 def videoDetection(request):
     if request.method == 'POST':
         pass
@@ -88,9 +72,12 @@ def videoDetection(request):
 @csrf_exempt
 def videoUploader(request):
     if request.method == 'POST':
-        data = request.FILES.get('file')
-        print(data)
+        videoFile = request.FILES.get('file')
+        fileName = request.POST.get('filename')
+        detectClass = request.POST.get('class')
+        uploadVideo = VideoUpload.objects.create(user=request.user,fileName=fileName,videoFile=videoFile,detectedClass=detectClass)
         return JsonResponse({'status': True},status=200, safe=False)
+
 
 def videoUploadDetectProcessor(request):
     if request.method == 'POST':

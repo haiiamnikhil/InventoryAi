@@ -65,8 +65,30 @@
             </div>
             </nav>
           </div>
-          <div class="main-body">
-            <img src="{% url 'videoStreaming' %}" alt="">
+          <div class="row align-flex mt-5">
+            <div class="col-md-6 video-counter">
+              <img src="{% url 'videoStreaming' %}" alt="">
+            </div>
+            <div class="counts">
+              <div class="card w-400">
+                <div class="card-header">
+                  Counts
+                </div>
+                <div class="card-body">
+                  <div class="row justify-space-around ">
+                    <div class="live-count">
+                      <h2>100</h2>
+                    </div>
+                    <div class="selected-class">
+                      <select name="" id="" class="form-control">
+                        <option>Person</option>
+                        <option>Car</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
