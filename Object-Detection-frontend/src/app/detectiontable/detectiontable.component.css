@@ -58,3 +58,15 @@
     transition: top 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
 
 }
+
+
+.col-style h2{
+    margin:0;
+}
+
+.file-name{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 5px;
+}

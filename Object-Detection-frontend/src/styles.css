@@ -413,3 +413,10 @@ body.IE .register-page-wrap .container {
       opacity:1;
     }
   }
+
+
+.col-style{
+  border-radius: 6px;
+  border: 2px solid blue;
+  height: 70px;
+}

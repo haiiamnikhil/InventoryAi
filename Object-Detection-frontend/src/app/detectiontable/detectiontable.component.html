@@ -1,5 +1,5 @@
 <app-categorieselector></app-categorieselector>
-<div class="container mt-5" style="max-width: 80%" [ngSwitch]='viewMode'>
+<!-- <div class="container mt-5" style="max-width: 80%" [ngSwitch]='viewMode'>
     <div class="fade-in" *ngSwitchCase="'single'">
 
         <div class="col-md-12 text-center" *ngFor="let data of singleDetectionHistory">
@@ -139,7 +139,6 @@
                         </div>
                     </div>
                     <div id="details_{{i+1}}" class="batch_file_child" style="display:none">
-                        <!-- <div *ngFor="let data of multiDetectionFiles"> -->
                             <div class="card-header">
                                 <div class="row text-center font-weight-bold">
                                     <div class="col-sm">
@@ -179,7 +178,7 @@
                                     </div>
                                 </div>
                             </div>
-                        <!-- </div> -->
+                    
                     </div>
         
     
@@ -200,4 +199,94 @@
         </div>
     </div>
 
+</div> -->
+
+<div class="container mt-5" style="max-width:80%" [ngSwitch]='viewMode'>
+    <div class="fade-in" *ngSwitchCase="'single'">
+        <div class="row">
+            <div class="col-xl-12 d-flex align-items-center col-style">
+                <div class="p-2 flex-grow-1">
+                    <h2>{{viewMode | titlecase}} Detection</h2>
+                </div>
+                <div class="p-2">
+                    <button class="btn btn-outline-success mx-2">
+                       <i class="fa fa-file-excel-o mx-2" aria-hidden="true"></i>
+                       Export
+                    </button>
+                </div>
+                <div class="p-2"><button class="btn btn-outline-primary mx-2"><i class="fa fa-filter mx-2"></i>Filter</button></div>
+            </div>
+        </div>
+        <div class="row my-5" *ngFor="let data of singleDetectionHistory">
+            <div class="col-xl-12 d-flex text-center col-style align-items-center h5">
+                <div class="col">Sl.No</div>
+                <div class="col">Name</div>
+                <div class="col">Object</div>
+                <div class="col">Total Count</div>
+                <div class="col">Date</div>
+                <div class="col">Actions</div>
+            </div>
+            <div class="col-xl-12 d-flex text-center align-items-center h6 col-style" 
+            *ngFor="let values of data | paginate : {id:'single',itemsPerPage:perPageItem, currentPage:singleDetectionPage}; let i = index;">
+                <input type="checkbox" value="option1">
+                <div class="col">{{i+1}}</div>
+                <div class="col file-name">{{values.uploadedName }}</div>
+                <div class="col">{{values.category}}</div>
+                <div class="col">{{values.count}}</div>
+                <div class="col">{{values.uploaded_at}}</div>
+                <div class="col"><i class="fa fa-eye"></i></div>
+            </div>
+            <div class="col-xl-12 float-right">
+                <ul class="pagination">
+                    <pagination-controls (pageChange)="singleDetectionPage = $event" id="single">
+                    </pagination-controls>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="fade-in" *ngSwitchCase="'multiple'">
+        <div class="row">
+            <div class="col-xl-12 d-flex align-items-center col-style">
+                <div class="p-2 flex-grow-1">
+                    <h2>{{viewMode | titlecase}} Detection</h2>
+                </div>
+                <div class="p-2">
+                    <button class="btn btn-outline-success mx-2">
+                       <i class="fa fa-file-excel-o mx-2" aria-hidden="true"></i>
+                       Export
+                    </button>
+                    <button class="btn btn-outline-primary mx-2"><i class="fa fa-filter mx-2"></i>Filter</button>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5" *ngFor="let data of multiDetectionBatch">
+            <div class="col-xl-12 d-flex text-center col-style align-items-center h5">
+                <div class="col">Sl.No</div>
+                <div class="col">Name</div>
+                <div class="col">Object</div>
+                <div class="col">Total Count</div>
+                <div class="col">Total File Count</div>
+                <div class="col">Date</div>
+                <div class="col">Actions</div>
+            </div>
+            <div class="col-xl-12 d-flex text-center align-items-center h6 col-style" 
+            *ngFor="let values of data | paginate : {id:'multiple',itemsPerPage:perPageItem, currentPage:multiDetectionPage}; let i = index;">
+                <input type="checkbox" value="option1">
+                <div class="col">{{i+1}}</div>
+                <div class="col">{{values.batchId}}</div>
+                <div class="col">{{values.batchObjectName}}</div>
+                <div class="col">{{values.batchItemsTotalCount}}</div>
+                <div class="col">{{values.batchFileCount}}</div>
+                <div class="col">{{values.created}}</div>
+                <div class="col"><i class="fa fa-eye"></i></div>
+            </div>
+            <div class="col-xl-12 float-right">
+                <ul class="pagination">
+                    <pagination-controls (pageChange)="multiDetectionPage = $event" id="multiple">
+                    </pagination-controls>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
