@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
 from django.http.response import Http404
 from .models import ProductCountHistory, ProductTotalCount, UserCSVRecord, UploadData, UserModel, UserPackage, UserProcessCount, BatchProcessing, BatchFile
@@ -19,6 +19,9 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 import razorpay
+import zipfile
+import datetime
+from io import StringIO
 
 
 COUNT_PACKAGES = {
@@ -177,7 +180,7 @@ def multi_image_processor(request):
             getLastRecord = BatchProcessing.objects.filter(
                 user=request.user).last()
             if getLastRecord is not None:
-                lastRecordCount = int(getLastRecord.batchId.split('-')[1])
+                lastRecordCount = int(getLastRecord.batchName.split('-')[1])
             else:
                 lastRecordCount = 0
 
@@ -186,13 +189,13 @@ def multi_image_processor(request):
 
         batch_id = f"Batch-{lastRecordCount+1}-{dataType.capitalize()}"
 
-        batchProcessSegregate = BatchProcessing.objects.create(user=request.user, batchId=batch_id,
+        batchProcessSegregate = BatchProcessing.objects.create(user=request.user, batchName=batch_id,
                                                         batchObjectName=dataType, batchFileCount=len(
                                                             request.FILES.getlist('image')),
                                                         batchItemsTotalCount=productCount)
         
         for i,names in enumerate(filenames):
-            batchFiles = BatchFile.objects.create(user=request.user, batchId=batchProcessSegregate, 
+            batchFiles = BatchFile.objects.create(user=request.user, batchName=batchProcessSegregate, 
                                                   fileName=names,ObjectType=dataType,ObjectCount=count[i])
             
 
@@ -217,7 +220,7 @@ def multi_image_processor(request):
         csvFile = f"reports/{csvSaveName}.csv"
 
         reports = UserCSVRecord.objects.get_or_create(
-            user=request.user, filename=csvSaveName, csvFile=csvFile)
+            user=request.user, batchName=batchProcessSegregate,   filename=csvSaveName, csvFile=csvFile)
 
         try:
             add_total_count = ProductTotalCount.objects.get(
@@ -392,7 +395,7 @@ def getBatchFiles(request):
         data = JSONParser().parse(request)
         print(data)
         getBatchFileProcessing = BatchFile.objects.filter(
-            user=request.user, batchId__batchId=data['processId'])
+            user=request.user, batchId__batchName=data['processId'])
         print(getBatchFileProcessing)
         batchFileSerializer = BatchFileSerializer(
             getBatchFileProcessing, many=True)
@@ -423,3 +426,24 @@ def payment_gateway(request):
         order_receipt = 'order_rcptid_11'
         notes = {'Shipping address': 'Bommanahalli, Bangalore'}
         
+
+@csrf_exempt
+def generateCSV(request):
+    csvRecord = []
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        for fileNames in data['batchId']:
+            csvFiles = UserCSVRecord.objects.filter(user=request.user,batchName__batchName=fileNames)
+            csvSerializer = CsvSerializer(csvFiles,many=True)
+            csvRecord.append(csvSerializer.data[0]['csvFile'])
+        print(csvRecord)
+
+        zipFoldername = f"{request.user}-{datetime.datetime.now().strftime('%d-%b-%Y')}.zip"
+        stringIo = StringIO()
+
+        compressor = zipfile.ZipFile(stringIo,'w')
+
+        for filePaths in csvRecord:
+            print(os.path.split(filePaths))
+
+        return JsonResponse({'status': True,'data':csvRecord},safe=False,status=200)

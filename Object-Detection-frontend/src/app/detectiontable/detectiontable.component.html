@@ -118,7 +118,7 @@
                             {{i+1}}
                         </div>
                         <div class="col-sm">
-                            {{values.batchId}}
+                            {{values.batchName}}
                         </div>
                         <div class="col-sm">
                             {{values.batchObjectName}}
@@ -134,7 +134,7 @@
                             {{values.created}}
                         </div>
                         <div class="col-sm">
-                            <a type="button" (click)="showChild($event,values.batchId)" class="view" id="dropButton" title="View"><i
+                            <a type="button" (click)="showChild($event,values.batchName)" class="view" id="dropButton" title="View"><i
                                     class="fa fa-eye"></i></a>
                         </div>
                     </div>
@@ -252,7 +252,7 @@
                     <h2>{{viewMode | titlecase}} Detection</h2>
                 </div>
                 <div class="p-2">
-                    <button class="btn btn-outline-success mx-2">
+                    <button class="btn btn-outline-success mx-2" (click)="generateCSV()">
                        <i class="fa fa-file-excel-o mx-2" aria-hidden="true"></i>
                        Export
                     </button>
@@ -272,14 +272,19 @@
             </div>
             <div class="col-xl-12 d-flex text-center align-items-center h6 col-style" 
             *ngFor="let values of data | paginate : {id:'multiple',itemsPerPage:perPageItem, currentPage:multiDetectionPage}; let i = index;">
-                <input type="checkbox" value="option1">
+                <input type="checkbox" value="{{values.batchName}}" (change)="boxSelected($event)">
                 <div class="col">{{i+1}}</div>
-                <div class="col">{{values.batchId}}</div>
+                <div class="col">{{values.batchName}}</div>
                 <div class="col">{{values.batchObjectName}}</div>
                 <div class="col">{{values.batchItemsTotalCount}}</div>
                 <div class="col">{{values.batchFileCount}}</div>
                 <div class="col">{{values.created}}</div>
                 <div class="col"><i class="fa fa-eye"></i></div>
+            </div>
+            <div class="col-xl-12">
+                <div class="row">
+
+                </div>
             </div>
             <div class="col-xl-12 float-right">
                 <ul class="pagination">

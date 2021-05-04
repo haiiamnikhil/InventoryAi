@@ -65,5 +65,7 @@ urlpatterns = [
 
     path('upload/video-counter/',videoUploadDetectView,name='videoUploder'),
     path('api/upload/video/',videoUploader,name='videoUpload'),
-    path('api/upload/video-counter/',videoUploadDetectProcessor,name='videoUploadProcessor')
+    path('api/upload/video-counter/',videoUploadDetectProcessor,name='videoUploadProcessor'),
+
+    path('api/v1/generate-csv/',generateCSV,name="csvGenerator"),
 ]

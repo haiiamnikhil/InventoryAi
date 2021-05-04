@@ -106,6 +106,10 @@ export class ApiService {
   }
 
   videoUpload(data:any):Observable<any>{
-    return this.http.post('api/upload/video/',data)
+    return this.http.post('/api/upload/video/',data)
+  }
+
+  generateCSV(data:any):Observable<any>{
+    return this.http.post('/api/v1/generate-csv/',data,{headers:this.header})
   }
 }

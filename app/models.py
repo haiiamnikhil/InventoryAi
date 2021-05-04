@@ -129,21 +129,6 @@ class ProductTotalCount(models.Model):
         verbose_name_plural = "Product Total Count"
 
 
-class UserCSVRecord(models.Model):
-    user = models.ForeignKey(
-        UserModel, on_delete=models.CASCADE, null=True, blank=False)
-    filename = models.CharField(
-        max_length=20, unique=False, null=True, blank=True)
-    csvFile = models.FileField(upload_to='reports/', blank=True, null=True)
-    date = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return str(self.filename)
-    
-    class Meta:
-        verbose_name_plural = "User CSV Record"
-
-
 class ProductCountHistory(models.Model):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, null=True, blank=False)
@@ -163,7 +148,7 @@ class ProductCountHistory(models.Model):
 class BatchProcessing(models.Model):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, null=True, blank=False)
-    batchId = models.CharField(
+    batchName = models.CharField(
         max_length=50, unique=False, null=True, blank=False)
     batchObjectName = models.CharField(
         max_length=50, unique=False, blank=False, null=True)
@@ -173,7 +158,7 @@ class BatchProcessing(models.Model):
     created = models.DateField(auto_now=True)
 
     def __str__(self):
-        return str(self.batchId)
+        return str(self.batchName)
     
     class Meta:
         verbose_name_plural = "Batch Processing"
@@ -182,7 +167,7 @@ class BatchProcessing(models.Model):
 class BatchFile(models.Model):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, null=True, blank=False)
-    batchId = models.ForeignKey(
+    batchName = models.ForeignKey(
         BatchProcessing, blank=False, null=True, on_delete=models.CASCADE)
     fileName = models.CharField(
         max_length=100, unique=False, blank=False, null=True)
@@ -192,11 +177,28 @@ class BatchFile(models.Model):
     created = models.DateField(auto_now=True)
 
     def __str__(self):
-        return str(self.batchId)
+        return str(self.batchName)
     
     class Meta:
         verbose_name_plural = "Batch File"
         
+
+class UserCSVRecord(models.Model):
+    user = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, null=True, blank=False)
+    batchName = models.ForeignKey(BatchProcessing, on_delete=models.CASCADE,null=True, blank=False)
+    filename = models.CharField(
+        max_length=100, unique=False, null=True, blank=True)
+    csvFile = models.FileField(upload_to='reports/', blank=True, null=True)
+    date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return str(self.filename)
+    
+    class Meta:
+        verbose_name_plural = "User CSV Record"
+
+
 class GuestDetections(models.Model):
     filename = models.CharField(max_length=100, unique=False, null=True, blank=False)
     uploadFile = models.FileField(upload_to="Guest-Detections/",blank= False, null=True, unique=False)

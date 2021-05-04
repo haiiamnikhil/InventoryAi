@@ -21,6 +21,8 @@ export class DetectiontableComponent implements OnInit {
   isDisplay:boolean = false
   getElements:any
 
+  multiSelectedId:any = []
+
   constructor(private apiService: ApiService, private elref: ElementRef, private store: Store<{message: {category:string}}>) { }
 
   ngOnInit(){
@@ -68,6 +70,35 @@ export class DetectiontableComponent implements OnInit {
       }  
     })
 
+  }
+
+  boxSelected(event:any) {
+    let isChecked = event.srcElement.checked
+    let parentElement = event.target.parentElement
+    let checkedId = event.target.value
+
+    if (isChecked){
+      parentElement.classList.add("activeClass")
+      this.multiSelectedId.push(checkedId)
+    } 
+    
+    else {
+      parentElement.classList.remove("activeClass")
+      const index = this.multiSelectedId.indexOf(checkedId)
+      this.multiSelectedId.splice(index,1)
+    }
+  }
+
+  generateCSV(){
+    let data = {
+      batchId : this.multiSelectedId
+    }
+
+    this.apiService.generateCSV(data).subscribe(response => {
+      if (response.status){
+        console.log(response)
+      }
+    },err=> console.log(err))
   }
 
 }
