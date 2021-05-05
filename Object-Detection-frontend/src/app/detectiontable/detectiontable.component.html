@@ -208,13 +208,6 @@
                 <div class="p-2 flex-grow-1">
                     <h2>{{viewMode | titlecase}} Detection</h2>
                 </div>
-                <div class="p-2">
-                    <button class="btn btn-outline-success mx-2">
-                       <i class="fa fa-file-excel-o mx-2" aria-hidden="true"></i>
-                       Export
-                    </button>
-                </div>
-                <div class="p-2"><button class="btn btn-outline-primary mx-2"><i class="fa fa-filter mx-2"></i>Filter</button></div>
             </div>
         </div>
         <div class="row my-5" *ngFor="let data of singleDetectionHistory">
@@ -228,7 +221,6 @@
             </div>
             <div class="col-xl-12 d-flex text-center align-items-center h6 col-style" 
             *ngFor="let values of data | paginate : {id:'single',itemsPerPage:perPageItem, currentPage:singleDetectionPage}; let i = index;">
-                <input type="checkbox" value="option1">
                 <div class="col">{{i+1}}</div>
                 <div class="col file-name">{{values.uploadedName }}</div>
                 <div class="col">{{values.category}}</div>
