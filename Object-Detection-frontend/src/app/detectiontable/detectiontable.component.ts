@@ -23,6 +23,10 @@ export class DetectiontableComponent implements OnInit {
 
   multiSelectedId:any = []
 
+  startDate:Date
+  endDate:Date
+  detectClass:any = "Choose..."
+
   constructor(private apiService: ApiService, private elref: ElementRef, private store: Store<{message: {category:string}}>) { }
 
   ngOnInit(){
@@ -98,6 +102,10 @@ export class DetectiontableComponent implements OnInit {
         window.location = response.data
       }
     },err=> console.log(err))
+  }
+
+  applyFilter(){
+    console.log(this.startDate,this.endDate)
   }
 
 }

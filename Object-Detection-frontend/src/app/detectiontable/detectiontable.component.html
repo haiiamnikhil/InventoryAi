@@ -200,6 +200,43 @@
     </div>
 
 </div> -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Filter</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-row">
+                <div class="col">
+                  <label for="from_date">Start Date</label>
+                  <input id="start_date" type="date" name="start_date" [(ngModel)]="startDate" class="form-control">
+                </div>
+                <div class="col">
+                  <label for="end_date">End Date</label>
+                  <input type="date" class="form-control" id="end_date" name="end_date" [(ngModel)]="endDate" required
+                    data-error="Start Date is required.">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select name="detecttype" class="form-control" [(ngModel)]="detectClass">
+                  <option disabled>Choose...</option>
+                  <option>Person</option>
+                  <option>Car</option>
+                </select>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="applyFilter()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div class="container mt-5" style="max-width:80%" [ngSwitch]='viewMode'>
     <div class="fade-in" *ngSwitchCase="'single'">
@@ -207,6 +244,10 @@
             <div class="col-xl-12 d-flex align-items-center col-style">
                 <div class="p-2 flex-grow-1">
                     <h2>{{viewMode | titlecase}} Detection</h2>
+                </div>
+                <div class="p-2">
+                    <button class="btn btn-outline-primary mx-2" data-toggle="modal" data-target="#exampleModalCenter">
+                        <i class="fa fa-filter mx-2"></i>Filter</button>
                 </div>
             </div>
         </div>
@@ -248,7 +289,7 @@
                        <i class="fa fa-file-excel-o mx-2" aria-hidden="true"></i>
                        Export
                     </button>
-                    <!-- <button class="btn btn-outline-primary mx-2"><i class="fa fa-filter mx-2"></i>Filter</button> -->
+                    <button class="btn btn-outline-primary mx-2" ><i class="fa fa-filter mx-2"></i>Filter</button>
                 </div>
             </div>
         </div>
