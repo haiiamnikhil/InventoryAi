@@ -22,6 +22,7 @@ export class DetectiontableComponent implements OnInit {
   getElements:any
 
   multiSelectedId:any = []
+  zipFile:any
 
   constructor(private apiService: ApiService, private elref: ElementRef, private store: Store<{message: {category:string}}>) { }
 
@@ -96,7 +97,8 @@ export class DetectiontableComponent implements OnInit {
 
     this.apiService.generateCSV(data).subscribe(response => {
       if (response.status){
-        console.log(response)
+        window.location = response.data
+        // this.zipFile = response.data
       }
     },err=> console.log(err))
   }

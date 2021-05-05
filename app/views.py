@@ -21,7 +21,7 @@ from django.core.mail import EmailMessage
 import razorpay
 import zipfile
 import datetime
-from io import StringIO
+from io import StringIO, BytesIO
 
 
 COUNT_PACKAGES = {
@@ -429,6 +429,12 @@ def payment_gateway(request):
 
 @csrf_exempt
 def generateCSV(request):
+
+    try:
+        os.mkdir(os.path.join('./media',"zip"))
+    except:
+        pass
+
     csvRecord = []
     if request.method == 'POST':
         data = JSONParser().parse(request)
@@ -436,14 +442,19 @@ def generateCSV(request):
             csvFiles = UserCSVRecord.objects.filter(user=request.user,batchName__batchName=fileNames)
             csvSerializer = CsvSerializer(csvFiles,many=True)
             csvRecord.append(csvSerializer.data[0]['csvFile'])
-        print(csvRecord)
 
-        zipFoldername = f"{request.user}-{datetime.datetime.now().strftime('%d-%b-%Y')}.zip"
-        stringIo = StringIO()
+        zipFoldername = os.path.join("./media/zip/",f"{request.user}-{datetime.datetime.now().strftime('%d-%b-%Y')}.zip")
 
-        compressor = zipfile.ZipFile(stringIo,'w')
+        # stringIo = BytesIO()
 
-        for filePaths in csvRecord:
-            print(os.path.split(filePaths))
+        compressor = zipfile.ZipFile(zipFoldername,'w',zipfile.ZIP_DEFLATED)
 
-        return JsonResponse({'status': True,'data':csvRecord},safe=False,status=200)
+        for files in csvRecord:
+            dirName, fileName = os.path.split(files)
+            dirName = f".{dirName}"
+            compressor.write(os.path.join(dirName, fileName), 
+                       os.path.relpath(os.path.join(dirName, fileName), 
+                                       os.path.join(dirName, '..')))
+        compressor.close()
+
+        return JsonResponse({'status': True,'data':zipFoldername},safe=False,status=200)
